@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 #
-gem 'mongoid', '~> 5.1', '>= 5.1.2'
+gem 'mongoid', "~> 5.0.0"#'~> 5.1', '>= 5.1.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -51,3 +51,7 @@ group :test do
   gem 'capybara', '~> 2.7'
   gem 'guard-rspec', '~> 4.6', '>= 4.6.5'
 end
+
+gem 'mongoid_token', '~> 4.0.0'
+
+gem "doorkeeper-mongodb", github: "doorkeeper-gem/doorkeeper-mongodb"

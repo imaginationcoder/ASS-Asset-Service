@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,8 +36,12 @@ class User
   # field :locked_at,       type: Time
 
   ## Custom
-  field :name
+  field :fname
+  field :lname
   field :company
   field :phone
+
+  ## Associations
+  #has_many :apps
 
 end
