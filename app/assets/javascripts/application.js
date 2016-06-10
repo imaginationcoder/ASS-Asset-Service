@@ -15,4 +15,10 @@
 //= require turbolinks
 //= require materialize-sprockets
 //= require materialize/extras/nouislider
-//= require_tree .
+//= require init
+
+$( document ).ready(function() {
+   // $(".dropdown-button").dropdown();
+    //Enable trubolinks prgress indicator
+    Turbolinks.enableProgressBar();
+});
