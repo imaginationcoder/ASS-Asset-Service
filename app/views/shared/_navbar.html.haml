@@ -7,11 +7,17 @@
           %a{:href => "#"} Documentation
         %li
           %a{:href => "#"} Developer
+        - if user_signed_in?
+          %li
+            = link_to "Sign out", destroy_user_session_path,method: :delete
       %ul#nav-mobile.side-nav
         %li
           %a{:href => "#"} Documentation
         %li
           %a{:href => "#"} Developer
+        - if user_signed_in?
+          %li
+            = link_to "Sign out", destroy_user_session_path,method: :delete
       %a.button-collapse{"data-activates" => "nav-mobile", :href => "#"}
         %i.material-icons menu
 

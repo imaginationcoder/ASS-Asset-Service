@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-#ruby '2.2.3'
+ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 #
@@ -57,3 +57,7 @@ gem 'mongoid_token', '~> 4.0.0'
 gem "doorkeeper-mongodb", github: "doorkeeper-gem/doorkeeper-mongodb"
 
 gem 'materialize-sass'
+gem 'thin' , group: :development
+gem 'unicorn', group: :production
+
+gem 'rails_12factor', group: :production
