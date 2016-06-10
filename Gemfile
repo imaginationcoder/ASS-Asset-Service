@@ -61,3 +61,4 @@ gem 'thin' , group: :development
 gem 'unicorn', group: :production
 
 gem 'rails_12factor', group: :production
+gem 'jquery-turbolinks'
