@@ -12,7 +12,7 @@ class Application
 
   ## Associations
   belongs_to :user, index: true
-  has_many :tours
+  has_one :tour, dependent: :destroy
 
   ## Validations
   validates :name, presence: true, uniqueness: true

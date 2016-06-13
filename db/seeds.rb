@@ -12,11 +12,24 @@ Platform.destroy_all
 end
 
 
-User.destroy_all
+#User.destroy_all
+User.where(email: 'testuser@test.com').destroy_all
 user = User.create(fname: 'test', lname: 'user', email: 'testuser@test.com',password: '12345678', password_confirmation: '12345678')
 
 
 # Create Application
 Application.destroy_all
-user.applications.create(name: 'test iOS',platform_ids: [ Platform.all.map(&:id) ])
+application = user.applications.create(name: 'test iOS',platform_ids: [ Platform.all.map(&:id) ])
+
+Tour.destroy_all
+# Tour Setup
+tour = application.create_tour(name: 'Test Tour')
+
+# Assets
+['1','2','3'].each do |n|
+  File.open(Rails.root.join('app', 'assets', 'images', 'home', "background#{n}.jpg")) do |f|
+    tour.assets.create(source: f, heading: 'Header text', sub_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu velit bibendum, hendrerit arcu nec, dictum est. Praesent lobortis tincidunt.')
+  end
+end
+
 
