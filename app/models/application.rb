@@ -29,4 +29,8 @@ class Application
   end
 
 
+  def expired?
+    self.expires_at < Time.now
+  end
+
 end
