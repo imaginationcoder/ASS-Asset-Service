@@ -149,7 +149,7 @@ production:
         read:
           mode: :primary
         max_pool_size: 35
-        use_activesupport_time_zone: true
-        use_utc: false
-        raise_not_found_error: false
+        #use_activesupport_time_zone: true
+        #use_utc: false
+        #raise_not_found_error: false
 
