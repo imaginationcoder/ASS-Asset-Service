@@ -6,12 +6,13 @@ class Application
   ## Fields
   field :name
   field :expires_at , type: Time, default: 1.year.from_now
-  token field_name: :client_id, length: 16, retry_count: 3, contains: :fixed_numeric
-  token field_name: :secret_token, length: 32, retry_count: 3, contains: :alphanumeric
-  field :platform_ids ,type: Array ,default: [] # same uniq client and secret for all platfroms
+  token field_name: :client_id, length: 20, retry_count: 3, contains: :fixed_numeric
+  token field_name: :secret_token, length: 40, retry_count: 3, contains: :alphanumeric
+  field :platform_ids ,type: Array ,default: [] # same uniq client and secret for all platforms
 
   ## Associations
   belongs_to :user, index: true
+  has_many :tours
 
   ## Validations
   validates :name, presence: true, uniqueness: true
