@@ -11,3 +11,12 @@ Platform.destroy_all
   Platform.create(name: name)
 end
 
+
+User.destroy_all
+user = User.create(fname: 'test', lname: 'user', email: 'testuser@test.com',password: '12345678', password_confirmation: '12345678')
+
+
+# Create Application
+Application.destroy_all
+user.applications.create(name: 'test iOS',platform_ids: [ Platform.all.map(&:id) ])
+

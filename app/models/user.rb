@@ -42,6 +42,6 @@ class User
   field :phone
 
   ## Associations
-  #has_many :apps
+  has_many :applications, autosave: true
 
 end
