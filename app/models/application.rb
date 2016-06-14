@@ -10,10 +10,6 @@ class Application
   token field_name: :secret_token, length: 40, retry_count: 3, contains: :alphanumeric
   field :platform_ids ,type: Array ,default: [] # same uniq client and secret for all platforms
 
-  ## Associations
-  belongs_to :user, index: true
-  has_one :tour, dependent: :destroy
-
   ## Validations
   validates :name, presence: true, uniqueness: true
   validates :user, associated: true
@@ -21,6 +17,10 @@ class Application
   ## Indexes
   index({ "platforms.name" => 1}, { unique: true})
 
+  ## Associations
+  belongs_to :user, index: true
+  has_one :tour, dependent: :destroy
+  has_many :app_access_tokens , dependent: :destroy
 
   ## Callbacks
   # uniq platform_id only
