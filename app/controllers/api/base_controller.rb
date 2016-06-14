@@ -1,4 +1,5 @@
 class API::BaseController < ApplicationController
+  include Utilities::ErrorHandling
 
   before_action :request_must_be_json
   before_action :doorkeeper_authorize!
@@ -9,18 +10,22 @@ class API::BaseController < ApplicationController
   #respond_to :xml, only: []
 
   rescue_from Mongoid::Errors::DocumentNotFound do |e|
-    render json: { message: e.message, error: 'record not found' }, status: :not_found
+    render_error_response(:not_found, 'record not found', e.message)
   end
+
+  rescue_from ActionController::ParameterMissing do |e|
+    render_error_response(:not_found, 'missed some parameters', e.message)
+  end
+
 
   private
 
   def doorkeeper_unauthorized_render_options(error: nil)
-    {:json => {:status=> "401", :message=> "Application authentication failed."}}
+    { json: {status: "401", message: t('api.errors.authentication_fail')}}
   end
 
   def user_not_authorized
-    render status: :unauthorized,#:forbidden
-           json: { success: false, error: 'Access Denied'}
+    render_error_response(:unauthorized, t('api.messages.unauthorized'), t('api.errors.unauthorized'))
   end
 
   def authenticate_developer_app!
@@ -28,18 +33,15 @@ class API::BaseController < ApplicationController
     if app_access_token
       @application = app_access_token.application
       sign_in @application.user, store: false
-      return
     else
-      render status: 401,  json: { success: false, message: 'App not found with given access_token.Please authorize the app with clientId and secret', error: "Not authenticated" }
-      return
+      render_error_response(401, t('api.messages.unauthorized'), t('api.errors.app_not_found'))
     end
   end
 
   def request_must_be_json
     #if request.format != :json
     if request.content_type != 'application/json'
-      render status: 406, json: { success: false, message: 'The request must be json', error: 'Not a valid json request'}
-      return
+      render_error_response(406,t('api.messages.must_be_json'), t('api.errors.must_be_json'))
     end
   end
 

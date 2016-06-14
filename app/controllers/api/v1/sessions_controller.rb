@@ -3,24 +3,22 @@ class API::V1::SessionsController < API::BaseController
 
   def authorize_app
     unless valid_params?
-      render status: 401,  json: {success: false,message: 'client_id and client_secret_token missed in body',
-                                  error: "Not authenticated" }
+      render_error_response(401,t('api.messages.unauthorized'),t('api.errors.client_id_secret_miss'))
       return
     end
     @application = Application.where(client_id: params[:client_id], secret_token: params[:client_secret_token]).first
     if @application
       if @application.expired?
-        render(status: 401,  json: {success: false, error: "Application Token expired" })
+        render_error_response(401,t('api.messages.token_expired'),t('api.errors.token_expired'))
         return
       else
         doorkeeper_token.set(resource_owner_id: @application.user.id)
         @application.app_access_tokens.create(access_token: doorkeeper_token.token)
-        render status: 200, json: {success: true ,data: {access_token: doorkeeper_token.token}}
+        render status: 200, json: { success: true }
         return
       end
     else
-      render status: 401,  json: { success: false, message: 'Invalid client_id or client_secret_token or App not found.',
-                                   error: "Not authenticated" }
+      render_error_response(401,t('api.messages.unauthorized'),t('api.errors.invalid_cleint_secret'))
     end
 
   end
