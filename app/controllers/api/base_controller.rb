@@ -2,7 +2,7 @@ class API::BaseController < ApplicationController
 
   before_action :request_must_be_json
   before_action :doorkeeper_authorize!
-  before_action :authenticate_app!
+  before_action :authenticate_developer_app!
   skip_before_action :verify_authenticity_token
 
   respond_to :json
@@ -23,7 +23,7 @@ class API::BaseController < ApplicationController
            json: { success: false, error: 'Access Denied'}
   end
 
-  def authenticate_app!
+  def authenticate_developer_app!
     app_access_token = AppAccessToken.where(access_token: doorkeeper_token.token).first
     if app_access_token
       @application = app_access_token.application

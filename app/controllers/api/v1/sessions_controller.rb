@@ -1,5 +1,5 @@
 class API::V1::SessionsController < API::BaseController
-  skip_before_filter :authenticate_app!, only: :authorize_app
+  skip_before_filter :authenticate_developer_app!, only: :authorize_app
 
   def authorize_app
     unless valid_params?
