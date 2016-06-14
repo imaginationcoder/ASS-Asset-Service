@@ -52,6 +52,7 @@ GEM
     bson (4.1.1)
     builder (3.2.2)
     byebug (9.0.5)
+    cancancan (1.13.1)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -426,6 +427,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  cancancan
   capybara (~> 2.7)
   carrierwave-mongoid (~> 0.8.1)
   carrierwave_backgrounder (~> 0.4.2)

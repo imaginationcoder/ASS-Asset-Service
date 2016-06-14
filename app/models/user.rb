@@ -40,8 +40,11 @@ class User
   field :lname
   field :company
   field :phone
+  field :is_developer, type: Boolean, default: true
+
 
   ## Associations
   has_many :applications, autosave: true
+
 
 end
