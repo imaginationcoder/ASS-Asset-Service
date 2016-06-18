@@ -10,11 +10,11 @@ class Platform
 
 
   ## Associations
-  #embedded_in :application
+  #embedded_in :app
 
   ## validations
   # validate do |platform|
-  #   platform.errors.add :name, 'must be unique' if Application.where(:id.ne => platform.application.id, "platforms.name" => platform.name).count > 0
+  #   platform.errors.add :name, 'must be unique' if App.where(:id.ne => platform.app.id, "platforms.name" => platform.name).count > 0
   # end
 
   ## Indexes

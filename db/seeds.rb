@@ -18,8 +18,8 @@ user = User.create(fname: 'test', lname: 'user', email: 'testuser@test.com',pass
 
 
 # Create Application
-Application.destroy_all
-application = user.applications.create(name: 'test iOS',platform_ids: [ Platform.all.map(&:id) ])
+App.destroy_all
+application = user.apps.create(name: 'test iOS',platform_ids: [ Platform.all.map(&:id) ])
 
 Tour.destroy_all
 # Tour Setup

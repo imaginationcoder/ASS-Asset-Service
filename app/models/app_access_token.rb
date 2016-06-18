@@ -7,13 +7,13 @@ class AppAccessToken
 
   ## Validations
   validates :access_token, presence: true, uniqueness: true
-  validates :application, associated: true
+  validates :app, associated: true
 
   ## Associations
-  belongs_to :application, index: true
+  belongs_to :app, index: true
 
   ## Indexes
 
-  #index({access_token: 1, application_id: 1}, { unique: true, drop_dups: true})
+  #index({access_token: 1, app_id: 1}, { unique: true, drop_dups: true})
 
 end

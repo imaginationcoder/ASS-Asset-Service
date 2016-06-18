@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   root :to => 'home#index'
 
   ## dev app's dashboard
-  get 'my-apps' => 'app#index', as: :my_apps
+  get 'my-apps' => 'apps#index', as: :my_apps
+  resources :apps ,except: [:index]
 
 
   ## API --------------------------------

@@ -31,7 +31,7 @@ class API::BaseController < ApplicationController
   def authenticate_developer_app!
     app_access_token = AppAccessToken.where(access_token: doorkeeper_token.token).first
     if app_access_token
-      @application = app_access_token.application
+      @application = app_access_token.app
       sign_in @application.user, store: false
     else
       render_error_response(401, t('api.messages.unauthorized'), t('api.errors.app_not_found'))

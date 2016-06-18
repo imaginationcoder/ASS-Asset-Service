@@ -6,7 +6,7 @@ class API::V1::SessionsController < API::BaseController
       render_error_response(401,t('api.messages.unauthorized'),t('api.errors.client_id_secret_miss'))
       return
     end
-    @application = Application.where(client_id: params[:client_id], secret_token: params[:client_secret_token]).first
+    @application = App.where(client_id: params[:client_id], secret_token: params[:client_secret_token]).first
     if @application
       if @application.expired?
         render_error_response(401,t('api.messages.token_expired'),t('api.errors.token_expired'))

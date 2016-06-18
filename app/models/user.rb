@@ -44,7 +44,7 @@ class User
 
 
   ## Associations
-  has_many :applications, autosave: true
+  has_many :apps, autosave: true
 
 
 end

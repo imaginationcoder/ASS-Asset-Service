@@ -7,10 +7,10 @@ class Tour
 
   ## Validations
   validates :name, presence: true
-  validates :application, associated: true
+  validates :app, associated: true
 
   ## Associations
-  belongs_to :application, index: true
+  belongs_to :app, index: true
   embeds_many :assets, cascade_callbacks: true
 
 end

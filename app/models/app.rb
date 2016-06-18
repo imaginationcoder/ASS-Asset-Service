@@ -1,4 +1,4 @@
-class Application
+class App
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Token

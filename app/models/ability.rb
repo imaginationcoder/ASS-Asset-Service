@@ -15,11 +15,11 @@ class Ability
     if user.nil?
       can :read, :all
     elsif user.is_developer?
-      can :manage, Application do |app|
+      can :manage, App do |app|
         user.id.eql?(app.user_id)
       end
       can :manage, Tour do |tour|
-        user.id.eql?(tour.application.user_id)
+        user.id.eql?(tour.app.user_id)
       end
     else
       cannot :manage, :all
