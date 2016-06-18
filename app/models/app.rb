@@ -9,6 +9,7 @@ class App
   token field_name: :client_id, length: 20, retry_count: 3, contains: :fixed_numeric
   token field_name: :secret_token, length: 40, retry_count: 3, contains: :alphanumeric
   field :platform_ids ,type: Array ,default: [] # same uniq client and secret for all platforms
+  field :description
 
   ## Validations
   validates :name, presence: true, uniqueness: true

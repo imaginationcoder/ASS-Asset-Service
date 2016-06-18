@@ -20,4 +20,7 @@ class Platform
   ## Indexes
   index({ name: 1 }, { unique: true })
 
+  ## scopes
+  scope :default, -> { where(name: 'iOS').first }
+
 end
