@@ -1,3 +1,5 @@
+1) http://assets-sdk.herokuapp.com/oauth/applications
+
 1) Get access_token to communicate throu server(app)
   Method: POST
   URL: http://localhost:3000/api/clients/token

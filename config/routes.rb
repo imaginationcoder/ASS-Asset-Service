@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
   root :to => 'home#index'
 
+  ## dev app's dashboard
+  get 'my-apps' => 'app#index', as: :my_apps
+
 
   ## API --------------------------------
   namespace :api , defaults: {format: :json} do
