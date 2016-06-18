@@ -4,19 +4,4 @@
       .col.s12
         %b Create New App
     .divider
-    = form_for(@app) do |f|
-      .row
-        .col.s12
-          - if @app.errors.any?
-            = render 'shared/error_messages', resource: @app
-      .row
-        .input-field.col.s12
-          = f.text_field :name,  class: 'validate'#, required: true
-          %label{:for => "app_name" } Name*
-      .row
-        .input-field.col.s12
-          = f.text_area :description, class: 'materialize-textarea'
-          %label{:for => "app_description"} Description
-      .row
-        .col.s12
-          = f.submit "Create", class: 'waves-effect waves-light btn'
+    = render 'form', btn_name: 'Create'

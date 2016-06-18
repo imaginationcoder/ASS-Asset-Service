@@ -2,7 +2,7 @@ class AppsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @apps = current_user.apps
+    @apps = current_user.apps.order(created_at: :desc)
   end
 
   # GET /apps/new
@@ -30,8 +30,8 @@ class AppsController < ApplicationController
   # PUT /apps/1
   def update
     @app = App.find(params[:id])
-    if @product.update_attributes(params[:product])
-      redirect_to @product, notice: 'Product was successfully updated.'
+    if @app.update_attributes(app_params)
+      redirect_to my_apps_url, notice: 'App was successfully updated.'
     else
       render action: "edit"
     end
@@ -41,16 +41,13 @@ class AppsController < ApplicationController
   def destroy
     @app = App.find(params[:id])
     @app.destroy
-
-    respond_to do |format|
-      redirect_to products_url
-    end
+    redirect_to my_apps_url
   end
 
 
   private
   def app_params
-    params.require(:app).permit(:name, :description, :platform_ids)
+    params.require(:app).permit(:id, :name, :description, :platform_ids)
   end
 
 end

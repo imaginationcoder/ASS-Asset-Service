@@ -6,8 +6,8 @@ class App
   ## Fields
   field :name
   field :expires_at , type: Time, default: 1.year.from_now
-  token field_name: :client_id, length: 20, retry_count: 3, contains: :fixed_numeric
-  token field_name: :secret_token, length: 40, retry_count: 3, contains: :alphanumeric
+  token field_name: :client_id, length: 20, retry_count: 3, contains: :fixed_numeric, override_to_param: false
+  token field_name: :secret_token, length: 40, retry_count: 3, contains: :alphanumeric, override_to_param: false
   field :platform_ids ,type: Array ,default: [] # same uniq client and secret for all platforms
   field :description
 
