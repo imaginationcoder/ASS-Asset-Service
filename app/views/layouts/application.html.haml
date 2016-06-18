@@ -13,3 +13,6 @@
   %body
     = render 'shared/navbar'
     = yield
+    :javascript
+      // Materialize.toast(message, displayLength, className, completeCallback);
+      Materialize.toast("#{flash[:notice]}", 4000)

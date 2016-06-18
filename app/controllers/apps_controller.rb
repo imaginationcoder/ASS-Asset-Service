@@ -41,7 +41,7 @@ class AppsController < ApplicationController
   def destroy
     @app = App.find(params[:id])
     @app.destroy
-    redirect_to my_apps_url
+    redirect_to my_apps_url, notice: 'App was successfully deleted.'
   end
 
 
