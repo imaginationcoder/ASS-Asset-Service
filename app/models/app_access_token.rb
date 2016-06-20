@@ -1,12 +1,13 @@
 class AppAccessToken
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   ## fields
   field :access_token
 
   ## Validations
-  validates :access_token, presence: true, uniqueness: true
+  validates :access_token, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } }
   validates :app, associated: true
 
   ## Associations

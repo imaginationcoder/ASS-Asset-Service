@@ -1,6 +1,7 @@
 class Tour
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   ## Fields
   field :name

@@ -2,6 +2,7 @@ class App
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Token
+  include Mongoid::Paranoia
 
   ## Fields
   field :name
@@ -12,7 +13,7 @@ class App
   field :description
 
   ## Validations
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } }
   validates :user, associated: true
 
   ## Indexes

@@ -70,3 +70,5 @@ gem 'carrierwave-mongoid', '~> 0.8.1'
 #process image versions in background
 gem 'carrierwave_backgrounder', '~> 0.4.2'
 gem 'cancancan'
+# sof delete documents
+gem 'mongoid_paranoia'

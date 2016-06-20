@@ -1,12 +1,13 @@
 class Platform
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   ## fields
   field :name #iOS , Android etc..
 
   ## Validations
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness:  { conditions: -> { where(deleted_at: nil) } }
 
 
   ## Associations

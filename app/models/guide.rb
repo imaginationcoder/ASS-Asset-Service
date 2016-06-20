@@ -1,6 +1,7 @@
 class Guide
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   ## Fields
   #field :source_processing,type: Boolean ,default: false
