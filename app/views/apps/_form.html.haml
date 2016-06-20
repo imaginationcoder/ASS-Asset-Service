@@ -12,5 +12,10 @@
       = f.text_area :description, class: 'materialize-textarea'
       %label{:for => "app_description"} Description
   .row
-    .col.s12
+    .col{class: @app.persisted? ? 's6': 's12' }
       = f.submit btn_name, class: 'waves-effect waves-light btn'
+    - if @app.persisted?
+      .col.s6
+        = link_to  app_path(@app), method: :delete, class: 'waves-effect waves-light btn red darken-2 right-align', data: { confirm: 'Are you certain you want to delete this?' } do
+          %i.material-icons.left> close
+          Delete
