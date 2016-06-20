@@ -1,4 +1,4 @@
-class Asset
+class Guide
   include Mongoid::Document
   include Mongoid::Timestamps
 

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'tour/create' => 'tours#create',as: :create_tour
   resources :apps ,except: [:index] do
     resources :tours, shallow: true do
-      resources :assets, shallow: true
+      resources :guides, shallow: true
     end
   end
 

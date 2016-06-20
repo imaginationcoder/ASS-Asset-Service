@@ -11,6 +11,6 @@ class Tour
 
   ## Associations
   belongs_to :app, index: true
-  embeds_many :assets, cascade_callbacks: true
+  embeds_many :guides, cascade_callbacks: true
 
 end

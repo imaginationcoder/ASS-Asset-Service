@@ -28,7 +28,7 @@ tour = application.create_tour(name: 'Test Tour')
 # Assets
 ['1','2','3'].each do |n|
   File.open(Rails.root.join('app', 'assets', 'images', 'home', "background#{n}.jpg")) do |f|
-    tour.assets.create(source: f, heading: 'Header text', sub_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu velit bibendum, hendrerit arcu nec, dictum est. Praesent lobortis tincidunt.')
+    tour.guides.create(source: f, heading: 'Header text', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu velit bibendum, hendrerit arcu nec, dictum est. Praesent lobortis tincidunt.')
   end
 end
 
