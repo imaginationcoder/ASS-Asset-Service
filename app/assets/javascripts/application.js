@@ -17,3 +17,4 @@
 //= require materialize-sprockets
 //= require materialize/extras/nouislider
 //= require init
+//= require tours

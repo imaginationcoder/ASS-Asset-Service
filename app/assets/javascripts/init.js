@@ -6,4 +6,7 @@ $( document ).ready(function() {
     $('.parallax').parallax();
     $(".dropdown-button").dropdown();
     $(".device-dropdown-button").dropdown();
+
+    //$('#modal1').openModal();
+    $('.modal-trigger').leanModal();
 });

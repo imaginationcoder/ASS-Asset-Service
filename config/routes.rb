@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   ## dev app's dashboard
   get 'my-apps' => 'apps#index', as: :my_apps
-  resources :apps ,except: [:index]
+  resources :apps ,except: [:index] do
+    resources :tours, shallow: true
+  end
 
 
   ## API --------------------------------
