@@ -1,0 +1,61 @@
+.container
+  .card-panel
+    .row
+      .col.s12
+        .row
+          .col.s6
+            = link_to "#{@tour.app.name} - #{@tour.name}" , tour_path(@tour), class: 'large-font'
+          .col.s6.right-align
+            %a.modal-trigger.waves-effect.waves-light.btn{href: '#upload-assets-form-modal' }
+              %i.material-icons.left add
+              Upload
+        .divider
+        %br
+          - if @tour.assets?
+            .row
+              - @tour.assets.each do |asset|
+                .col.s12.m6
+                  .card
+                    .card-image
+                      = image_tag asset.source.url
+                      %span.card-title= asset.heading
+                    .card-content
+                      %p= asset.description
+                    .card-action
+                      %a{:href => "#"} Delete
+          - else
+            .row.valign-wrapper
+              .col.s12.center-align
+                .red-text.darken-2 Currently no assets uploaded.
+    .row
+      .col.s12
+        #upload-assets-form-modal.modal.modal-fixed-footer
+          = form_for(@tour.assets.new,url: tour_assets_path(@tour)) do |f|
+            .modal-content
+              %h5 Upload Assets
+              .divider
+              %p.tour-form
+                .row
+                  .col.s12
+                -#- if @app.errors.any?
+                      = render 'shared/error_messages', resource: @app
+                .row
+                  .input-field.col.s12
+                    = f.text_field :heading,  class: 'validate', required: true
+                    %label{:for => "asset_heading" } Heading*
+                .row
+                  .input-field.col.s12
+                    = f.text_field :description,  class: 'validate', required: true
+                    %label{:for => "asset_description" } Description*
+                .row
+                  .file-field.input-field.col.s12
+                    .waves-effect.waves-light.btn
+                      %span Browse
+                      -#%input{:type => "file"}
+                      = f.file_field :source
+                    .file-path-wrapper
+                      %input.file-path.validate{:type => "text"}
+            .modal-footer
+              %a.modal-action.modal-close.waves-effect.waves-green.btn-flat.btn-cancel-tour{:href => "#!"} Close
+              = f.submit 'Submit', class: 'waves-effect waves-light btn'
+

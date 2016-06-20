@@ -5,7 +5,7 @@ class Asset
   ## Fields
   #field :source_processing,type: Boolean ,default: false
   field :heading
-  field :sub_text
+  field :description
 
   ## Uploader
   mount_uploader :source, AssetUploader, dependent: :destroy

@@ -1,14 +1,18 @@
 class ToursController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_app
+  before_action :find_app, only: :create
 
   def create
     @tour = @app.build_tour(tour_params)
     if @tour.save
-      redirect_to my_apps_url, notice: 'Tour was successfully created.'
+      redirect_to tour_url(@tour), notice: 'Tour was successfully created.'
     else
       render action: "new"
     end
+  end
+
+  def show
+    @tour = Tour.find(params[:id])
   end
 
 
