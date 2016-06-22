@@ -72,3 +72,5 @@ gem 'carrierwave_backgrounder', '~> 0.4.2'
 gem 'cancancan'
 # sof delete documents
 gem 'mongoid_paranoia'
+
+gem 'bootstrap_sb_admin_base_v2'
