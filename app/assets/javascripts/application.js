@@ -13,9 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require turbolinks
-// require materialize-sprockets
-// require materialize/extras/nouislider
 //= require bootstrap_sb_admin_base_v2
 //= require init
 //= require tours

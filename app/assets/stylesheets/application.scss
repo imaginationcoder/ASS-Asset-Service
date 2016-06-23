@@ -1,8 +1,7 @@
-/*@import "materialize/components/color";
-$primary-color: color("blue", "lighten-2") !default;
-@import 'materialize';
-@import "materialize/extras/nouislider";
-*/
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "bootstrap_sb_admin_base_v2";
 @import "style";
 @import "turbolinks_progress_bar";
+@import "theme-style";
