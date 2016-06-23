@@ -1,35 +1,3 @@
--# Dialog box signup
-#small-dialog.mfp-hide
-  .pop_up
-    .payment-online-form-left
-      %form
-        %h4
-          %span.shipping
-          Register
-        %ul.list-unstyled
-          %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Frist Name';}", :onfocus => "this.value = '';", :type => "text", :value => "Frist Name"}/
-          %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Last Name';}", :onfocus => "this.value = '';", :type => "text", :value => "Last Name"}/
-        %ul.list-unstyled
-          %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Email';}", :onfocus => "this.value = '';", :type => "text", :value => "Email"}/
-          %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Company Name';}", :onfocus => "this.value = '';", :type => "text", :value => "Company Name"}/
-        %ul.list-unstyled
-          %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Phone';}", :onfocus => "this.value = '';", :type => "text", :value => "Phone"}/
-          %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Address';}", :onfocus => "this.value = '';", :type => "text", :value => "Address"}/
-          .clear
-        .clearfix
-        %ul.payment-sendbtns.list-unstyled
-          %li
-            %input{:type => "reset", :value => "Cancel"}
-          %li
-            %input{:type => "submit", :value => "Process order"}
-        .clearfix
-
 .pricetables
   .container
     .pricetables-head
@@ -46,7 +14,7 @@
           %a{:href => "#"} 5 Members
         %li
           %a{:href => "#"} 5 GB
-      %a.price-btn1.popup-with-zoom-anim{:href => "#small-dialog"} Sign Up
+      %a.price-btn1.popup-with-zoom-anim{:href => "#signup-dialog"} Sign Up
     .col-md-4.pricetable.pricetable1
       %h3 Professional
       %span
@@ -59,7 +27,7 @@
           %a{:href => "#"} 50 Members
         %li
           %a{:href => "#"} 100 GB
-      %a.price-btn1.popup-with-zoom-anim{:href => "#small-dialog"} Sign Up
+      %a.price-btn1.popup-with-zoom-anim{:href => "#signup-dialog"} Sign Up
     .col-md-4.pricetable.pricetable2
       %h3 Enterprise
       %ul
@@ -71,4 +39,4 @@
           %a{:href => "#"} 5 Members
         %li
           %a{:href => "#"} 5 GB
-      %a.price-btn1.popup-with-zoom-anim{:href => "#small-dialog"} Sign Up
+      %a.price-btn1.popup-with-zoom-anim{:href => "#signup-dialog"} Sign Up

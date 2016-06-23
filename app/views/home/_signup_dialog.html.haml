@@ -1,0 +1,31 @@
+-# Dialog box signup
+#signup-dialog.mfp-hide
+  .pop_up
+    .payment-online-form-left
+      %form
+        %h4
+          %span.shipping
+          Register
+        %ul.list-unstyled
+          %li
+            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Frist Name';}", :onfocus => "this.value = '';", :type => "text", :value => "Frist Name"}/
+          %li
+            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Last Name';}", :onfocus => "this.value = '';", :type => "text", :value => "Last Name"}/
+        %ul.list-unstyled
+          %li
+            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Email';}", :onfocus => "this.value = '';", :type => "text", :value => "Email"}/
+          %li
+            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Company Name';}", :onfocus => "this.value = '';", :type => "text", :value => "Company Name"}/
+        %ul.list-unstyled
+          %li
+            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Phone';}", :onfocus => "this.value = '';", :type => "text", :value => "Phone"}/
+          %li
+            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Address';}", :onfocus => "this.value = '';", :type => "text", :value => "Address"}/
+          .clear
+        .clearfix
+        %ul.payment-sendbtns.list-unstyled
+          %li
+            %input{:type => "reset", :value => "Cancel"}
+          %li
+            %input{:type => "submit", :value => "Process order"}
+        .clearfix

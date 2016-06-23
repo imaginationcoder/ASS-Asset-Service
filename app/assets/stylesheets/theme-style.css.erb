@@ -452,7 +452,9 @@ body a{
 .payment-online-form-left form{
 	padding:0 3%;
 }
-.payment-online-form-left input[type="text"]{
+.payment-online-form-left input[type="text"],
+.payment-online-form-left input[type="email"],
+.payment-online-form-left input[type="password"]{
 	padding: 1em 1em;
 	font-family: 'Open Sans', sans-serif;
 	color: #9095AA;
@@ -469,7 +471,9 @@ body a{
 	font-size: 0.9em;
 	border-color: #EEE;
 }
-.payment-online-form-left input[type="text"]:hover{
+.payment-online-form-left input[type="text"]:hover,
+.payment-online-form-left input[type="email"]:hover,
+.payment-online-form-left input[type="password"]:hover{
 	border-color:#3598DB;
 }
 .text-box-dark{
@@ -479,11 +483,18 @@ body a{
 	cursor:pointer;
 	position: relative;
 }
-.payment-online-form-left ul li:first-child input[type="text"]{
+.payment-online-form-left ul li:first-child input[type="text"],
+.payment-online-form-left ul li:first-child input[type="email"],
+.payment-online-form-left ul li:first-child input[type="password"]{
 	margin-right: 5%;
 	background: #fff;
 }
-.payment-online-form-left  input[type="text"]:active, .payment-online-form-left input[type="text"]:hover {
+.payment-online-form-left  input[type="text"]:active,
+.payment-online-form-left input[type="text"]:hover,
+.payment-online-form-left  input[type="email"]:active,
+.payment-online-form-left input[type="email"]:hover,
+.payment-online-form-left  input[type="password"]:active,
+.payment-online-form-left input[type="password"]:hover{
 	border-color:#67BF95 ;
 	color: #58AD52;
 }
@@ -1052,7 +1063,7 @@ img.mfp-img {
   cursor: pointer; }
 /******** Plans List *******/
 /* Styles for dialog window */
-#small-dialog {
+#login-dialog, #signup-dialog {
 	background: #F6F6F7;
 	padding:20px;
 	text-align: left;
@@ -1068,7 +1079,7 @@ img.mfp-img {
  */
 
 /* start state */
-.my-mfp-zoom-in #small-dialog {
+.my-mfp-zoom-in #signup-dialog, .my-mfp-zoom-in #login-dialog{
 	opacity: 0;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
@@ -1081,7 +1092,7 @@ img.mfp-img {
 	transform: scale(0.8);
 }
 /* animate in */
-.my-mfp-zoom-in.mfp-ready #small-dialog {
+.my-mfp-zoom-in.mfp-ready #signup-dialog, .my-mfp-zoom-in.mfp-ready #login-dialog{
 	opacity: 1;
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
@@ -1090,7 +1101,7 @@ img.mfp-img {
 	transform: scale(1);
 }
 /* animate out */
-.my-mfp-zoom-in.mfp-removing #small-dialog{
+.my-mfp-zoom-in.mfp-removing #signup-dialog, .my-mfp-zoom-in.mfp-removing #login-dialog{
 	-webkit-transform: scale(0.8);
 	-moz-transform: scale(0.8);
 	-ms-transform: scale(0.8);

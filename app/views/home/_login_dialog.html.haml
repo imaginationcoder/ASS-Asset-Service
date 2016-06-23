@@ -1,0 +1,18 @@
+#login-dialog.mfp-hide
+  .pop_up
+    .payment-online-form-left
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        %h4
+          %span.shipping
+          Login
+        %ul.list-unstyled
+          %li
+            = f.email_field :email, class: 'text-box-dark' ,placeholder: 'Email', style: 'width: 100%'
+        %ul.list-unstyled
+          %li
+            = f.password_field :password, autocomplete: "off" ,class: 'text-box-dark',placeholder: 'Password', style: 'width: 100%'
+        .clearfix
+        %ul.payment-sendbtns.list-unstyled
+          %li
+            = f.submit "Log in"
+        .clearfix
