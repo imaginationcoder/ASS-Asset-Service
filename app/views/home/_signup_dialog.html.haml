@@ -21,7 +21,7 @@
                             :onblur => "if (this.value == '') {this.value = 'Email';}",
                             :onfocus => "this.value = '';", :type => "text", :value => "Email"
           %li
-            = f.email_field :company_name,  class: 'text-box-dark', required: true,
+            = f.email_field :company,  class: 'text-box-dark', required: true,
                             :onblur => "if (this.value == '') {this.value = 'Company Name';}",
                             :onfocus => "this.value = '';", :type => "text", :value => "Company Name"
         %ul.list-unstyled
