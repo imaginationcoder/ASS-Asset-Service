@@ -1,0 +1,12 @@
+.video
+  .container
+    %h4 A wireframe is the primitive skeleton of your website.
+  .video-bg
+    %a{"data-target" => ".bs-example-modal-lg", "data-toggle" => "modal", :href => "#"}
+    .modal.fade.bs-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog.modal-lg
+        .modal-content.light-box-info
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+            %span.glyphicon.glyphicon-remove
+          %h3 Place Yours content here
+          %iframe{:allowfullscreen => "", :mozallowfullscreen => "", :src => "//player.vimeo.com/video/37191080", :webkitallowfullscreen => ""}

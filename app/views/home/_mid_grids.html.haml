@@ -1,0 +1,16 @@
+.mid-grids
+  .container
+    %h3 The Modern Era of Web Designing
+    %p We make wireframe ultra fast,leak proof
+    #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+      .carousel-inner
+        .item.active
+          %img{:alt => "First slide", :src => asset_path('home/slide2.png')}
+        .item
+          %img{:alt => "Second slide", :src => asset_path('home/slide2.png')}
+        .item
+          %img{:alt => "three slide", :src => asset_path('home/slide2.png')}
+      %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic"}
+        %span.glyphicon.glyphicon-chevron-left
+      %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic"}
+        %span.glyphicon.glyphicon-chevron-right

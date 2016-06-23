@@ -1,0 +1,23 @@
+.bg
+  .container
+    .row.header
+      .row
+        .col-md-6
+          .well.logo
+            = link_to image_tag('home/logo.png'),'#'
+        .well.col-md-6
+          .login-info.well.header-right
+            %p
+              %i
+                %a{:href => "#"} Have an Account ?
+              %a.login.btn-primary{:href => "#"} Login
+    .well.slide-banner.row
+      .slide-banner-left.col-md-8
+        %span
+        %h1 Lorem ipsum dolor sit amet
+        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        %p
+          %a.btn.btn-primary.btn-lg.b-btn{:href => "#"} Read More
+      .well.slide-banner-right.col-md-4
+        %img.img-responsive{:alt => "", src: asset_path('home/slider-img.png')}
+      .clearfix

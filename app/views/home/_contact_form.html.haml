@@ -1,0 +1,24 @@
+.contact
+  .container
+    %p
+      %i
+    .row
+      %form
+        .col-md-6.contact-text-box
+          %div
+            %span
+              Name
+              %label *
+            %input{:required => "", :type => "text"}/
+          %div
+            %span
+              Email
+              %label *
+            %input{:required => "", :type => "text"}/
+        .col-md-6.contact-text-textarea
+          %div
+            %span
+              Message
+              %label *
+            %textarea
+          %input.btn.btn-danger.btn-lg{:Value => "send", :type => "submit"}/
