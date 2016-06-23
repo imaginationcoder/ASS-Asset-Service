@@ -9,7 +9,7 @@ class PrePrompt
   field :header
   field :footer
   field :content
-  field :content_position , default: POSITIONS.first
+  field :content_position, default: POSITIONS.first
   #field :source_processing,type: Boolean ,default: false
 
   ## Uploader

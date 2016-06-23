@@ -6,6 +6,6 @@ class ButtonAction
   ## Uploader
   mount_uploader :source, AssetUploader, dependent: :destroy
 
-
+  embedded_in :pre_prompt
 
 end

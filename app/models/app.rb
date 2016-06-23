@@ -23,7 +23,7 @@ class App
   ## Associations
   belongs_to :user, index: true
   has_many :app_access_tokens , dependent: :destroy, autosave: true
-  has_many :pre_prompts, autosave: true
+  has_many :pre_prompts, dependent: :destroy, autosave: true
   has_and_belongs_to_many :platforms
 
   ## Callbacks
