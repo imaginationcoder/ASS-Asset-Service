@@ -1,24 +1,10 @@
-%ul#nav-dropdown-med-and-down.dropdown-content
-  %li= link_to 'My Apps' , my_apps_path
-  %li.divider
-  %li= link_to "Sign out", destroy_user_session_path, method: :delete
 %ul#nav-dropdown.dropdown-content
   %li= link_to 'My Apps' , my_apps_path
   %li.divider
   %li= link_to "Sign out", destroy_user_session_path, method: :delete
 %nav.white{:role => "navigation"}
   .nav-wrapper.container
-    %a#logo-container.brand-logo{:href => "#{root_url}"} ASS-SDK
-    %ul.right.hide-on-med-and-down
-      %li
-        %a{:href => "#"} Documentation
-      - if user_signed_in?
-        %li
-          %a.dropdown-button{"data-activates" => "nav-dropdown", :href => "#!"}
-            Developer
-            %i.material-icons.right arrow_drop_down
-      - else
-        %li= link_to 'Developer', new_user_session_path
+    %a#logo-container.brand-logo{:href => "#{root_url}"} ASS-SDK 
     %ul#nav-mobile.side-nav
       %li
         %a{:href => "#"} Documentation
