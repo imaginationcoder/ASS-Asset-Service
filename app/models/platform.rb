@@ -10,9 +10,6 @@ class Platform
   validates :name, presence: true, uniqueness:  { conditions: -> { where(deleted_at: nil) } }
 
 
-  ## Associations
-  #embedded_in :app
-
   ## validations
   # validate do |platform|
   #   platform.errors.add :name, 'must be unique' if App.where(:id.ne => platform.app.id, "platforms.name" => platform.name).count > 0
@@ -20,6 +17,10 @@ class Platform
 
   ## Indexes
   index({ name: 1 }, { unique: true })
+
+  ## Associations
+  embedded_in :app
+  embeds_many :platform_categories, cascade_callbacks: true # iPad, iPhone etc for iOs
 
   ## scopes
   scope :default, -> { where(name: 'iOS').first }
