@@ -2,30 +2,42 @@
 #signup-dialog.mfp-hide
   .pop_up
     .payment-online-form-left
-      %form
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         %h4
           %span.shipping
           Register
         %ul.list-unstyled
           %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Frist Name';}", :onfocus => "this.value = '';", :type => "text", :value => "Frist Name"}/
+            = f.text_field :fname,  class: 'text-box-dark', required: true,
+                           :onblur => "if (this.value == '') {this.value = 'Frist Name';}",
+                           :onfocus => "this.value = '';", :type => "text", :value => "Frist Name"
           %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Last Name';}", :onfocus => "this.value = '';", :type => "text", :value => "Last Name"}/
+            = f.text_field :lname,  class: 'text-box-dark', required: true,
+                           :onblur => "if (this.value == '') {this.value = 'Last Name';}",
+                           :onfocus => "this.value = '';", :type => "text", :value => "Last Name"
         %ul.list-unstyled
           %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Email';}", :onfocus => "this.value = '';", :type => "text", :value => "Email"}/
+            = f.email_field :email,  class: 'text-box-dark', required: true,
+                            :onblur => "if (this.value == '') {this.value = 'Email';}",
+                            :onfocus => "this.value = '';", :type => "text", :value => "Email"
           %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Company Name';}", :onfocus => "this.value = '';", :type => "text", :value => "Company Name"}/
+            = f.email_field :company_name,  class: 'text-box-dark', required: true,
+                            :onblur => "if (this.value == '') {this.value = 'Company Name';}",
+                            :onfocus => "this.value = '';", :type => "text", :value => "Company Name"
         %ul.list-unstyled
           %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Phone';}", :onfocus => "this.value = '';", :type => "text", :value => "Phone"}/
+            = f.password_field :password, autocomplete: "off", required: true, class: 'text-box-dark',
+                               :onblur => "if (this.value == '') {this.value = 'Password';}",
+                               :onfocus => "this.value = '';", :type => "text", :value => "Password"
           %li
-            %input.text-box-dark{:onblur => "if (this.value == '') {this.value = 'Address';}", :onfocus => "this.value = '';", :type => "text", :value => "Address"}/
+            = f.password_field :password_confirmation, autocomplete: "off", required: true, class: 'text-box-dark',
+                               :onblur => "if (this.value == '') {this.value = 'Confirm password';}",
+                               :onfocus => "this.value = '';", :type => "text", :value => "Confirm password"
           .clear
         .clearfix
         %ul.payment-sendbtns.list-unstyled
           %li
-            %input{:type => "reset", :value => "Cancel"}
+            %input{:type => "reset", :value => "Reset"}
           %li
-            %input{:type => "submit", :value => "Process order"}
+            = f.submit "Sign up"
         .clearfix

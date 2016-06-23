@@ -30,7 +30,7 @@
                             Secret:
                             %br
                               = app.secret_token
-                    .card-action
+                    -#.card-action
                       %a.waves-effect.waves-light{:href => edit_app_path(app)} Edit
                       -#= link_to 'Delete', app_path(app), method: :delete, class: 'waves-effect waves-light right-align', data: { confirm: 'Are you certain you want to delete this?' }
                       - if app.tour
@@ -42,7 +42,7 @@
             .row.valign-wrapper
               .col.s12.center-align
                 .red-text.darken-2 Currently no app's exit.
-    .row
+    -#.row
       .col.s12
         #new-tour-form.modal.modal-fixed-footer
           = form_for(Tour.new, url: create_tour_path) do |f|
