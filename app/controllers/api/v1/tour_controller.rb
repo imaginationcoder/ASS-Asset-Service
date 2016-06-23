@@ -2,7 +2,7 @@ class API::V1::TourController < API::BaseController
 
   #GET /api/v1/tour
   def index
-    @tour = @application.tour
+    @tour_prompts = @application.tour_pre_prompts
   end
 
 end
