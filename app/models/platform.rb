@@ -1,13 +1,13 @@
 class Platform
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paranoia
+  #include Mongoid::Paranoia
 
   ## fields
   field :name #iOS , Android etc..
 
   ## Validations
-  validates :name, presence: true, uniqueness:  { conditions: -> { where(deleted_at: nil) } }
+  validates :name, presence: true,  uniqueness: true#, uniqueness:  { conditions: -> { where(deleted_at: nil) } }
 
 
   ## validations
@@ -19,8 +19,8 @@ class Platform
   index({ name: 1 }, { unique: true })
 
   ## Associations
-  embedded_in :app
   embeds_many :platform_categories, cascade_callbacks: true # iPad, iPhone etc for iOs
+  has_and_belongs_to_many :apps
 
   ## scopes
   scope :default, -> { where(name: 'iOS').first }

@@ -18,22 +18,30 @@ class App
   validates :user, associated: true
 
   ## Indexes
-  index({ "platforms.name" => 1}, { unique: true})
+  #index({ "platforms.name" => 1}, { unique: true})
 
   ## Associations
   belongs_to :user, index: true
-  has_one :tour, dependent: :destroy
-  has_many :app_access_tokens , dependent: :destroy
+  has_many :app_access_tokens , dependent: :destroy, autosave: true
+  has_many :pre_prompts, autosave: true
+  has_and_belongs_to_many :platforms
 
   ## Callbacks
   # uniq platform_id only
+=begin
   before_save do |record|
     record.platform_ids = record.platform_ids.uniq
   end
+=end
 
 
   def expired?
     self.expires_at < Time.now
+  end
+
+
+  def tour_pre_prompts
+    pre_prompts.where(preference: Preference.tour)
   end
 
 end
