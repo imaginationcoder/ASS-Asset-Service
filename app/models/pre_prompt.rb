@@ -17,9 +17,11 @@ class PrePrompt
   #process_in_background :source
 
   ## Associations
-  belongs_to :preference
-  belongs_to :app
+  belongs_to :preference, index: true
+  belongs_to :app, index: true
   embeds_many :button_actions, cascade_callbacks: true
   #embedded_in :tour
+
+
 
 end
