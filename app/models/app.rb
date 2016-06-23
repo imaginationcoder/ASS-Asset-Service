@@ -11,6 +11,7 @@ class App
   token field_name: :secret_token, length: 40, retry_count: 3, contains: :alphanumeric, override_to_param: false
   #field :platform_ids ,type: Array ,default: [] # same uniq client and secret for all platforms
   field :description
+  field :sw_version, default: '1.0' # software version('1.0', '1.0.1', '2.0')
 
   ## Validations
   validates :name, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } }
