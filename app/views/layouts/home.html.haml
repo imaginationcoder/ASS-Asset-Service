@@ -4,7 +4,7 @@
     %title= t('app.name')
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag  'theme-style', media: 'all'
-    -#= favicon_link_tag 'favicon.ico'
+    = favicon_link_tag 'favicon.ico'
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://fonts.googleapis.com/css?family=Fauna+One", :rel => "stylesheet", :type => "text/css"}
@@ -13,5 +13,7 @@
     = yield
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     :javascript
-      addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+      addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+      function hideURLbar(){ window.scrollTo(0,1); }
+    = yield :javascripts
 
