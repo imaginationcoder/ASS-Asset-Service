@@ -1,13 +1,11 @@
 !!!
 %html
   %head
-    / Let browser know website is optimized for mobile
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
+    %meta{:charset => "utf-8"}
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
-
     %title= t('app.name')
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
@@ -19,4 +17,17 @@
     = csrf_meta_tags
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
   %body
-    = yield
+    #wrapper
+      / Navigation Header
+      %nav.navbar.navbar-default.navbar-static-top{:role => "navigation", :style => "margin-bottom: 0"}
+        / navbar header left
+        = render 'shared/dashboard/header/nav_left'
+        / navbar header right
+        %ul.nav.navbar-top-links.navbar-right
+          = render 'shared/dashboard/header/messages'
+          = render 'shared/dashboard/header/notifications'
+          = render 'shared/dashboard/header/settings'
+        .navbar-default.sidebar{:role => "navigation"}
+          = render 'shared/sidebar_nav'
+      #page-wrapper
+        = yield
