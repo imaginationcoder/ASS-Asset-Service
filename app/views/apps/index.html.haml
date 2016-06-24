@@ -1,3 +1,28 @@
 .row
   .col-lg-12
-    %h1.page-header Dashboard
+    %h3.page-header My Apps
+.row
+  - if @apps.present?
+    - @apps.each do |app|
+      .col-lg-6
+        .panel.panel-primary
+          .panel-heading= app.name
+          .panel-body= app.description
+          .list-group
+            %a.list-group-item{:href => "#"}
+              %h5.list-group-item-heading
+                %strong ClientId
+              %p.list-group-item-text= app.client_id
+            %a.list-group-item{:href => "#"}
+              %h5.list-group-item-heading
+                %strong Client Secret
+              %p.list-group-item-text= app.secret_token
+          .panel-footer.clearfix
+            .pull-right
+              %a.btn.btn-primary{:href => edit_app_path(app)} Edit
+              - if app.tour_pre_prompts.eql?(0)
+                %a.btn.btn-default{:href => "#"} Add Tour
+  - else
+    .alert.alert-danger{:role => "alert"}
+      Currently no apps added.
+      %a.alert-link{:href => new_app_path} Add New

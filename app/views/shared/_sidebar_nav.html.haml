@@ -6,31 +6,33 @@
           %span.input-group-btn
             %button.btn.btn-default{:type => "button"}
               %i.fa.fa-search
-    / /input-group
     %li
-      %a{:href => "index.html"}
+      %a{:href => my_apps_path }
         %i.fa.fa-dashboard.fa-fw
         Dashboard
     %li
       %a{:href => "#"}
-        %i.fa.fa-bar-chart-o.fa-fw
-        Charts
+        %i.fa.fa-cloud.fa-fw
+        My Apps
         %span.fa.arrow
       %ul.nav.nav-second-level
         %li
-          %a{:href => "flot.html"} Flot Charts
+          %a{:href => "flot.html"}
+            %i.fa.fa-list-ol.fa-fw
+            See All Apps
         %li
-          %a{:href => "morris.html"} Morris.js Charts
-    / /.nav-second-level
-    %li
+          %a{:href => "morris.html"}
+            %i.fa.fa-plus.fa-fw
+            Add a New App
+    -#%li
       %a{:href => "tables.html"}
         %i.fa.fa-table.fa-fw
         Tables
-    %li
+    -#%li
       %a{:href => "forms.html"}
         %i.fa.fa-edit.fa-fw
         Forms
-    %li
+    -#%li
       %a{:href => "#"}
         %i.fa.fa-wrench.fa-fw
         UI Elements
@@ -48,8 +50,7 @@
           %a{:href => "icons.html"} Icons
         %li
           %a{:href => "grid.html"} Grid
-    / /.nav-second-level
-    %li
+    -#%li
       %a{:href => "#"}
         %i.fa.fa-sitemap.fa-fw
         Multi-Level Dropdown
