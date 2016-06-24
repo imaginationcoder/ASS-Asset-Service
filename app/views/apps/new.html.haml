@@ -71,6 +71,9 @@
     $(this).toggleClass('selected');
     var clicked = $(this).attr('title');
     $("#"+clicked).removeClass("hidden").siblings().addClass("hidden");
-    $('#platform-section').hide();
-    $('#new-app-form-section').removeClass('hide');
+    setTimeout(function(){
+     $('#platform-section').hide();
+     $('#new-app-form-section').removeClass('hide');
+    }, 1000);
+
   });
