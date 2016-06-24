@@ -21,7 +21,8 @@
 
 en:
   hello: "Hello world"
-  app_name: "AssSdk"
+  app:
+    name: "ASSSDK"
   api:
     errors:
       authentication_fail: "Application authentication failed."
