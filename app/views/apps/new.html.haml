@@ -1,7 +1,76 @@
-.container
-  .card-panel
-    .row
-      .col.s12
-        %b Create New App
-    .divider
-    = render 'form', btn_name: 'Create'
+:css
+  .platform_images_list li {
+    list-style: none;
+    float: left;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .platform_images_list li span {
+    display:none;
+    position:absolute;
+    top:0px;
+    left:0px;
+  }
+  .border {
+    border: 6px solid #D8D8D8;
+  }
+  .selected {
+    border: 6px solid #67bf95;
+    position:relative;
+  }
+  .hidden {
+    display:none;
+  }
+  .platform_images_list li.selected span {
+    display:block;
+  }
+
+.row
+  .col-lg-12
+    %h3.page-header My Apps
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        Add New App
+      .panel-body
+        .row#platform-section
+          .col-lg-12
+            %h4 Select Platform
+          .col-md-12.text-center
+            .center-block
+              .platform_images_list
+                %li.border{:title => "iOS"}
+                  = image_tag 'platform-ios.png'
+                  %span
+                    %i.fa.fa-check.fa-fw
+                %li.border{:title => "Android"}
+                  = image_tag 'platform-android-grey.png'
+                  %span
+                    %i.fa.fa-check.fa-fw
+        .row#new-app-form-section.hide
+          .col-lg-6
+            = form_for(@app) do |f|
+              - if @app.errors.any?
+                .row
+                  .col-lg-6
+                    = render 'shared/error_messages', resource: @app
+              .form-group
+                %label Application Name
+                = f.text_field :name, class: 'form-control', placeholder: 'Application Name'
+              .form-group
+                %label Description
+                = f.text_area :description, class: 'form-control' ,rows: 3
+          .col-lg-6
+            // preview goes here
+
+:javascript
+  $('.platform_images_list li').click(function() {
+    $('.platform_images_list .selected').removeClass('selected');
+    $(this).toggleClass('selected');
+    var clicked = $(this).attr('title');
+    $("#"+clicked).removeClass("hidden").siblings().addClass("hidden");
+    $('#platform-section').hide();
+    $('#new-app-form-section').removeClass('hide');
+  });
