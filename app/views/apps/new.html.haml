@@ -12,16 +12,13 @@
     top:0px;
     left:0px;
   }
-  .border {
+  .platform_images_list .border {
     border: 6px solid #D8D8D8;
   }
-  .selected {
+  .platform_images_list .selected {
     border: 6px solid #67bf95;
     position:relative;
-  }
-  .hidden {
-    display:none;
-  }
+  } 
   .platform_images_list li.selected span {
     display:block;
   }
@@ -62,6 +59,27 @@
               .form-group
                 %label Description
                 = f.text_area :description, class: 'form-control' ,rows: 3
+              .form-group
+                %label For
+                - @default_platform.platform_categories.each do |category|
+                  .radio
+                    %label
+                      = f.radio_button :platform_category_id,  category.id,checked: true
+                      #{category.name}
+              .form-group
+                %label Version
+                = f.text_field :sw_version, class: 'form-control', placeholder: '1.0.0'
+              .form-group
+                %label Mode
+                %label.radio-inline
+                  = f.radio_button :is_sandbox, true, checked: true, value: true
+                  Sandbox Mode
+                %label.radio-inline
+                  = f.radio_button :is_sandbox, false, checked: false, value: false
+                  Publish to production
+              .pull-right
+                %button.btn.btn-default{:type => "reset"} Reset
+                = f.submit 'Create',class: 'btn btn-primary'
           .col-lg-6
             // preview goes here
 
@@ -70,7 +88,7 @@
     $('.platform_images_list .selected').removeClass('selected');
     $(this).toggleClass('selected');
     var clicked = $(this).attr('title');
-    $("#"+clicked).removeClass("hidden").siblings().addClass("hidden");
+    $("#"+clicked).removeClass("hide").siblings().addClass("hide");
     setTimeout(function(){
      $('#platform-section').hide();
      $('#new-app-form-section').removeClass('hide');

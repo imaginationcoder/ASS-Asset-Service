@@ -12,6 +12,9 @@ class App
   #field :platform_ids ,type: Array ,default: [] # same uniq client and secret for all platforms
   field :description
   field :sw_version, default: '1.0' # software version('1.0', '1.0.1', '2.0')
+  field :platform_category_id
+  field :is_sandbox_mode , type: Boolean, default: true
+
 
   ## Validations
   validates :name, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } }
@@ -24,7 +27,8 @@ class App
   belongs_to :user, index: true
   has_many :app_access_tokens , dependent: :destroy, autosave: true
   has_many :pre_prompts, dependent: :destroy, autosave: true
-  has_and_belongs_to_many :platforms
+  #has_and_belongs_to_many :platforms
+  belongs_to :platform,index: true
 
   ## Callbacks
   # uniq platform_id only

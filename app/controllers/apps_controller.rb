@@ -8,6 +8,7 @@ class AppsController < ApplicationController
   # GET /apps/new
   def new
     @app = current_user.apps.build
+    @default_platform = Platform.default
   end
 
   # POST /apps

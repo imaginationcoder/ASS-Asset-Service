@@ -20,9 +20,13 @@ class Platform
 
   ## Associations
   embeds_many :platform_categories, cascade_callbacks: true # iPad, iPhone etc for iOs
-  has_and_belongs_to_many :apps
+  #has_and_belongs_to_many :apps
+  has_many :apps
 
   ## scopes
-  scope :default, -> { where(name: 'iOS').first }
+  #scope :default, -> { where(name: 'iOS').first }
 
+  def self.default
+    where(name: 'iOS').first
+  end
 end
