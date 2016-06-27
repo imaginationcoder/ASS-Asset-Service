@@ -19,7 +19,8 @@
               %p.list-group-item-text= app.secret_token
           .panel-footer.clearfix
             .pull-right
-              %a.btn.btn-primary{:href => edit_app_path(app)} Edit
+              %a.btn.btn-primary{:href => edit_app_path(app)}
+                %i.fa.fa-edit &nbsp;&nbsp;Edit
               %a.btn.btn-primary{:href => app_path(app)} Show
               - if app.tour_pre_prompts.eql?(0)
                 %a.btn.btn-default{:href => "#"} Add Tour

@@ -1,10 +1,11 @@
 .row
   .col-lg-12
-    %h3.page-header My Apps
+    %h3.page-header= @app.name
 .row
   .col-lg-12
     .panel.panel-default
-      .panel-heading= @app.name
+      .panel-heading
+        %strong= @app.name
       .panel-body= @app.description
       .list-group
         %a.list-group-item{:href => "#"}
@@ -15,3 +16,9 @@
           %h5.list-group-item-heading
             %strong Client Secret
           %p.list-group-item-text= @app.secret_token
+    .well
+      %h4 App Tour
+      %p
+        Upload welcome tour assets
+      %a.btn.btn-primary{href: new_app_tour_path(@app)} Add Asset
+

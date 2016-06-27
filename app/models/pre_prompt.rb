@@ -7,9 +7,9 @@ class PrePrompt
 
   ## Fields
   field :header
-  field :footer
-  field :content
-  field :content_position, default: POSITIONS.first
+  field :text
+  field :text_position, default: POSITIONS.first
+  field :header_position, default: POSITIONS.first
   #field :source_processing,type: Boolean ,default: false
 
   ## Uploader
@@ -22,6 +22,7 @@ class PrePrompt
   embeds_many :button_actions, cascade_callbacks: true
   #embedded_in :tour
 
+  accepts_nested_attributes_for :button_actions, allow_destroy: true
 
 
 end

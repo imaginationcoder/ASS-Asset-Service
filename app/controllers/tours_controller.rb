@@ -1,6 +1,13 @@
 class ToursController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_app, only: :create
+  before_action :find_app, only: [:create]
+
+
+  def new
+    @app = App.find(params[:app_id])
+    @pre_prompt = @app.pre_prompts.build
+    @pre_prompt.button_actions.build
+  end
 
   def create
     @tour = @app.build_tour(tour_params)
