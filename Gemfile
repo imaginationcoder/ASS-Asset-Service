@@ -75,3 +75,5 @@ gem 'cancancan'
 gem 'mongoid_paranoia'
 
 gem 'bootstrap_sb_admin_base_v2'
+# show flash messages
+gem 'growlyflash'

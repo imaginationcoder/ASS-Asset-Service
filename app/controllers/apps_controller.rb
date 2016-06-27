@@ -16,8 +16,11 @@ class AppsController < ApplicationController
     @app = App.new(app_params)
     @app.user = current_user
     if @app.save
-      redirect_to my_apps_url, notice: 'App was successfully created.'
+      flash[:success] = 'App was successfully created.Upload Assets'
+      redirect_to app_url(@app)
     else
+      @default_platform = Platform.default
+      flash.now[:error] = 'Fix the errors'
       render action: "new"
     end
   end
@@ -35,6 +38,10 @@ class AppsController < ApplicationController
     else
       render action: "edit"
     end
+  end
+
+  def show
+    @app = App.find(params[:id])
   end
 
   # DELETE /apps/1

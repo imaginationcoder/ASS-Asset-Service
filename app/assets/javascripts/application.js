@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require jquery.magnific-popup
 //= require bootstrap_sb_admin_base_v2
+//= require growlyflash
 //= require init
 //= require tours
 

@@ -18,6 +18,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
   %body
     #wrapper
+      = growlyflash_static_notices
       / Navigation Header
       %nav.navbar.navbar-default.navbar-static-top{:role => "navigation", :style => "margin-bottom: 0"}
         / navbar header left

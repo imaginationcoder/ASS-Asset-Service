@@ -239,6 +239,9 @@ GEM
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    growlyflash (0.8.5)
+      coffee-rails (>= 3.2.1)
+      railties (>= 3.2, < 5.1)
     guard (2.14.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -448,6 +451,7 @@ DEPENDENCIES
   doorkeeper-mongodb!
   factory_girl_rails (~> 4.7)
   fog
+  growlyflash
   guard-rspec (~> 4.6, >= 4.6.5)
   haml (~> 4.0, >= 4.0.7)
   jbuilder (~> 2.0)
@@ -469,5 +473,8 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.2.4p230
+
 BUNDLED WITH
-   1.11.2
+   1.12.5
