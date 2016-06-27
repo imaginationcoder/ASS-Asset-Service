@@ -49,6 +49,7 @@
         .row#new-app-form-section.hide
           .col-lg-6
             = form_for(@app) do |f|
+              = f.hidden_field :platform_id, value: @default_platform.id
               - if @app.errors.any?
                 .row
                   .col-lg-6
@@ -72,10 +73,10 @@
               .form-group
                 %label Mode
                 %label.radio-inline
-                  = f.radio_button :is_sandbox, true, checked: true, value: true
+                  = f.radio_button :is_sandbox_mode, true, checked: true, value: true
                   Sandbox Mode
                 %label.radio-inline
-                  = f.radio_button :is_sandbox, false, checked: false, value: false
+                  = f.radio_button :is_sandbox_mode, false, checked: false, value: false
                   Publish to production
               .pull-right
                 %button.btn.btn-default{:type => "reset"} Reset

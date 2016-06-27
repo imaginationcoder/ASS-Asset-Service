@@ -14,7 +14,6 @@ class AppsController < ApplicationController
   # POST /apps
   def create
     @app = App.new(app_params)
-    @app.platform_ids = [ Platform.first.id ]
     @app.user = current_user
     if @app.save
       redirect_to my_apps_url, notice: 'App was successfully created.'
@@ -48,7 +47,8 @@ class AppsController < ApplicationController
 
   private
   def app_params
-    params.require(:app).permit(:id, :name, :description, :platform_ids)
+    params.require(:app).permit(:id, :name, :description, :platform_id, :platform_category_id,
+                                :sw_version, :is_sandbox_mode)
   end
 
 end
