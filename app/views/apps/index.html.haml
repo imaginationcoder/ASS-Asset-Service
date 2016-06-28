@@ -5,8 +5,9 @@
   - if @apps.present?
     - @apps.each do |app|
       .col-lg-6
-        .panel.panel-primary
-          .panel-heading= app.name
+        .panel.panel-default
+          .panel-heading
+            = link_to app.name, app_path(app)
           .panel-body= app.description
           .list-group
             %a.list-group-item{:href => "#"}
@@ -19,9 +20,9 @@
               %p.list-group-item-text.secret-token-text= app.secret_token
           .panel-footer.clearfix
             .pull-right
-              %a.btn.btn-primary{:href => edit_app_path(app)}
+              -#%a.btn.btn-primary{:href => edit_app_path(app)}
                 %i.fa.fa-edit &nbsp;&nbsp;Edit
-              %a.btn.btn-primary{:href => app_path(app)} Show
+              %a.btn.btn-primary.btn-sm{:href => app_path(app)} Show
               - if app.tour_pre_prompts.eql?(0)
                 %a.btn.btn-default{:href => "#"} Add Tour
   - else

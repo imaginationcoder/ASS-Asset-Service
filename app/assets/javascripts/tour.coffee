@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  # carousel for tour assets in app's show page
+# carousel for tour assets in app's show page
   $('#tour-assets-carousel').carousel interval: 6000

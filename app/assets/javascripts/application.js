@@ -21,4 +21,4 @@
 //= require nested_form_fields
 //= require init
 //= require pre_prompts
-//= require tours
+//= require tour
