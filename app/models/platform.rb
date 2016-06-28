@@ -27,6 +27,6 @@ class Platform
   #scope :default, -> { where(name: 'iOS').first }
 
   def self.default
-    where(name: 'iOS').first
+    find_or_create_by(name: 'iOS')
   end
 end

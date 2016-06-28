@@ -10,7 +10,7 @@ class Preference
 
 
   def self.tour
-    where(name: 'Tour').first
+    find_or_create_by(name: 'Tour')
   end
 
 end
