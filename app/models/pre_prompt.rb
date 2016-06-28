@@ -22,7 +22,7 @@ class PrePrompt
   embeds_many :button_actions, cascade_callbacks: true
   #embedded_in :tour
 
-  accepts_nested_attributes_for :button_actions, allow_destroy: true
+  accepts_nested_attributes_for :button_actions, allow_destroy: true,reject_if: proc { |attributes| attributes['btn_type'].blank? }
 
 
 end
