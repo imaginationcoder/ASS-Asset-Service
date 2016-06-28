@@ -16,7 +16,7 @@
             %a.list-group-item{:href => "#"}
               %h5.list-group-item-heading
                 %strong Client Secret
-              %p.list-group-item-text= app.secret_token
+              %p.list-group-item-text.secret-token-text= app.secret_token
           .panel-footer.clearfix
             .pull-right
               %a.btn.btn-primary{:href => edit_app_path(app)}

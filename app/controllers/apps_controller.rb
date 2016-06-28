@@ -42,7 +42,9 @@ class AppsController < ApplicationController
 
   def show
     @app = App.find(params[:id])
+    @tour_prompts = @app.tour_pre_prompts
     @tour_preference = Preference.tour
+    @new_prompt_path = new_app_pre_prompt_path(@app, preference_id: @tour_preference.id)
   end
 
   # DELETE /apps/1

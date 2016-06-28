@@ -3,7 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  # set applicatio_id and access in controller
-  $('.add-tour-btn').click ->
-    $('input[name="tour[app_id]"]').val $(this).data('id')
-    return
+  # carousel for tour assets in app's show page
+  $('#tour-assets-carousel').carousel interval: 6000

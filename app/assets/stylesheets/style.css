@@ -20,8 +20,12 @@
     float: left !important;
 }
 
-
 .large-font{
     font-size: 20px;
     font-weight: 500;
+}
+
+/*word break for mobile view*/
+.secret-token-text {
+    word-break: break-all;
 }

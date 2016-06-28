@@ -15,10 +15,35 @@
         %a.list-group-item{:href => "#"}
           %h5.list-group-item-heading
             %strong Client Secret
-          %p.list-group-item-text= @app.secret_token
-    .well
-      %h4 App Tour
-      %p
-        Upload welcome tour assets
-      %a.btn.btn-primary{href: new_app_pre_prompt_path(@app, preference_id: @tour_preference.id)} Add Asset
+          %p.list-group-item-text.secret-token-text= @app.secret_token
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        %span.panel-title Tour Assets
+        %a.btn.btn-primary.btn-sm.pull-right{ href: @new_prompt_path,
+                                              data: {toggle: 'tooltip', placement: 'left'}, title: 'Upload Assets'}
+          %span.glyphicon.glyphicon-plus
+        -#.btn-group.pull-right
+          .btn-group
+            %a.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %span.glyphicon.glyphicon-cog
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Action 1
+              %li
+                %a{:href => "#"} Action 2
+              %li.divider
+              %li
+                %a{:href => "#"} Another Action
+          %a.btn.btn-primary{:href => "#"}
+            %span.glyphicon.glyphicon-plus
+        .clearfix
+      .panel-body
+        - if @tour_prompts.blank?
+          .alert.alert-warning{:role => "alert"}
+            Currently no assets uploaded to Tour,
+            %a.alert-link{href: @new_prompt_path} Upload
+        - else
+          = render 'apps/tour_assets', tour_prompts: @tour_prompts
 
