@@ -1,12 +1,18 @@
 $( document ).ready(function() {
-    // $(".dropdown-button").dropdown();
     //Enable trubolinks prgress indicator
     Turbolinks.enableProgressBar();
-    /*$('.button-collapse').sideNav();
-    $('.parallax').parallax();
-    $(".dropdown-button").dropdown();
-    $(".device-dropdown-button").dropdown();
 
-    //$('#modal1').openModal();
-    $('.modal-trigger').leanModal();*/
+    // Home page login, register popups
+    $('.popup-with-zoom-anim').magnificPopup({
+        type: 'inline',
+        fixedContentPos: false,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        closeBtnInside: true,
+        preloader: false,
+        midClick: true,
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in'
+    });
+
 });

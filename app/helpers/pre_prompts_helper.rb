@@ -1,0 +1,2 @@
+module PrePromptsHelper
+end

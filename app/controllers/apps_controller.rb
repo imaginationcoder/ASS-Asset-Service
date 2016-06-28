@@ -42,6 +42,7 @@ class AppsController < ApplicationController
 
   def show
     @app = App.find(params[:id])
+    @tour_preference = Preference.where(name: 'Tour').first
   end
 
   # DELETE /apps/1
