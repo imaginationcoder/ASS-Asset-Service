@@ -2,6 +2,11 @@ $( document ).ready(function() {
     //Enable trubolinks prgress indicator
     Turbolinks.enableProgressBar();
 
+    // Enable bootstrap default tooltip
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger : 'hover'
+    });
+
     // Home page login, register popups
     $('.popup-with-zoom-anim').magnificPopup({
         type: 'inline',
