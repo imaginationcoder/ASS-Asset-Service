@@ -44,6 +44,7 @@ class AppsController < ApplicationController
     @app = App.find(params[:id])
     @tour_prompts = @app.tour_pre_prompts
     @tour_permission = Permission.tour
+    @permissions = Permission.nin(id: @tour_permission.id) # other permissions
     @new_prompt_path = new_app_pre_prompt_path(@app, permission_id: @tour_permission.id)
   end
 
