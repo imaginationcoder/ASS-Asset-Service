@@ -8,9 +8,14 @@
         .well.col-md-6
           .login-info.well.header-right
             %p
-              %i
-                %a{:href => "#login-dialog"} Have an Account ?
-              %a.login.btn-primary.popup-with-zoom-anim{:href => "#login-dialog"} Login
+              - if user_signed_in?
+                %i
+                  %a{href: '#'} Check your
+                %a.login.btn-primary{href: my_apps_path} Dashboard
+              - else
+                %i
+                  %a{href: '#'} Have an Account ?
+                %a.login.btn-primary.popup-with-zoom-anim{href: '#login-dialog'} Login
     .well.slide-banner.row
       .slide-banner-left.col-md-8
         %span
