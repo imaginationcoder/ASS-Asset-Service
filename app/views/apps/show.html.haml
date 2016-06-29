@@ -20,16 +20,16 @@
 .row
   .col-lg-12
     #accordion.panel-group
-      // Default Tour Permssion
+      // Default Tour Permission 
       .panel.panel-default
         .panel-heading
           %span.panel-title
-            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"} Tour Assets
+            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse-#{@tour_permission.id}"} Tour Assets
           %a.btn.btn-primary.btn-xs.pull-right{ href: @new_prompt_path,
                                                 data: {toggle: 'tooltip', placement: 'left'}, title: 'Upload Assets'}
             %span.glyphicon.glyphicon-plus
           .clearfix
-        #collapseOne.panel-collapse.collapse.in
+        .panel-collapse.collapse.in{id: "collapse-#{@tour_permission.id}"}
           .panel-body
             - if @tour_prompts.blank?
               .alert.alert-warning
