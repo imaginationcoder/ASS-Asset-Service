@@ -26,7 +26,7 @@
   .col-md-12
     .row
       = form_for(@pre_prompt, url: app_pre_prompts_path(@app)) do |f|
-        = f.hidden_field :preference_id
+        = f.hidden_field :permission_id
         = f.hidden_field :app_id
         .col-md-8
           .panel.panel-default
@@ -38,22 +38,22 @@
                     %label Upload Asset
                     = f.file_field :source#, class: 'form-control'
                   .form-group
-                    %label Header
-                    = f.text_field :header, placeholder: 'Header',class: 'form-control'
+                    %label Heading
+                    = f.text_field :heading, placeholder: 'Heading',class: 'form-control'
                   .form-group
                     - PrePrompt::POSITIONS.each do |position|
                       .radio
                         %label
-                          = f.radio_button :header_position, position ,checked: false
+                          = f.radio_button :heading_position, position ,checked: false
                           #{position}
                   .form-group
                     %label Text
-                    = f.text_field :text, placeholder: 'Text',class: 'form-control'
+                    = f.text_field :content, placeholder: 'Content',class: 'form-control'
                   .form-group
                     - PrePrompt::POSITIONS.each do |position|
                       .radio
                         %label
-                          = f.radio_button :text_position, position ,checked: false
+                          = f.radio_button :content_position, position ,checked: false
                           #{position}
                   .form-group
                     %label Buttons

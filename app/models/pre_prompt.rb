@@ -6,10 +6,10 @@ class PrePrompt
   POSITIONS = %w(left right center top bottom)
 
   ## Fields
-  field :header
-  field :text
-  field :text_position, default: POSITIONS.first
-  field :header_position, default: POSITIONS.first
+  field :heading
+  field :content
+  field :content_position, default: POSITIONS.first
+  field :heading_position, default: POSITIONS.first
   #field :source_processing,type: Boolean ,default: false
 
   ## Uploader
@@ -17,7 +17,7 @@ class PrePrompt
   #process_in_background :source
 
   ## Associations
-  belongs_to :preference, index: true
+  belongs_to :permission, index: true
   belongs_to :app, index: true
   embeds_many :button_actions, cascade_callbacks: true
   #embedded_in :tour

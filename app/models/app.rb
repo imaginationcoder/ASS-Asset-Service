@@ -45,7 +45,7 @@ class App
 
 
   def tour_pre_prompts
-    pre_prompts.where(preference: Preference.tour)
+    pre_prompts.where(permission: Permission.tour)
   end
 
 end
