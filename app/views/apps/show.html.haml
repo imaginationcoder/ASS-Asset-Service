@@ -20,12 +20,12 @@
 
   .row
     .col-lg-12
-      #accordion.panel-group
+      #permissions-accordion.panel-group
         // Default Tour Permission related panel
         .panel.panel-default
           .panel-heading
             %span.panel-title
-              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse-#{@tour_permission.id}"} Tour Assets
+              %a{"data-parent" => "#permissions-accordion", "data-toggle" => "collapse", href: "#collapse-#{@tour_permission.id}"} Tour Assets
             %a.btn.btn-primary.btn-xs.pull-right{ href: add_pre_prompt_path(@app, @tour_permission),
                                                   data: {toggle: 'tooltip', placement: 'left'}, title: 'Upload Assets'}
               %span.glyphicon.glyphicon-plus
@@ -44,11 +44,11 @@
           .panel.panel-default.permission-panel
             .panel-heading
               %span.panel-title
-                %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse-#{permission.id}"}
+                %a{"data-parent" => "#permissions-accordion", "data-toggle" => "collapse", href: "#collapse-#{permission.id}"}
                   = permission.name
               - if pre_prompt
-                %a.btn.btn-success.btn-xs.pull-right{ href: add_pre_prompt_path(@app, permission),
-                                                    data: {toggle: 'tooltip', placement: 'left'}, title: 'Uploaded'}
+                %a.btn.btn-success.btn-xs.pull-right{ href: '#', title: 'Uploaded',
+                                                      data: {toggle: 'tooltip', placement: 'left'}}
                   %span.glyphicon.glyphicon-ok
                 .clearfix
               - else
