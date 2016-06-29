@@ -41,9 +41,18 @@
         .clearfix
       .panel-body
         - if @tour_prompts.blank?
-          .alert.alert-warning{:role => "alert"}
-            Currently no assets uploaded to Tour,
-            %a.alert-link{href: @new_prompt_path} Upload
+          .alert.alert-warning
+            %a.btn.btn-xs.btn-warning.pull-right{href: @new_prompt_path} upload
+            Currently no assets uploaded to Tour.
         - else
           = render 'apps/tour_assets', tour_prompts: @tour_prompts
 
+
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        %span.panel-title Pre promots
+        .clearfix
+      .panel-body
+        Pre promots goes here

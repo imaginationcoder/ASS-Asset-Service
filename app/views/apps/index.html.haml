@@ -26,6 +26,7 @@
               - if app.tour_pre_prompts.eql?(0)
                 %a.btn.btn-default{:href => "#"} Add Tour
   - else
-    .alert.alert-danger{:role => "alert"}
-      Currently no apps added.
-      %a.alert-link{:href => new_app_path} Add New
+    .col-lg-12
+      .alert.alert-warning
+        %a.btn.btn-xs.btn-warning.pull-right{href: new_app_path} Add new
+        Currently no apps added.

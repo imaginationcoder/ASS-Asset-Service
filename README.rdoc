@@ -1,5 +1,10 @@
 == README
 
+--------* Note --------------
+Remove app from http://kaffeine.herokuapp.com/ once production is ready(2 wbd dynos instead one)
+assets-sdk is app name
+-----------------------
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
