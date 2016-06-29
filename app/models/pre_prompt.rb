@@ -24,5 +24,8 @@ class PrePrompt
 
   accepts_nested_attributes_for :button_actions, allow_destroy: true,reject_if: proc { |attributes| attributes['btn_type'].blank? }
 
+  ## Scopes
+  scope :by_permission, -> (permission) { where(permission: permission) }
+
 
 end

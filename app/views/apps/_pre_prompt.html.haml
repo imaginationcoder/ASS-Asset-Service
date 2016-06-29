@@ -1,0 +1,24 @@
+.list-group.permission
+  %list-group-item{:href => "#"}
+    .media.col-md-3
+      %figure.pull-left
+        %img.media-object.img-rounded.img-responsive{src: pre_prompt.source.thumb.url}
+    .col-md-6
+      %h4.list-group-item-heading= pre_prompt.heading
+      %p.list-group-item-text= pre_prompt.content
+    .col-md-3.text-center
+      -#%h2
+        14240
+        %small votes
+      %button.btn.btn-default.btn-sm.btn-block{:type => "button"} Edit
+      %button.btn.btn-default.btn-sm.btn-block{:type => "button"} Delete
+      -#.stars
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star-empty
+      -#%p
+        Average 4.5
+        %small /
+        5

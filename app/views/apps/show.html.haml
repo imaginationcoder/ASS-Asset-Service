@@ -1,48 +1,66 @@
-.row
-  .col-lg-12
-    %h3.page-header= @app.name
-.row
-  .col-lg-12
-    .panel.panel-default
-      .panel-heading
-        %strong= @app.name
-      .panel-body= @app.description
-      .list-group
-        %a.list-group-item{:href => "#"}
-          %h5.list-group-item-heading
-            %strong ClientId
-          %p.list-group-item-text= @app.client_id
-        %a.list-group-item{:href => "#"}
-          %h5.list-group-item-heading
-            %strong Client Secret
-          %p.list-group-item-text.secret-token-text= @app.secret_token
-
-.row
-  .col-lg-12
-    #accordion.panel-group
-      // Default Tour Permission 
+#app
+  .row
+    .col-lg-12
+      %h3.page-header= @app.name
+  .row
+    .col-lg-12
       .panel.panel-default
         .panel-heading
-          %span.panel-title
-            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse-#{@tour_permission.id}"} Tour Assets
-          %a.btn.btn-primary.btn-xs.pull-right{ href: @new_prompt_path,
-                                                data: {toggle: 'tooltip', placement: 'left'}, title: 'Upload Assets'}
-            %span.glyphicon.glyphicon-plus
-          .clearfix
-        .panel-collapse.collapse.in{id: "collapse-#{@tour_permission.id}"}
-          .panel-body
-            - if @tour_prompts.blank?
-              .alert.alert-warning
-                %a.btn.btn-xs.btn-warning.pull-right{href: @new_prompt_path} upload
-                Currently no assets uploaded to Tour.
-            - else
-              = render 'apps/tour_assets', tour_prompts: @tour_prompts
-      - @permissions.each do |permission|
+          %strong= @app.name
+        .panel-body= @app.description
+        .list-group
+          %a.list-group-item{:href => "#"}
+            %h5.list-group-item-heading
+              %strong ClientId
+            %p.list-group-item-text= @app.client_id
+          %a.list-group-item{:href => "#"}
+            %h5.list-group-item-heading
+              %strong Client Secret
+            %p.list-group-item-text.secret-token-text= @app.secret_token
+
+  .row
+    .col-lg-12
+      #accordion.panel-group
+        // Default Tour Permission related panel
         .panel.panel-default
           .panel-heading
-            %h4.panel-title
-              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse-#{permission.id}"}
-                = permission.name
-          .panel-collapse.collapse{id: "collapse-#{permission.id}"}
+            %span.panel-title
+              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse-#{@tour_permission.id}"} Tour Assets
+            %a.btn.btn-primary.btn-xs.pull-right{ href: add_pre_prompt_path(@app, @tour_permission),
+                                                  data: {toggle: 'tooltip', placement: 'left'}, title: 'Upload Assets'}
+              %span.glyphicon.glyphicon-plus
+            .clearfix
+          .panel-collapse.collapse.in{id: "collapse-#{@tour_permission.id}"}
             .panel-body
-              Anim pariatur cliche reprehenderit
+              - if @tour_prompts.blank?
+                .alert.alert-warning
+                  %a.btn.btn-xs.btn-warning.pull-right{href: add_pre_prompt_path(@app, @tour_permission)} upload
+                  Currently no assets uploaded to Tour.
+              - else
+                = render 'apps/tour_assets', tour_prompts: @tour_prompts
+        // Other permission panels
+        - @permissions.each do |permission|
+          - pre_prompt =  @app.pre_prompts.by_permission(permission).first
+          .panel.panel-default.permission-panel
+            .panel-heading
+              %span.panel-title
+                %a{"data-parent" => "#accordion", "data-toggle" => "collapse", href: "#collapse-#{permission.id}"}
+                  = permission.name
+              - if pre_prompt
+                %a.btn.btn-success.btn-xs.pull-right{ href: add_pre_prompt_path(@app, permission),
+                                                    data: {toggle: 'tooltip', placement: 'left'}, title: 'Uploaded'}
+                  %span.glyphicon.glyphicon-ok
+                .clearfix
+              - else
+                %a.btn.btn-primary.btn-xs.pull-right{ href: add_pre_prompt_path(@app, permission),
+                                                    data: {toggle: 'tooltip', placement: 'left'}, title: 'Upload Assets'}
+                  %span.glyphicon.glyphicon-plus
+                .clearfix
+            .panel-collapse.collapse{id: "collapse-#{permission.id}"}
+              .panel-body
+                - if pre_prompt
+                  = render 'pre_prompt', pre_prompt: pre_prompt
+                - else
+                  .alert.alert-warning
+                    %a.btn.btn-xs.btn-warning.pull-right{href: add_pre_prompt_path(@app, permission)} Add new
+                    Currently no asset added.

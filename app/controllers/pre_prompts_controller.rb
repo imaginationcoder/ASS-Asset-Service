@@ -14,7 +14,7 @@ class PrePromptsController < ApplicationController
     if @pre_prompt.save
       redirect_to app_url(@app), notice: 'Pre Prompt added to app.'
     else
-      render action: "new"
+      render action: 'new'
     end
   end
 

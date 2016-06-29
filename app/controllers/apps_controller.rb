@@ -41,11 +41,11 @@ class AppsController < ApplicationController
   end
 
   def show
-    @app = App.find(params[:id])
-    @tour_prompts = @app.tour_pre_prompts
+    #TODO work on eager loading of prePrompts while looping over through each permission
+    @app = App.includes(:pre_prompts).find(params[:id]) # eager loaded pre_prompts
     @tour_permission = Permission.tour
+    @tour_prompts = @app.pre_prompts.by_permission(@tour_permission)
     @permissions = Permission.nin(id: @tour_permission.id) # other permissions
-    @new_prompt_path = new_app_pre_prompt_path(@app, permission_id: @tour_permission.id)
   end
 
   # DELETE /apps/1

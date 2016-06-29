@@ -29,3 +29,9 @@
 .secret-token-text {
     word-break: break-all;
 }
+
+/*permission panel in app show page*/
+#app .permission-panel list-group-item {
+    height:auto;
+    border: none;
+}
