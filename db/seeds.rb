@@ -6,46 +6,45 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Preference.destroy_all
+# Delete collections
+Permission.collection.drop
+Platform.collection.drop
+User.collection.drop
+App.collection.drop
+PrePrompt.collection.drop
 
-{'Tour'=> 'TR','Camera'=> 'CAM', 'Location'=> 'LN'}.each do |key,val|
-  Preference.create(name: key, abbreviation: val)
+
+
+{'Tour'=> 'TR','Camera'=> 'CAM', 'Contacts'=> 'CT', 'Notifications'=> 'NF', 'Location'=> 'LN' }.each do |key,val|
+  Permission.create(name: key, abbreviation: val)
 end
 
-Platform.destroy_all
+
 ['iOS', 'Android'].each do |name|
   Platform.create(name: name)
 end
 # Platform Categories
 platform = Platform.where(name: 'iOS').first
-platform.platform_categories.create(name: 'iPad')
 platform.platform_categories.create(name: 'iPhone')
+platform.platform_categories.create(name: 'iPad')
 
 
-
-#User.destroy_all
-User.where(email: 'testuser@test.com').first.destroy!
 user = User.create(fname: 'test', lname: 'user', email: 'testuser@test.com',password: '12345678', password_confirmation: '12345678')
-
-
-# Create Application
-user.apps.each do |app|
-  app.destroy!
-end
-#application = user.apps.create(name: 'test iOS',platform_ids: [ Platform.all.map(&:id) ], description: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.')
-
-app = user.apps.new(platforms: [Platform.first],name: 'test iOS',
-                    description: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.',
-                    sw_version: '1.0.0')
+app = user.apps.new(platform: platform, platform_category_id: platform.platform_categories.first.id ,name: 'test iOS',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.',
+                    sw_version: '1.0')
 # Create Tour
-tour_preference = Preference.tour
+tour_permission = Permission.tour
 ['1','2','3'].each do |n|
   File.open(Rails.root.join('app', 'assets', 'images', 'home', "background#{n}.jpg")) do |f|
-    pre_prompt = app.pre_prompts.build(source: f, preference: tour_preference,
-                                       header: 'HeaderContent..', footer: 'Footer Content', content: 'Some Content')
-    ['1','2'].each do |m|
+    pre_prompt = app.pre_prompts.build(source: f, permission: tour_permission,
+                                       heading: 'HeaderContent..', heading_position: 'center',
+                                       content: 'Lorem ipsum dolor sit amet', content_position: 'center')
+    pre_prompt.button_actions.build(btn_type: 0) # none
+    pre_prompt.button_actions.build(btn_type: 1, text: 'btn text', text_position: 'center') # Text
+    ['1','2'].each do |m| # Image
       File.open(Rails.root.join('app', 'assets', 'images', 'button_actions', "#{m}.png")) do |f|
-        pre_prompt.button_actions.build(source: f, btn_text: m)
+        pre_prompt.button_actions.build(source: f, btn_type: 2)
       end
     end
   end
@@ -53,11 +52,12 @@ end
 
 app.save!
 
-# Create other preferences(Cam, Location etc)
+# Create other permission(Cam, Location etc)
+=begin
 
-Preference.nin(name: 'Tour').each do |preference|
+Permission.nin(name: 'Tour').each do |permission|
   File.open(Rails.root.join('app', 'assets', 'images', 'home', "background1.jpg")) do |f|
-    pre_prompt = app.pre_prompts.build(source: f, preference: preference,
+    pre_prompt = app.pre_prompts.build(source: f, permission: permission,
                                        header: 'HeaderContent..', footer: 'Footer Content', content: 'Some Content')
     ['1','2'].each do |m|
       File.open(Rails.root.join('app', 'assets', 'images', 'button_actions', "#{m}.png")) do |f|
@@ -68,6 +68,7 @@ Preference.nin(name: 'Tour').each do |preference|
 end
 
 app.save!
+=end
 
 
 
