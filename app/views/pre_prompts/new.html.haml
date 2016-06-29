@@ -1,28 +1,11 @@
 :css
-  .flex, .flex > div[class*='col-'] {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex:1 0 auto;
-  }
-
-  .panel {
-    display: flex;
-    flex-direction:column;
-    align-content:stretch;
-  }
-
   .panel-body {
     display: flex;
-    flex-grow:1;
+    flex-grow: 1;
   }
-
-
 .row
   .col-lg-12
-    %h3.page-header Upload Tour Assets
+    %h3.page-header Upload Assets
   .col-md-12
     .row
       = form_for(@pre_prompt, url: app_pre_prompts_path(@app)) do |f|
