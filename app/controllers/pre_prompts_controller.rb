@@ -18,6 +18,13 @@ class PrePromptsController < ApplicationController
     end
   end
 
+  # DELETE /apps/1
+  def destroy
+    @pre_prompt = PrePrompt.find(params[:id])
+    @pre_prompt.destroy
+    redirect_to app_url(@pre_prompt.app), notice: 'Asset was successfully deleted.'
+  end
+
   private
   def find_app
     @app = App.find(params[:pre_prompt][:app_id])

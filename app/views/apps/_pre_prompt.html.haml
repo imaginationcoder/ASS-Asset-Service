@@ -11,7 +11,9 @@
         14240
         %small votes
       %button.btn.btn-default.btn-sm.btn-block{:type => "button"} Edit
-      %button.btn.btn-default.btn-sm.btn-block{:type => "button"} Delete
+      %a.btn.btn-danger.btn-sm.btn-block{ href: pre_prompt_path(pre_prompt), data: { method: :delete, confirm: 'Are you sure?' }}
+        %span.glyphicon.glyphicon-trash
+        Delete
       -#.stars
         %span.glyphicon.glyphicon-star
         %span.glyphicon.glyphicon-star
