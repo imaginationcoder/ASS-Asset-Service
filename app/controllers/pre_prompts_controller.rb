@@ -35,7 +35,8 @@ class PrePromptsController < ApplicationController
   # list between create and update. Also, you can specialize this method
   # with per-user checking of permissible attributes.
   def pre_prompt_params
-    params.require(:pre_prompt).permit(:app_id, :permission_id, :heading, :heading_position, :content, :content_position, :source,
+    params.require(:pre_prompt).permit(:app_id, :permission_id, :header, :header_position,:footer, :footer_position,
+                                       :content, :content_position, :source,
                                         button_actions_attributes: [:btn_type, :text, :text_position, :source, :_destroy,:id])
   end
 end
