@@ -13,11 +13,12 @@
                   %h4= prompt.header
                   %p= prompt.content
                   -#%a.btn.btn-mini{:href => "#"} Edit
-  %nav
-    %ul.control-box.pager
-      %li
-        %a{"data-slide" => "prev", :href => "#tour-assets-carousel"}
-          %i.glyphicon.glyphicon-chevron-left
-      %li
-        %a{"data-slide" => "next", :href => "#tour-assets-carousel"}
-          %i.glyphicon.glyphicon-chevron-right
+  - if tour_prompts.size > 4
+    %nav
+      %ul.control-box.pager
+        %li
+          %a{"data-slide" => "prev", :href => "#tour-assets-carousel"}
+            %i.glyphicon.glyphicon-chevron-left
+        %li
+          %a{"data-slide" => "next", :href => "#tour-assets-carousel"}
+            %i.glyphicon.glyphicon-chevron-right
