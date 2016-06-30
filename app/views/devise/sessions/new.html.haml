@@ -1,31 +1,48 @@
+:css
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: url(#{ asset_path("home/head-bg.jpg") }) no-repeat 0px 0px;
+    transition: 0.5s all;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+    -o-transition:0.5s all;
+  }
 .container
-  .card-panel
-    .row
-      .col.s12
-        %h5 Log in
-        .divider
-        %br
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          .row
-            .col.s12
-              - if resource.errors.any?
-                = render 'shared/error_messages', resource: resource
-          .row
-            .input-field.col.s12
-              = f.email_field :email, autofocus: true, class: 'validate'
-              %label{:for => "email" , 'data-error'=> "Invlida email" , 'data-success'=>"right"} Email
-          .row
-            .input-field.col.s12
-              = f.password_field :password, autocomplete: "off"
-              %label{:for => "password"} Password
-          - if devise_mapping.rememberable?
+  .row.text-justify
+    .middlePage.col-md-6.col-md-offset-6
+      .page-header.text-center
+        %h3.logo
+          = image_tag 'small-logo-green.png'
+      .panel.panel-info
+        .panel-heading
+          %h3.panel-title Please Sign In
+        .panel-body
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .row
-              .input-field.col.s12
-                = f.check_box :remember_me
-                = f.label :remember_me
-          .row
-            .col.s12
-              = f.submit "Log in", class: 'waves-effect waves-light btn'
-          .row
-            .col.s12
-              = render "devise/shared/links"
+              .col-sm-5{style: 'padding-bottom: 10px;'}
+                %a.btn.btn-block.btn-social.btn-google-plus
+                  %span.fa.fa-google-plus
+                  Sign in with Google
+                %a.btn.btn-block.btn-social.btn-facebook
+                  %span.fa.fa-facebook
+                  Sign in with Facebook
+                %a.btn.btn-block.btn-social.btn-github
+                  %span.fa.fa-github
+                  Sign in with Github
+              .col-sm-7{:style => "border-left:1px solid #ccc;height:160px"}
+                %fieldsetl
+                  = f.email_field :email, class: 'form-control',placeholder: 'Enter Email'
+                  .spacing
+                  = f.password_field :password, autocomplete: "off",class: 'form-control',placeholder: 'Enter Password'
+                  .spacing
+                  = f.check_box :remember_me
+                  %small Remember me
+                  .spacing
+                  %a{href: new_password_path(resource_name)}
+                    %small Forgot Password?
+            .row
+              .col-sm-12.pull-right
+                = f.submit 'Sign In', class: 'btn btn-info btn-sm pull-right hello'
+      %p.text-center
+        %a{href:  "http://maisasolutions.com", target: '_blank'} About
+        · Miasa
