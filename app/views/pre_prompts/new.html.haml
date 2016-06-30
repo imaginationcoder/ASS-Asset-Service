@@ -1,11 +1,6 @@
-:css
-  .panel-body {
-    display: flex;
-    flex-grow: 1;
-  }
 .row
   .col-lg-12
-    %h3.page-header Upload Assets
+    %h4.page-header #{@permission.name} : Add Prompt
   .col-md-12
     .row
       = form_for(@pre_prompt, url: app_pre_prompts_path(@app)) do |f|
@@ -13,66 +8,79 @@
         = f.hidden_field :app_id
         .col-md-8
           .panel.panel-default
-            .panel-heading Form
+            .panel-heading Prompt
             .panel-body
-              .row
-                .col.md-12{style: 'padding-left: 10px;'}
-                  .form-group
-                    %label Upload Asset
-                    = f.file_field :source#, class: 'form-control'
-                  .form-group
-                    %label Heading
-                    = f.text_field :heading, placeholder: 'Heading',class: 'form-control'
-                  .form-group
-                    - PrePrompt::POSITIONS.each do |position|
-                      .radio
-                        %label
-                          = f.radio_button :heading_position, position ,checked: false
-                          #{position}
-                  .form-group
-                    %label Text
-                    = f.text_field :content, placeholder: 'Content',class: 'form-control'
-                  .form-group
-                    - PrePrompt::POSITIONS.each do |position|
-                      .radio
-                        %label
-                          = f.radio_button :content_position, position ,checked: false
-                          #{position}
-                  .form-group
-                    %label Buttons
+              %fieldset
+                %legend Asset Information
+                .row
+                  .col-sm-12
+                    .form-group
+                      %label Upload Asset
+                      = f.file_field :source#, class: 'form-control'
+                .row
+                  .col-sm-6
+                    .form-group
+                      %label Heading
+                      = f.text_field :heading, placeholder: 'Heading',class: 'form-control'
+                  .col-sm-6
+                    .form-group
+                      %label Heading Position
+                      = f.select :heading_position,PrePrompt::POSITIONS, {include_blank: 'Select'}, {class: 'form-control'}
+                .row
+                  .col-sm-6
+                    .form-group
+                      %label Content
+                      = f.text_field :content, placeholder: 'Content',class: 'form-control'
+                  .col-sm-6
+                    .form-group
+                      %label Content Position
+                      = f.select :content_position,PrePrompt::POSITIONS, {include_blank: 'Select'}, {class: 'form-control'}
+                %fieldset
+                  %legend Button Actions
+                  = f.nested_fields_for :button_actions do |ff|
+                    .row
+                      .col-sm-12
+                        .form-group
+                          %label
+                            = ff.radio_button :btn_type, 0 ,checked: true, class: 'button-action-type'
+                            None
+                    .row
+                      .col-sm-12
+                        .form-group
+                          %label
+                            = ff.radio_button :btn_type, 1 ,checked: false, class: 'button-action-type'
+                            Text
+                    .row
+                      .col-sm-6
+                        .form-group
+                          = ff.text_field :text, placeholder: 'Text',class: 'form-control'
+                      .col-md-6
+                        .form-group
+                          = ff.select :text_position, PrePrompt::POSITIONS, {include_blank: "Select"}, {class: 'form-control'}
+                    .row
+                      .col-sm-12
+                        .form-group
+                          %label
+                            = ff.radio_button :btn_type, 2 ,checked: false, class: 'button-action-type'
+                            Image
+                    .row
+                      .col-sm-12
+                        .form-group
+                          = ff.file_field :source
+                    .row
+                      .col-sm-12
+                        .pull-right{style: 'margin: -25px 10px 0 0'}
+                          = ff.remove_nested_fields_link
                     %hr
-                    = f.nested_fields_for :button_actions do |ff|
-                      .form-group
-                        %label
-                          = ff.radio_button :btn_type, 0 ,checked: true, class: 'button-action-type'
-                          None
-                      .form-group
-                        %label
-                          = ff.radio_button :btn_type, 1 ,checked: false, class: 'button-action-type'
-                          Text
-                          .row.hide.example
-                            .col-md-6
-                              .form-group
-                                = ff.text_field :text, placeholder: 'Text',class: 'form-control'
-                            .col-md-6
-                              .form-group
-                                = ff.select :text_position, PrePrompt::POSITIONS, {:include_blank => "Select Position"}, {:class => "form-control"}
-                      .form-group
-                        %label
-                          = ff.radio_button :btn_type, 2 ,checked: false, class: 'button-action-type'
-                          Image
-                          .row.hide.example
-                            .col-lg-12
-                              .form-group
-                                = ff.file_field :source
-                      .form-group.pull-right{style: 'margin: -25px 10px 0 0'}
-                        = ff.remove_nested_fields_link
-                      %hr
-                    .pull-right
-                      = f.add_nested_fields_link :button_actions
-            .panel-footer.pull-right
-              %button.btn.btn-default Reset
-              %button.btn.btn-primary Save
+                  .row
+                    .col-sm-12
+                      .pull-right{style: 'margin-bottom: 10px;'}
+                        = f.add_nested_fields_link :button_actions
+                  .row
+                    .col-sm-12
+                      .pull-right
+                        %button.btn.btn-default{type: 'reset'} Reset
+                        %button.btn.btn-primary Save
         .col-md-4
           .panel.panel-default
             .panel-heading Preview
