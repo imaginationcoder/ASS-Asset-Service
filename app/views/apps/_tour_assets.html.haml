@@ -2,13 +2,13 @@
   .carousel-inner
     - tour_prompts.in_groups_of(4, false).each_with_index do |prompt_group, index|
       .item{class: index.eql?(0) ? 'active' : nil}
-        %ul.thumbnails
+        %ul.thumbnails.magnific-popup-gallery
           - prompt_group.each do |prompt|
             %li.col-sm-3
               .fff
                 .thumbnail
-                  %a{:href => "#"}
-                    %img{:alt => "", :src => prompt.source.thumb.url}/
+                  %a{href: prompt.source.url, title: prompt.content}
+                    %img{src: prompt.source.thumb.url}/
                 .caption
                   %h4= prompt.header
                   %p= prompt.content
