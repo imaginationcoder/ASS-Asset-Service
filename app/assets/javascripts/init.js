@@ -20,4 +20,8 @@ $( document ).ready(function() {
         mainClass: 'my-mfp-zoom-in'
     });
 
+    $('.magnific-popup').magnificPopup({
+        type:'image'  
+    });
+
 });
