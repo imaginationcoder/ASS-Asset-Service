@@ -79,3 +79,5 @@ gem 'bootstrap_sb_admin_base_v2'
 gem 'growlyflash'
 
 gem 'nested_form_fields'
+
+gem 'magnific-popup-rails', '~> 1.1.0'

@@ -280,6 +280,7 @@ GEM
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.10)
+    magnific-popup-rails (1.1.0)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -461,6 +462,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  magnific-popup-rails (~> 1.1.0)
   mini_magick
   mongoid (~> 5.0.0)
   mongoid_paranoia

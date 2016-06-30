@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require jquery.magnific-popup
+//= require magnific-popup
 //= require bootstrap_sb_admin_base_v2
 //= require growlyflash
 //= require nested_form_fields
