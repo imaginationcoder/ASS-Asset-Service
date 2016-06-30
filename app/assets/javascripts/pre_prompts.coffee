@@ -11,6 +11,18 @@ prePromptButtonActionChange = ->
     return
   return
 
+# to preview the uploaded Image
+previewUploadedImage = (input) ->
+  if input.files and input.files[0]
+    reader = new FileReader
+
+    reader.onload = (e) ->
+      $('#source-preview').attr 'src', e.target.result
+      return
+
+    reader.readAsDataURL input.files[0]
+  return
+
 # invoke button action type change on nested attribute changes
 $(document).on 'fields_added.nested_form_fields', (event, param) ->
   prePromptButtonActionChange()
@@ -18,3 +30,9 @@ $(document).on 'fields_added.nested_form_fields', (event, param) ->
 
 $(document).ready ->
   prePromptButtonActionChange()
+  # preview the uploaded image in new prePrompt form
+  $('#new_pre_prompt #pre_prompt_source').change ->
+    previewUploadedImage this
+    $('#source-preview').closest('.col-sm-6').addClass 'show'
+    return
+
