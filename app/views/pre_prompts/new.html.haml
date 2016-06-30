@@ -21,11 +21,21 @@
                   .col-sm-6
                     .form-group
                       %label Heading
-                      = f.text_field :heading, placeholder: 'Heading',class: 'form-control'
+                      = f.text_field :header, placeholder: 'Heading',class: 'form-control'
                   .col-sm-6
                     .form-group
                       %label Heading Position
-                      = f.select :heading_position,PrePrompt::POSITIONS, {include_blank: 'Select'}, {class: 'form-control'}
+                      = f.select :header_position, %w(left right center) , {include_blank: 'Select'}, {class: 'form-control'}
+                .row
+                  .col-sm-6
+                    .form-group
+                      %label Footer
+                      = f.text_field :footer, placeholder: 'Heading',class: 'form-control'
+                  .col-sm-6
+                    .form-group
+                      %label Footer Position
+                      = f.select :footer_position, %w(left right center) , {include_blank: 'Select'}, {class: 'form-control'}
+
                 .row
                   .col-sm-6
                     .form-group

@@ -38,7 +38,8 @@ tour_permission = Permission.tour
 ['1','2','3'].each do |n|
   File.open(Rails.root.join('app', 'assets', 'images', 'home', "background#{n}.jpg")) do |f|
     pre_prompt = app.pre_prompts.build(source: f, permission: tour_permission,
-                                       heading: 'HeaderContent..', heading_position: 'center',
+                                       header: 'HeaderContent..', header_position: 'center',
+                                       footer: 'FooterContent..', footer_position: 'center',
                                        content: 'Lorem ipsum dolor sit amet', content_position: 'center')
     pre_prompt.button_actions.build(btn_type: 0) # none
     pre_prompt.button_actions.build(btn_type: 1, text: 'btn text', text_position: 'center') # Text

@@ -6,10 +6,13 @@ class PrePrompt
   POSITIONS = %w(left right center top bottom)
 
   ## Fields
-  field :heading
+  field :header
+  field :header_position, default: POSITIONS.first
+  field :footer
+  field :footer_position, default: POSITIONS.first
   field :content
   field :content_position, default: POSITIONS.first
-  field :heading_position, default: POSITIONS.first
+
   #field :source_processing,type: Boolean ,default: false
 
   ## Uploader
