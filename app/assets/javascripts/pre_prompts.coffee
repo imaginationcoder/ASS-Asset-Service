@@ -5,9 +5,9 @@ prePromptButtonActionChange = ->
   $('.nested_pre_prompt_button_actions .button-action-type').change (e) ->
     # find parent and hide all groups first then show the group which sibling to clicked radio btn
     $div = $(this).closest('.nested_fields')
-    $div.find('.example').removeClass 'show'
-    $div.find('.example').addClass 'hide'
-    $(this).siblings('.row').first().addClass 'show'
+    $div.find('.btn-controls').removeClass 'show'
+    $div.find('.btn-controls').addClass 'hide'
+    $(this).closest('.row').nextAll('div.row').first().addClass 'show'
     return
   return
 

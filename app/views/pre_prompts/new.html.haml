@@ -50,7 +50,7 @@
                           %label
                             = ff.radio_button :btn_type, 1 ,checked: false, class: 'button-action-type'
                             Text
-                    .row
+                    .row.hide.btn-controls
                       .col-sm-6
                         .form-group
                           = ff.text_field :text, placeholder: 'Text',class: 'form-control'
@@ -63,7 +63,7 @@
                           %label
                             = ff.radio_button :btn_type, 2 ,checked: false, class: 'button-action-type'
                             Image
-                    .row
+                    .row.hide.btn-controls
                       .col-sm-12
                         .form-group
                           = ff.file_field :source
