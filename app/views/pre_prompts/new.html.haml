@@ -18,7 +18,7 @@
                       %label Upload Asset
                       = f.file_field :source#, class: 'form-control'
                   .col-sm-6.hide
-                    %a{:href => "#"}
+                    %a{href: "#"}
                       %img.img-thumbnail#source-preview{src: '#', width: 150, height: 150}/
                 .row
                   .col-sm-6
@@ -99,20 +99,3 @@
             .panel-heading Preview
             .panel-body
               Preview goes here
-:javascript
-  function previewUploadedImage(input) {
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-              $('#source-preview').attr('src', e.target.result);
-          }
-
-          reader.readAsDataURL(input.files[0]);
-      }
-  }
-
-  $("#new_pre_prompt #pre_prompt_source").change(function(){
-      previewUploadedImage(this);
-      $('#source-preview').closest('.col-sm-6').addClass('show')
-  });

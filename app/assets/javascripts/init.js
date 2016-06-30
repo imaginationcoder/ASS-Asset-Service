@@ -20,7 +20,7 @@ $( document ).ready(function() {
         mainClass: 'my-mfp-zoom-in'
     });
 
-    $('.magnific-popup').magnificPopup({
+    $('.magnific-popup-img').magnificPopup({
         type:'image'  
     });
 
