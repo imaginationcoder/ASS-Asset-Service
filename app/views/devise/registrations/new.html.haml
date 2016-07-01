@@ -1,4 +1,64 @@
+:css
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: url(#{ asset_path("home/head-bg.jpg") }) no-repeat 0px 0px;
+    transition: 0.5s all;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+    -o-transition:0.5s all;
+  }
+
+- page_title 'Register'
 .container
+  .row.text-justify
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      .middlePage.col-md-6.col-md-offset-6
+        .page-header.text-center
+          %h3.logo
+            = link_to image_tag('small-logo-green.png') , root_path
+        .panel.panel-info
+          .panel-heading
+            %h3.panel-title Please Register
+          .panel-body
+            .row
+              .col-sm-12
+                %fieldset
+                  .row
+                    .col-sm-6
+                      .form-group
+                        = f.text_field :fname,  class: 'form-control', required: false, placeholder: 'First Name'
+                    .col-sm-6
+                      .form-group
+                        = f.text_field :lname,  class: 'form-control', required: false, placeholder: 'Last Name'
+                  .row
+                    .col-sm-6
+                      .form-group
+                        = f.email_field :email,  class: 'form-control', required: false, placeholder: 'Email'
+                    .col-sm-6
+                      .form-group
+                        = f.text_field :company,  class: 'form-control', required: false, placeholder: 'Company Name'
+                  .row
+                    .col-sm-6
+                      .form-group
+                        = f.password_field :password,  class: 'form-control', required: false, placeholder: 'Password'
+                    .col-sm-6
+                      .form-group
+                        = f.password_field :password_confirmation,  class: 'form-control', required: false, placeholder: 'Confirm Password'
+                  .spacing
+                  .row
+                    .col-sm-12
+                      .form-group
+                        Have an account?
+                        %a{href: new_session_path(resource_name)}
+                          %small Login
+            .row
+              .col-sm-12.pull-right
+                = f.submit 'Sign up', class: 'btn btn-info btn-sm pull-right hello'
+        %p.text-center
+          %a{href:  t('app.company.url'), target: '_blank'} About
+          · #{t('app.company.name')}
+
+-#.container
   .card-panel
     .row
       .col.s12
