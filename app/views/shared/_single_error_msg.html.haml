@@ -1,0 +1,5 @@
+-# use this partial for single alert message like (invalida login etc..)
+.alert.alert-danger.alert-dismissible.fade.in{role: 'alert'}
+  %button.close{"aria-label" => "Close", "data-dismiss" => "alert", type: 'button'}
+    %span{"aria-hidden" => "true"} &times;
+  = message

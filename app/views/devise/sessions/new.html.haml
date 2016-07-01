@@ -15,6 +15,10 @@
       .page-header.text-center
         %h3.logo
           = link_to image_tag('small-logo-green.png') , root_path
+      - if flash[:alert] # show invalid login or password error
+        .row
+          .col-sm-12
+            = render 'shared/single_error_msg', message: flash[:alert]
       .panel.panel-info
         .panel-heading
           %h3.panel-title Please Sign In
