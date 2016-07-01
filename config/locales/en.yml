@@ -24,6 +24,9 @@ en:
   app:
     name: "ASSSDK"
     title: "ASSSDK" #TODO replace with nice title
+    meta:
+      keywords: "ASSSDK, Assets Serve, Tour Guides, iOS, Dynamic Assets" #TODO replace with SEO keywords
+      description: "Dynamic Asset Serving for iOS apps"
     company:
       name: "Maisa"
       url: "http://maisasolutions.com/"
