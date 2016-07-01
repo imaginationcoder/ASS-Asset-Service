@@ -7,6 +7,8 @@
     -moz-transition:0.5s all;
     -o-transition:0.5s all;
   }
+
+- page_title 'Login'
 .container
   .row.text-justify
     .middlePage.col-md-6.col-md-offset-6
@@ -44,5 +46,5 @@
               .col-sm-12.pull-right
                 = f.submit 'Sign In', class: 'btn btn-info btn-sm pull-right hello'
       %p.text-center
-        %a{href:  "http://maisasolutions.com", target: '_blank'} About
-        · Miasa
+        %a{href:  t('app.company.url'), target: '_blank'} About
+        · #{t('app.company.name')}

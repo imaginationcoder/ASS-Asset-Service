@@ -23,6 +23,10 @@ en:
   hello: "Hello world"
   app:
     name: "ASSSDK"
+    title: "ASSSDK" #TODO replace with nice title
+    company:
+      name: "Maisa"
+      url: "http://maisasolutions.com/"
   api:
     errors:
       authentication_fail: "Application authentication failed."
