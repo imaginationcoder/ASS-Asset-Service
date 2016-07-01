@@ -29,7 +29,7 @@ platform.platform_categories.create(name: 'iPhone')
 platform.platform_categories.create(name: 'iPad')
 
 
-user = User.create(fname: 'test', lname: 'user', email: 'testuser@test.com',password: '12345678', password_confirmation: '12345678')
+user = User.create(fname: 'test', lname: 'user', email: 'testuser@test.com',password: '12345678', password_confirmation: '12345678', company: 'Maisa')
 app = user.apps.new(platform: platform, platform_category_id: platform.platform_categories.first.id ,name: 'test iOS',
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.',
                     sw_version: '1.0')
