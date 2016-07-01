@@ -36,6 +36,9 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  # Validations
+  validates :fname, :lname , :company, presence: true
+
   ## Custom
   field :fname
   field :lname
