@@ -16,6 +16,9 @@
         .page-header.text-center
           %h3.logo
             = link_to image_tag('small-logo-green.png') , root_path
+        .row
+          .col-sm-12
+            = render 'shared/error_messages', resource: resource
         .panel.panel-info
           .panel-heading
             %h3.panel-title Please Register
@@ -26,17 +29,17 @@
                   .row
                     .col-sm-6
                       .form-group
-                        = f.text_field :fname,  class: 'form-control', required: false, placeholder: 'First Name'
+                        = f.text_field :fname,  class: 'form-control', required: true, placeholder: 'First Name'
                     .col-sm-6
                       .form-group
-                        = f.text_field :lname,  class: 'form-control', required: false, placeholder: 'Last Name'
+                        = f.text_field :lname,  class: 'form-control', placeholder: 'Last Name'
                   .row
                     .col-sm-6
                       .form-group
-                        = f.email_field :email,  class: 'form-control', required: false, placeholder: 'Email'
+                        = f.email_field :email,  class: 'form-control', required: true, placeholder: 'Email'
                     .col-sm-6
                       .form-group
-                        = f.text_field :company,  class: 'form-control', required: false, placeholder: 'Company Name'
+                        = f.text_field :company,  class: 'form-control', placeholder: 'Company Name'
                   .row
                     .col-sm-6
                       .form-group

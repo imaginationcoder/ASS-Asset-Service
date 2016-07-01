@@ -1,6 +1,7 @@
-%section#error_explanation
-  .header
-    The form contains #{pluralize(resource.errors.count, "error")}
-  %ul
-    - resource.errors.full_messages.each do |msg|
-      %li= msg
+- if resource.errors.any?
+  .alert.alert-danger.alert-dismissible.fade.in{role: 'alert'}
+    %button.close{"aria-label" => "Close", "data-dismiss" => "alert", type: 'button'}
+      %span{"aria-hidden" => "true"} &times;
+    %ul
+      - resource.errors.full_messages.each do |msg|
+        %li= msg
