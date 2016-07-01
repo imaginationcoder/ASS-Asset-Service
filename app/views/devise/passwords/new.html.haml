@@ -1,22 +1,35 @@
+- page_title 'Forgot your password'
 .container
-  .card-panel
-    .row
-      .col.s12
-        %h5 Forgot your password?
-        .divider
-        %br
-        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-          .row
-            .col.s12
-              - if resource.errors.any?
-                = render 'shared/error_messages', resource: resource
-          .row
-            .input-field.col.s12
-              = f.email_field :email, autofocus: true, class: 'validate'
-              %label{:for => "email" , 'data-error'=> "Invlida email" , 'data-success'=>"right"} Email
-          .row
-            .col.s12
-              = f.submit "Send", class: 'waves-effect waves-light btn'
-          .row
-            .col.s12
-              = render "devise/shared/links"
+  .row.text-justify
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      .middlePage.col-md-6.col-md-offset-6
+        .page-header.text-center
+          %h3.logo
+            = link_to image_tag('small-logo-green.png') , root_path
+        .row
+          .col-sm-12
+            = render 'shared/error_messages', resource: resource
+        .panel.panel-info
+          .panel-heading
+            %h3.panel-title Forgot your password?
+          .panel-body
+            .row
+              .col-sm-12
+                %fieldset
+                  .row
+                    .col-sm-12
+                      .form-group
+                        = f.email_field :email,  class: 'form-control', required: true, placeholder: 'Email'
+
+            .row
+              .col-sm-12.pull-right
+                = f.submit 'Send', class: 'btn btn-info btn-sm pull-right hello'
+            .row
+              .col-sm-12
+                .form-group
+                  Click here to
+                  %a{href: new_session_path(resource_name)}
+                    %small Login
+        %p.text-center
+          %a{href:  t('app.company.url'), target: '_blank'} About
+          · #{t('app.company.name')}
