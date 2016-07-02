@@ -10,7 +10,7 @@ class ButtonAction
   ## Uploader
   mount_uploader :source, ButtonUploader, dependent: :destroy
 
-  embedded_in :pre_prompt
+  embedded_in :template
   before_save :check_btn_type
 
   def check_btn_type
