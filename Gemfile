@@ -83,3 +83,5 @@ gem 'nested_form_fields'
 gem 'magnific-popup-rails', '~> 1.1.0'
 #bootstrap-social for Rails asset pipeline
 gem 'bootstrap-social-rails'
+
+gem "font-awesome-rails"
