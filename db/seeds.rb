@@ -11,11 +11,11 @@ Permission.collection.drop
 Platform.collection.drop
 User.collection.drop
 App.collection.drop
-PrePrompt.collection.drop
+Template.collection.drop
 
 
 
-{'Tour'=> 'TR','Camera'=> 'CAM', 'Contacts'=> 'CT', 'Notifications'=> 'NF', 'Location'=> 'LN' }.each do |key,val|
+{'Tour'=> 'TR','Camera'=> 'CAM', 'Contacts'=> 'CT', 'Location'=> 'LN', 'Notifications'=> 'NF' }.each do |key,val|
   Permission.create(name: key, abbreviation: val)
 end
 
@@ -25,29 +25,51 @@ end
 end
 # Platform Categories
 platform = Platform.where(name: 'iOS').first
-platform.platform_categories.create(name: 'iPhone')
-platform.platform_categories.create(name: 'iPad')
+PlatformCategory::NAMES.each do |name|
+  platform.platform_categories.create(name: name)
+end
 
 
 user = User.create(fname: 'test', lname: 'user', email: 'testuser@test.com',password: '12345678', password_confirmation: '12345678', company: 'Maisa')
-app = user.apps.new(platform: platform, platform_category_id: platform.platform_categories.first.id ,name: 'test iOS',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.',
-                    sw_version: '1.0')
+app = user.apps.new(platform: platform, name: 'test iOS',published: true,
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.')
+## Add Logo
+File.open(Rails.root.join('app', 'assets', 'images', "small-logo-blue.png")) do |f|
+  app.logo = f
+end
+
+
+
 # Create Tour
 tour_permission = Permission.tour
+
+
+
+
 ['1','2','3'].each do |n|
   File.open(Rails.root.join('app', 'assets', 'images', 'home', "background#{n}.jpg")) do |f|
-    pre_prompt = app.pre_prompts.build(source: f, permission: tour_permission,
-                                       header: 'HeaderContent..', header_position: 'center',
-                                       footer: 'FooterContent..', footer_position: 'center',
-                                       content: 'Lorem ipsum dolor sit amet', content_position: 'center')
-    pre_prompt.button_actions.build(btn_type: 0) # none
-    pre_prompt.button_actions.build(btn_type: 1, text: 'btn text', text_position: 'center') # Text
-    ['1','2'].each do |m| # Image
-      File.open(Rails.root.join('app', 'assets', 'images', 'button_actions', "#{m}.png")) do |f|
-        pre_prompt.button_actions.build(source: f, btn_type: 2)
-      end
+
+
+    template = app.templates.build(source: f, permission: tour_permission)
+    template.text_assets_attributes = [{text: 'Welcome to my app', position: TextAsset::POSITIONS[0]},
+                                                           {text: 'I am center', position: TextAsset::POSITIONS[1]},
+                                                           {text: 'I am bottom', position: TextAsset::POSITIONS.last}]
+
+     # total 5 button actions 
+    template.button_actions_attributes = [{ btn_type: 1, label: 'Next'},
+                                         { btn_type: 1, label: 'Go', target_event: 'SOME TARGET'},
+                                         { btn_type: 1, label: 'Skip', target_event: 'SKIP EVENT'} ]
+
+    btn_action =  template.button_actions.build(btn_type: 2)
+    File.open(Rails.root.join('app', 'assets', 'images', 'button_actions', "1.png")) do |f|
+      btn_action.source = f
     end
+
+    btn_action =  template.button_actions.build(btn_type: 2, target_event: 'SOME BUTTON ACTION EVENT')
+    File.open(Rails.root.join('app', 'assets', 'images', 'button_actions', "2.png")) do |f|
+      btn_action.source = f
+    end
+
   end
 end
 
