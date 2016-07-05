@@ -50,12 +50,12 @@ tour_permission = Permission.tour
   File.open(Rails.root.join('app', 'assets', 'images', 'home', "background#{n}.jpg")) do |f|
 
 
-    template = app.templates.build(source: f, permission: tour_permission)
+    template = app.templates.build(source: f, permission: tour_permission, platform_category_id: platform.platform_categories.first.id)
     template.text_assets_attributes = [{text: 'Welcome to my app', position: TextAsset::POSITIONS[0]},
                                                            {text: 'I am center', position: TextAsset::POSITIONS[1]},
                                                            {text: 'I am bottom', position: TextAsset::POSITIONS.last}]
 
-     # total 5 button actions 
+     # total 5 button actions
     template.button_actions_attributes = [{ btn_type: 1, label: 'Next'},
                                          { btn_type: 1, label: 'Go', target_event: 'SOME TARGET'},
                                          { btn_type: 1, label: 'Skip', target_event: 'SKIP EVENT'} ]
