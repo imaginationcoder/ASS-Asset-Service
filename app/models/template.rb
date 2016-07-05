@@ -8,7 +8,21 @@ class Template
   field :app_version, type: Integer, default: 1
   field :platform_category_id
 
+  ## Uploader
+  mount_uploader :source, AssetUploader, dependent: :destroy
+
   ## Association
   embeds_many :text_assets, cascade_callbacks: true
   embeds_many :button_actions, cascade_callbacks: true
+  belongs_to :permission, index: true
+  belongs_to :app, index: true
+
+  accepts_nested_attributes_for :text_assets, allow_destroy: true,
+                                reject_if: proc { |attributes| attributes['text'].blank? }
+  accepts_nested_attributes_for :button_actions, allow_destroy: true,
+                                reject_if: proc { |attributes| attributes['btn_type'].blank? }
+
+  ## Scopes
+  scope :by_permission, -> (permission) { where(permission: permission) }
+
 end
