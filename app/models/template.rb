@@ -5,7 +5,8 @@ class Template
 
   ## Fields
   #TODO update below with its app version when documents are updated
-  field :version, type: Integer, default: 0
+  field :app_version, type: Integer, default: 1
+  field :platform_category_id
 
   ## Association
   embeds_many :text_assets, cascade_callbacks: true

@@ -4,9 +4,9 @@ class ButtonAction
   include Mongoid::Paranoia
 
 
-  field :text
-  field :text_position , default: 'right'
-  field :btn_type ,type: Integer,  default: 0  # 0: none , 1: text, 2: Image
+  field :label
+  field :target_event
+  field :btn_type ,type: Integer,  default: 1  # 0: none , 1: text, 2: Image
   ## Uploader
   mount_uploader :source, ButtonUploader, dependent: :destroy
 
@@ -17,11 +17,11 @@ class ButtonAction
     # remove other unused elements before saving to db based on btn_type
     case self.btn_type
       when 0
-        self.unset(:text, :text_position, :source)
+        self.unset(:label, :target_event, :source)
       when 1
         self.unset(:source)
       when 2
-        self.unset(:text, :text_position)
+        self.unset(:label, :target_event)
     end
   end
 

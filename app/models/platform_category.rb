@@ -10,7 +10,7 @@ class PlatformCategory
            'iPhone 4', 'iPhone 4s', 'iPad Mini', 'iPad Air', 'iPad Pro', 'iPad-family'] # names for iOS platform
 
 
-  validates :name, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } }
+  validates :name, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } },default: 'iPhone 6'
   ## Associations
   embedded_in :platform
 end
