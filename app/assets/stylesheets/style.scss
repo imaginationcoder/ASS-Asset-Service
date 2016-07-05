@@ -124,6 +124,8 @@ body {
 .wrapper-sidebar .your-apps{
   color: #5b9bd1;
   margin-top: 25px;
+  font-size: 15px;
+  color: #333333;
 }
 
 .wrapper-sidebar .app{
@@ -202,4 +204,15 @@ body {
       margin-bottom: 5px;
     }
   }
+}
+
+/*Firefox and fieldsets
+Firefox has some awkward fieldset styling involving width that interferes with the responsive table
+*/
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+
+.table td, .table th {
+  text-align: center !important; // deafult is left
 }

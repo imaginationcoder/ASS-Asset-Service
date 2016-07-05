@@ -1,31 +1,25 @@
 = page_title('Dashboard')
 .row
   .col-lg-12
-    .page-heading.text-center My Apps
+    .page-heading.text-center Summary
 .row
-  - if @apps.present?
-    - @apps.each do |app|
-      .col-lg-6
-        .panel.panel-default
-          .panel-heading
-            = link_to app.name, app_path(app)
-          .panel-body= app.description
-          .list-group
-            %a.list-group-item{:href => "#"}
-              %h5.list-group-item-heading
-                %strong ClientId
-              %p.list-group-item-text= app.client_id
-            %a.list-group-item{:href => "#"}
-              %h5.list-group-item-heading
-                %strong Client Secret
-              %p.list-group-item-text.secret-token-text= app.secret_token
-          .panel-footer.clearfix
-            .pull-right
-              -#%a.btn.btn-primary{:href => edit_app_path(app)}
-                %i.fa.fa-edit &nbsp;&nbsp;Edit
-              %a.btn.btn-primary.btn-sm{:href => app_path(app)} Show
-              - if app.tour_templates.eql?(0)
-                %a.btn.btn-default{:href => "#"} Add Tour
+  - if @my_apps.present?
+    .col-lg-12
+      .table-responsive
+        %table.table.table-striped
+          %thead
+            %tr
+              %th App Name
+              %th Production Version
+              %th Last Access Time
+              %th Last Activity
+          %tbody
+            - @my_apps.each do |app|
+              %tr
+                %td= link_to app.name, app_path(app)
+                %td= app.current_version
+                %td TODO
+                %td TODO
   - else
     .col-lg-12
       .alert.alert-warning
