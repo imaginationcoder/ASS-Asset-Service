@@ -50,5 +50,9 @@ class User
   ## Associations
   has_many :apps, autosave: true
 
+  def full_name
+    "#{fname} #{lname}"
+  end
+
 
 end

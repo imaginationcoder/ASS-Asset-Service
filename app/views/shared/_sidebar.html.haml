@@ -1,0 +1,61 @@
+.wrapper-sidebar
+  .row.text-center
+    .col-xs-6.profile-app-logo
+      = link_to 'ASSSDK', root_url
+    .col-xs-6
+      %li.dropdown{style: 'list-style: none;'}
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          %i.glyphicon.glyphicon-cog
+          %i.fa.fa-caret-down
+        %ul.dropdown-menu.dropdown-user
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-user.fa-fw
+              Profile
+          %li.divider
+          %li
+            = link_to destroy_user_session_path, method: :delete do
+              %i.fa.fa-sign-out.fa-fw
+              Logout
+  .profile-userpic
+    %img.img-responsive{:alt => "", :src => "http://placehold.it/100X100"}
+  .profile-usertitle
+    .profile-usertitle-name
+      = current_user.full_name
+  -#.profile-usertitle-job
+                Developer
+  -#.profile-userbuttons
+              %button.btn.btn-success.btn-sm{:type => "button"} Follow
+              %button.btn.btn-danger.btn-sm{:type => "button"} Message
+  .wrapper-menu
+    %ul.nav.text-center
+      %li.active
+        %a{:href => "#"}
+          %i.glyphicon.glyphicon-home
+          Overview
+      - unless @my_apps.blank?
+        %li.your-apps.text-center
+          Your apps
+        - @my_apps.each do |app|
+          -#%li
+                      %a{:href => "#"}
+                        %i.glyphicon.glyphicon-user
+                        = app.name
+          %li
+            %a.app{id: "btn-#{app.id}","aria-expanded" => "false", "data-target" => "#submenu-#{app.id}", "data-toggle" => "collapse", :href => "#"}
+              = app.name
+            %ul.nav.collapse.text-right{id: "submenu-#{app.id}", "aria-labelledby" => "btn-#{app.id}", :role => "menu"}
+              %li
+                %a{:href => "#"}
+                  %strong Tour Setup
+              %li
+                %a{:href => "#"}
+                  %strong Permision Setup
+              - @permissions.each do |permission|
+                %li
+                  %a{:href => "#"}= "- #{permission.name}"
+  .row
+    .col-md-12.text-center.new-app
+      %a.italic{:href => "#"}
+        %i.glyphicon.glyphicon-plus
+        New App

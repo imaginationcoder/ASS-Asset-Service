@@ -1,6 +1,7 @@
+= page_title('Dashboard')
 .row
   .col-lg-12
-    %h3.page-header My Apps
+    .page-heading.text-center My Apps
 .row
   - if @apps.present?
     - @apps.each do |app|
@@ -29,4 +30,5 @@
     .col-lg-12
       .alert.alert-warning
         %a.btn.btn-xs.btn-warning.pull-right{href: new_app_path} Add new
+        %span.glyphicon.glyphicon-exclamation-sign{"aria-hidden" => "true"}
         Currently no apps added.
