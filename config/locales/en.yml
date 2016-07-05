@@ -32,6 +32,8 @@ en:
       url: "http://maisasolutions.com/"
   api:
     errors:
+      app:
+        unpublished: 'App not published to production mode'
       authentication_fail: "Application authentication failed."
       unauthorized: "Unauthorized"
       app_not_found: "App not found with given access_token.Please authorize the app with clientId and secret"
@@ -40,6 +42,8 @@ en:
       invalid_cleint_secret: "Invalid client_id or client_secret_token or App not found."
       token_expired: "Application Token expired"
     messages:
+      app:
+        unpublished: 'Unpublished app'
       not_authenticated: "Not authenticated"
       token_expired: "Token expired"
       must_be_json: "Not a valid json request"
