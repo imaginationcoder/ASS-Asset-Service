@@ -13,12 +13,12 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require bootstrap-sprockets
+//= require bootstrap
 //= require turbolinks
 //= require magnific-popup
 // require bootstrap_sb_admin_base_v2
 //= require growlyflash
-//= require nested_form_fields
+//= require cocoon
 //= require init
-//= require pre_prompts
+//= require templates
 //= require tour

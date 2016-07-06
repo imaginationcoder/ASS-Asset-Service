@@ -78,7 +78,7 @@ gem 'bootstrap_sb_admin_base_v2'
 # show flash messages
 gem 'growlyflash'
 
-gem 'nested_form_fields'
+gem 'cocoon'
 
 gem 'magnific-popup-rails', '~> 1.1.0'
 #bootstrap-social for Rails asset pipeline
