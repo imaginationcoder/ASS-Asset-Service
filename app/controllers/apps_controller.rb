@@ -17,7 +17,8 @@ class AppsController < ApplicationController
     @app.user = current_user
     if @app.save
       flash[:success] = 'App was successfully created.Upload Assets'
-      redirect_to app_url(@app)
+      #redirect_to app_url(@app)
+      redirect_to my_apps_url
     else
       @default_platform = Platform.default
       flash.now[:error] = 'Fix the errors'
@@ -58,8 +59,7 @@ class AppsController < ApplicationController
 
   private
   def app_params
-    params.require(:app).permit(:id, :name, :description, :platform_id, :platform_category_id,
-                                :sw_version, :is_sandbox_mode)
+    params.require(:app).permit(:logo, :name, :description, :platform_id)
   end
 
 end

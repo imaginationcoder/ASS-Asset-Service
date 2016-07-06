@@ -20,6 +20,7 @@
 //= require growlyflash
 //= require cocoon
 //= require init
+//= require apps
 //= require templates
 //= require tour
 

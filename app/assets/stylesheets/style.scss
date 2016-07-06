@@ -253,6 +253,26 @@ Firefox has some awkward fieldset styling involving width that interferes with t
     font-weight: bold;
   }
 }
-
 /** END Adding/Editing a Template(permission) form styles goes here*/
 
+.container {
+  padding: 0 !important;
+}
+
+/*Create New APP: Platform images*/
+.platform-images span {
+  background: white none repeat scroll 0 0;
+  border-radius: 15px;
+  bottom: -4px;
+  left: -66px;
+  padding: 2px;
+  position: relative;
+  &.ios {
+    border: 2px solid green;
+    color: green;
+  }
+  &.android {
+    border: 2px solid gray;
+    color: gray;
+  }
+}

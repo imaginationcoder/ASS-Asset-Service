@@ -1,3 +1,16 @@
+// all common functions goes here
+var previewUploadedImage;
+previewUploadedImage = function(input) {
+    var reader;
+    if (input.files && input.files[0]) {
+        reader = new FileReader;
+        reader.onload = function(e) {
+            $('#source-preview').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+};
+
 $( document ).ready(function() {
     //Enable trubolinks prgress indicator
     Turbolinks.enableProgressBar();
@@ -21,7 +34,7 @@ $( document ).ready(function() {
     });
 
     $('.magnific-popup-img').magnificPopup({
-        type:'image'  
+        type:'image'
     });
 
     $('.magnific-popup-gallery').magnificPopup({
@@ -31,5 +44,6 @@ $( document ).ready(function() {
             enabled: true
         }
     });
+
 
 });
