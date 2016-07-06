@@ -53,7 +53,7 @@
                   %strong Permision Setup
               - @permissions.each do |permission|
                 %li
-                  %a{:href => "#"}= "- #{permission.name}"
+                  %a{href: add_template_path(app, permission)}= "- #{permission.name}"
   .row
     .col-md-12.text-center.new-app
       %a.italic{:href => "#"}

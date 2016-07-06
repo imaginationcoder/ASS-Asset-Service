@@ -124,8 +124,9 @@ body {
 .wrapper-sidebar .your-apps{
   color: #5b9bd1;
   margin-top: 25px;
-  font-size: 15px;
+  font-size: 13px;
   color: #333333;
+  font-weight: bold;
 }
 
 .wrapper-sidebar .app{
@@ -213,6 +214,45 @@ Firefox has some awkward fieldset styling involving width that interferes with t
   fieldset { display: table-cell; }
 }
 
-.table td, .table th {
-  text-align: center !important; // deafult is left
+.table {
+  td, th {
+    text-align: center !important;
+    // deafult is left
+
+  }
 }
+
+/*Adding/Editing a Template(permission) form styles goes here*/
+
+.add-edit-template-from {
+  .editing-version {
+    color: #337ab7;
+    font-style: italic;
+    font-weight: 600;
+  }
+  .form-content {
+    padding: 0 15px;
+  }
+  .pro-tip {
+    font-size: 15px;
+    color: green;
+    font-style: italic;
+  }
+  .what-is-it {
+    font-size: 15px;
+  }
+  .what-is-it a{
+    font-size: 15px;
+    text-decoration: underline;
+    font-weight: 600;
+
+  }
+  legend {
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+/** END Adding/Editing a Template(permission) form styles goes here*/
+

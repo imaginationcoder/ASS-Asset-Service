@@ -6,6 +6,8 @@ class Permission
   ## Fields
   field :name # camera, location , push notification etc..
   field :abbreviation # CAM=> camera etc..
+  field :description
+  field :pro_tip
 
 
 

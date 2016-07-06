@@ -21,7 +21,7 @@ class ButtonAction
       when 1
         self.unset(:source)
       when 2
-        self.unset(:label, :target_event)
+        self.unset(:label)
     end
   end
 
