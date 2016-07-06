@@ -4,10 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   layout :layout_by_resource
+  before_action :fetch_my_apps
+
 
   use_growlyflash # except: %i[actions without growlyflash]
- # Also there is another shorthand, to skip callbacks:
- # skip_growlyflash only: %i[actions without growlyflash]
+  # Also there is another shorthand, to skip callbacks:
+  # skip_growlyflash only: %i[actions without growlyflash]
 
 
   def after_sign_in_path_for(resource)
@@ -25,6 +27,14 @@ class ApplicationController < ActionController::Base
       "home"
     else
       "application"
+    end
+  end
+
+  def fetch_my_apps
+    if current_user
+      @my_apps = current_user.apps.order(created_at: :desc)
+      @tour_permission = Permission.tour
+      @permissions = Permission.nin(name: @tour_permission.name)
     end
   end
 
