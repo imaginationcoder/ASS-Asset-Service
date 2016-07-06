@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'my-apps' => 'apps#index', as: :my_apps
   resources :apps ,except: [:index] do
     resources :pre_prompts , shallow: true
+    resources :templates , shallow: true
   end
 
 

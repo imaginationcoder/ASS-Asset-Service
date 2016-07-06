@@ -2,9 +2,7 @@ class AppsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @my_apps = current_user.apps.order(created_at: :desc)
-    @tour_permission = Permission.tour
-    @permissions = Permission.nin(name: @tour_permission.name)
+
   end
 
   # GET /apps/new
