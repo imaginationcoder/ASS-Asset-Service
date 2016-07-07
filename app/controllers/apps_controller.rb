@@ -17,8 +17,7 @@ class AppsController < ApplicationController
     @app.user = current_user
     if @app.save
       flash[:success] = 'App was successfully created.Upload Assets'
-      #redirect_to app_url(@app)
-      redirect_to my_apps_url
+      redirect_to app_url(@app)
     else
       @default_platform = Platform.default
       flash.now[:error] = 'Fix the errors'
@@ -43,10 +42,7 @@ class AppsController < ApplicationController
 
   def show
     #TODO work on eager loading of prePrompts while looping over through each permission
-    @app = App.includes(:pre_prompts).find(params[:id]) # eager loaded pre_prompts
-    @tour_permission = Permission.tour
-    @tour_prompts = @app.pre_prompts.by_permission(@tour_permission)
-    @permissions = Permission.nin(id: @tour_permission.id) # other permissions
+    @app = App.includes(:templates).find(params[:id]) # eager loaded pre_prompts
   end
 
   # DELETE /apps/1

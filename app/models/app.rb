@@ -34,6 +34,10 @@ class App
     templates.where(permission: Permission.tour)
   end
 
+  def logo_url
+    logo.present? ? logo.thumb.url : 'http://placehold.it/100x100&text=Logo'
+  end
+
 
 
 end

@@ -10,11 +10,11 @@
           %fieldset
             %legend TARGET PLATFORM
             .row
-              .col-md-3.col-md-offset-3.col-sm-6
+              .col-md-3.col-md-offset-3.col-xs-6
                 .form-group
                   %select.form-control{name: "template[:platform_id]"}
                     %option{selected: "selected", value: @platform.id}= @platform.name
-              .col-md-3.col-sm-6
+              .col-md-3.col-xs-6
                 .form-group
                   = f.select :platform_category_id, options_for_select(@platform_categories.pluck(:name, :id), 'iPhone 6s'),
                                                     { include_blank: false}, {class: 'form-control'}
