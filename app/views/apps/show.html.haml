@@ -10,7 +10,9 @@
   .col-xs-6
     %strong= @app.name
   .col-xs-6.text-right
-    %a.btn.btn-primary.btn-sm{href: '#'} Edit
+    %a.btn.btn-primary.btn-sm{ href: edit_app_path(@app)}
+      %span.glyphicon.glyphicon-edit
+      Edit
 %hr
 .row.text-center
   .col-md-8.col-md-offset-2.col-sm-12

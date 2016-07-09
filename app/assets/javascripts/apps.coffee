@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/  
 $(document).ready ->
   # preview the uploaded image in new prePrompt form
-  $('#new_app #app_logo').change ->
+  $('#new_app #app_logo, .edit_app #app_logo').change ->
     previewUploadedImage this
     $(this).siblings('.label-info').first().html $(this).val()
     return
