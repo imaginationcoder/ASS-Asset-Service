@@ -30,6 +30,8 @@ class App
   has_many :templates, dependent: :destroy, autosave: true
   belongs_to :platform,index: true
 
+  accepts_nested_attributes_for :templates, allow_destroy: true
+
   def tour_templates
     templates.where(permission: Permission.tour)
   end

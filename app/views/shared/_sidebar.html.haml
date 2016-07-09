@@ -37,16 +37,12 @@
         %li.your-apps.text-center
           Your Apps
         - @my_apps.each do |app|
-          -#%li
-                      %a{:href => "#"}
-                        %i.glyphicon.glyphicon-user
-                        = app.name
           %li
             %a.app{id: "btn-#{app.id}","aria-expanded" => "false", "data-target" => "#submenu-#{app.id}", "data-toggle" => "collapse", :href => "#"}
               = app.name
             %ul.nav.collapse.text-right{id: "submenu-#{app.id}", "aria-labelledby" => "btn-#{app.id}", :role => "menu"}
               %li
-                %a{:href => "#"}
+                %a{href: new_tour_app_path(app)}
                   %strong Tour Setup
               %li
                 %a{:href => "#"}

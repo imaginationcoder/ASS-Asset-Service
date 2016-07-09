@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   resources :apps ,except: [:index] do
     resources :pre_prompts , shallow: true
     resources :templates , shallow: true
+    member do
+      get 'tour/new' => 'tour#new',as: :new_tour
+      post 'tour' => 'tour#create',as: :create_tour
+    end
   end
 
 
