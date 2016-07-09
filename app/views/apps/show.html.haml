@@ -73,7 +73,9 @@
               = '..'
 .row
   .col-md-12.col-xs-12.text-center
-    %a.btn.btn-danger{href: my_apps_path} DELETE
+    %a.btn.btn-danger.btn-sm{ href: app_path(@app), data: { method: :delete, confirm: 'Are you sure?' }}
+      %span.glyphicon.glyphicon-trash
+      Delete
 
 
 
