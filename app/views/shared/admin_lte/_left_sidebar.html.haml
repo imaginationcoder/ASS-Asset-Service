@@ -1,0 +1,60 @@
+%aside.main-sidebar
+  / sidebar: style can be found in sidebar.less
+  %section.sidebar
+    / Sidebar user panel (optional)
+    .user-panel
+      .pull-left.image
+        = image_tag 'user-avatar.png',class: "img-circle"
+      .pull-left.info
+        %p= current_user.full_name
+        / Status
+        %a{:href => "#"}
+          %i.fa.fa-circle.text-success
+          Online
+    / search form (Optional)
+    /
+      <form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Search...">
+      <span class="input-group-btn">
+      <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+      </button>
+      </span>
+      </div>
+      </form>
+    / /.search form
+    %ul.sidebar-menu
+      %li
+        %a{:href => my_apps_path}
+          %i.fa.fa-dashboard
+          %span Dashboard
+      - unless @my_apps.blank?
+        %li.header Your Apps
+        - @my_apps.each do |app|
+          %li.treeview
+            %a{:href => "#"}
+              %i.fa.fa-share
+              %span= app.name
+              %span.pull-right-container
+                %i.fa.fa-angle-left.pull-right
+            %ul.treeview-menu
+              %li
+                %a{:href => new_tour_app_path(app)}
+                  %i.fa.fa-picture-o>
+                  Tour Setup
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-gear.text-red
+                  %span.pull-right-container
+                    %i.fa.fa-angle-left.pull-right
+                  Permissions
+                %ul.treeview-menu
+                  - @permissions.each do |permission|
+                    %li
+                      %a{:href => add_template_path(app, permission)}
+                        %i.fa.fa-circle-o
+                        = permission.name
+              %li
+                %a{:href => edit_app_path(app)}
+                  %i.fa.fa-edit>
+                  Edit
