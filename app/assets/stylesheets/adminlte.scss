@@ -1,0 +1,15 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+@import "ionicons";
+@import "admin-lte";
+@import "growlyflash";
+@import "skins/_all-skins";
+
+.table {
+  td, th {
+    text-align: center !important;
+    // deafult is left
+  }
+}

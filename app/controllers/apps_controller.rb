@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
   before_action :authenticate_user!
+  layout 'adminlte'
 
   def index
 

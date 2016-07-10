@@ -1,28 +1,52 @@
-= page_title('Dashboard')
-.row
-  .col-lg-12
-    .page-heading.text-center Summary
-.row
+= page_title('Dashboard | My Apps')
+%section.content-header
+  %h1
+    Summary
+    %small Your apps
+  %ol.breadcrumb
+    %li
+      %a{:href => "#"}
+        %i.fa.fa-dashboard
+        Dashboard
+    %li.active Apps
+%section.content
   - if @my_apps.present?
-    .col-lg-12
-      .table-responsive
-        %table.table.table-striped
-          %thead
-            %tr
-              %th App Name
-              %th Production Version
-              %th Last Access Time
-              %th Last Activity
-          %tbody
-            - @my_apps.each do |app|
+    .row
+      .col-xs-12
+        .box
+          .box-header
+            %h3.box-title App List
+            .box-tools
+              .input-group.input-group-sm{:style => "width: 150px;"}
+                %input.form-control.pull-right{:name => "table_search", :placeholder => "Search", :type => "text"}
+                  .input-group-btn
+                    %button.btn.btn-default{:type => "submit"}
+                      %i.fa.fa-search
+          .box-body.table-responsive.no-padding
+            %table.table.table-hover
               %tr
-                %td= link_to app.name, app_path(app)
-                %td= app.current_version
-                %td TODO
-                %td TODO
+                %th S.NO
+                %th App Name
+                %th Production Version
+                %th Last Access Time
+                %th Last Activity
+              - @my_apps.each_with_index do |app, index|
+                %tr
+                  %td= index+1
+                  %td= link_to app.name, app_path(app)
+                  %td
+                    %span.label.label-success= app.current_version
+                  %td --
+                  %td --
   - else
-    .col-lg-12
-      .alert.alert-warning
-        %a.btn.btn-xs.btn-warning.pull-right{href: new_app_path} Add new
-        %span.glyphicon.glyphicon-exclamation-sign{"aria-hidden" => "true"}
-        Currently no apps added.
+    .row
+      .col-md-12
+        .box.box-danger
+          .box-body
+            .alert.alert-info.alert-dismissible
+              %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+              %h4
+                %i.icon.fa.fa-info
+                Alert!
+              Currently no apps found.
+              = link_to 'Add New',new_app_path

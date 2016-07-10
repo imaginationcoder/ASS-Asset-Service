@@ -241,6 +241,8 @@ GEM
       nokogiri (~> 1.5, >= 1.5.11)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
+    font-ionicons-rails (2.0.1.5)
+      railties (>= 3.2, < 6.0)
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -460,6 +462,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.7)
   fog
   font-awesome-rails
+  font-ionicons-rails
   growlyflash
   guard-rspec (~> 4.6, >= 4.6.5)
   haml (~> 4.0, >= 4.0.7)

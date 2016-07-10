@@ -54,5 +54,8 @@ class User
     "#{fname} #{lname}"
   end
 
+  def member_since
+    created_at.strftime("%b. %Y")
+  end
 
 end

@@ -85,3 +85,4 @@ gem 'magnific-popup-rails', '~> 1.1.0'
 gem 'bootstrap-social-rails'
 
 gem "font-awesome-rails"
+gem "font-ionicons-rails"
