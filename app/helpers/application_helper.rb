@@ -53,4 +53,9 @@ module ApplicationHelper
     '&nbsp;'.html_safe
   end
 
+  # helper for a button disabled with progressing text on sumbit
+  def btn_prog_text(text)
+    "<i class='fa fa-circle-o-notch fa-spin'></i> #{text}".html_safe
+  end
+
 end

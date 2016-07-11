@@ -49,5 +49,5 @@
                   = f.text_area :description, placeholder: 'App Description' , class: 'form-control'
       .box-footer
         %a.btn.btn-default{href: my_apps_path} Cancel
-        %button.btn.btn-primary.pull-right{:type => "submit"} Update
+        %button.btn.btn-primary.btn-progress.pull-right{"data-loading-text"=>btn_prog_text('Updating'),:type => "submit"} Update
 

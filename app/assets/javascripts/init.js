@@ -12,8 +12,15 @@ previewUploadedImage = function(input) {
 };
 
 $( document ).ready(function() {
+    //https://codediode.io/lessons/8736-loading-spinners-in-rails
     //Enable trubolinks prgress indicator
     Turbolinks.enableProgressBar();
+
+    // button disables with loading spinner
+    $('.btn-progress').on('click', function() {
+        var $this = $(this);
+        $this.button('loading');
+    });
 
     // Enable bootstrap default tooltip
     $('[data-toggle="tooltip"]').tooltip({
