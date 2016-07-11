@@ -31,7 +31,7 @@
     .box-body
       .products-list.product-list-in-box
         %li.item
-          .product-img
+          %a.product-img.magnific-popup-img{href: @app.logo.url, title: @app.name}
             %img.img-responsive.img-thumbnail{width: 100, height: 100, src: @app.logo_url}
           .product-info
             %a.product-title{:href => "javascript:void(0)"}
