@@ -1,0 +1,59 @@
+.row.add-edit-template-from
+  .col-sm-12.text-right
+    %span.editing-version editing version 1*
+  .col-sm-12.form-content
+    .row
+      .col-sm-12.text-center
+        = form_for(@template, url: app_templates_path(@app)) do |f|
+          = f.hidden_field :permission_id
+          = f.hidden_field :app_id
+          %fieldset
+            %legend TARGET PLATFORM
+            .row
+              .col-md-3.col-md-offset-3.col-xs-6
+                .form-group
+                  %select.form-control{name: "template[:platform_id]"}
+                    %option{selected: "selected", value: @platform.id}= @platform.name
+              .col-md-3.col-xs-6
+                .form-group
+                  = f.select :platform_category_id, options_for_select(@platform_categories.pluck(:name, :id), 'iPhone 6s'),
+                                                    { include_blank: false}, {class: 'form-control'}
+          - if @template.errors.any?
+            .row
+              .col-sm-12
+                = render 'shared/error_messages', resource: @template
+          .row
+            .col-sm-12.text-left
+              %p.what-is-it
+                %a{href: '#'} What is it?
+                %br
+                Notifcations permission allows you to setu-up a dynamica pre-prompt before the standard system
+                notifications permission dialog. ASSSDK supports pre-prompts containg text, imgages, etc.
+              %p.pro-tip
+                pro tip: Informing users why you need NOTIFICATION PERMISSION in-advance increase chances of
+                user giving you the required permission.
+          %fieldset
+            %legend Image Assets
+            .row.text-center
+              .col-sm-12
+                %a{href: "#"}
+                  %img.img-thumbnail#source-preview{width: 100, height: 100, src: 'http://placehold.it/100x100&text=Browse'}/
+                %label.btn.btn-default.btn-file{style: 'margin-left: 10px;'}
+                  Choose..
+                  = f.file_field :source , style: 'display: none;'
+          %fieldset#text_assets_fields
+            %legend Text Assets
+            = f.fields_for :text_assets do |ts|
+              = render 'templates/text_asset_fields', f: ts
+            .links
+              = link_to_add_association '+ add', f, :text_assets
+          %fieldset#button_actions_fields
+            %legend Actions
+            = f.fields_for :button_actions do |ba|
+              = render 'templates/button_action_fields', f: ba
+            .links
+              = link_to_add_association '+ add', f, :button_actions
+          .row{style: 'margin-top: 20px;'}
+            .col-sm-12
+              %button.btn.btn-default{type: 'reset'} CANCEL
+              %button.btn.btn-primary SAVE AS DRAFT

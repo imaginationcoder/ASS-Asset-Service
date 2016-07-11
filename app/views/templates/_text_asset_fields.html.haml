@@ -1,9 +1,10 @@
-.row.text-center.nested-fields
-  .col-sm-7
+.row.nested-fields
+  .col-xs-5
     .form-group
       = f.text_field :text, class: 'form-control', placeholder: 'enter text'
-  .col-sm-3
+  .col-xs-4
     .form-group
       = f.select :position, TextAsset::POSITIONS , {include_blank: 'Choose'}, {class: 'form-control'}
-  .col-sm-2
-    = link_to_remove_association "- remove", f
+  .col-xs-3.text-left
+    = link_to_remove_association f, title: 'Remove',class: 'btn btn-default btn-sm', data: {toggle: 'tooltip'} do
+      %i.fa.fa-remove

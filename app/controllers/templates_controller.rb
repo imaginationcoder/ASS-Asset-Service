@@ -1,11 +1,12 @@
 class TemplatesController < ApplicationController
+  layout 'adminlte'
   before_action :authenticate_user!
   before_action :find_app, only: [:create]
 
   def new
     @app = App.find(params[:app_id])
-    permission = Permission.find(params[:permission_id])
-    @template = @app.templates.build(permission: permission)
+    @permission = Permission.find(params[:permission_id])
+    @template = @app.templates.build(permission: @permission)
     @template.text_assets.build
     @template.button_actions.build
     @platform = Platform.default
@@ -17,7 +18,7 @@ class TemplatesController < ApplicationController
     if @template.save
       redirect_to app_url(@app), notice: 'Pre Prompt added to app.'
     else
-      render action: 'new'
+      render action: 'old-new'
     end
   end
 

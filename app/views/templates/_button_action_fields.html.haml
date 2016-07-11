@@ -1,18 +1,19 @@
-.row.text-center.nested-fields
-  .col-sm-3
+.row.nested-fields
+  .col-xs-3
     .form-group
       = f.select :btn_type, [['Text', 1], ['Image', 2]], { include_blank: false}, {class: 'form-control btn-action-type'}
-  .col-sm-4.btn-action-label
+  .col-xs-3.btn-action-label
     .form-group
       = f.text_field :label, class: 'form-control btn-action-label', placeholder: 'Label'
-  .col-sm-4.btn-action-source.hide
+  .col-xs-3.btn-action-source.hide
     .form-group
       %label.btn.btn-default.btn-file{style: 'margin-left: 10px;'}
         Choose..
         = f.file_field :source , style: 'display: none;', class: 'btn-action-source-input'
         %span.label.label-info
-  .col-sm-3
+  .col-xs-3
     .form-group
       = f.text_field :target_event, class: 'form-control', placeholder: 'Target Event'
-  .col-sm-2
-    = link_to_remove_association "- remove", f
+  .col-xs-3.text-left
+    = link_to_remove_association f, title: 'Remove',class: 'btn btn-default btn-sm', data: {toggle: 'tooltip'} do
+      %i.fa.fa-remove
