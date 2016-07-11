@@ -6,6 +6,7 @@
 @import "admin-lte";
 @import "growlyflash";
 @import "skins/_all-skins";
+@import "turbolinks_progress_bar";
 
 .table {
   td, th {
@@ -29,4 +30,16 @@
     border: 2px solid gray;
     color: gray;
   }
+}
+
+// override to decrease padding
+.content-header {
+  padding: 1px 15px !important;
+  .breadcrumb {
+    top: 3px;
+  }
+}
+
+.content {
+  padding-top: 10px; //default is 15px
 }
