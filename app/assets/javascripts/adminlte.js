@@ -11,9 +11,19 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
 //= require bootstrap
+//= require turbolinks
+//= require magnific-popup 
+//= require growlyflash
 //= require admin-lte
 //= require fastclick  
 //= require jquery.slimscroll
+//= require cocoon
+//= require init
+//= require apps
+//= require templates
+//= require tour
 
 

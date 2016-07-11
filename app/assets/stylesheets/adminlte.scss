@@ -13,3 +13,20 @@
     // deafult is left
   }
 }
+
+/*Create New APP: Platform images*/
+.platform-images span {
+  background: white none repeat scroll 0 0;
+  border-radius: 15px;
+  bottom: -4px;
+  left: -66px;
+  position: relative;
+  &.ios {
+    border: 2px solid green;
+    color: green;
+  }
+  &.android {
+    border: 2px solid gray;
+    color: gray;
+  }
+}

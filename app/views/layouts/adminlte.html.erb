@@ -15,6 +15,9 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag 'adminlte',  'data-turbolinks-track' => true %>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -54,6 +57,5 @@ desired effect
 </div>
 <!-- ./wrapper -->
 <!-- REQUIRED JS SCRIPTS -->
-<%= javascript_include_tag 'adminlte',  'data-turbolinks-track' => true %>
 </body>
 </html>
