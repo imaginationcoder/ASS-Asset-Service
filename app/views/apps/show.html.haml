@@ -1,84 +1,83 @@
 :css
-  .platform-images span {
-    bottom: 25px;
-    left: 58px;
-    position: absolute;
+  .products-list .product-img img{
+    height: 100px;
+    width: 100px;
+  }
+  .products-list .product-info{
+    margin-left: 120px;
   }
 
-= page_title("App: #{@app.name }")
-.row
-  .col-xs-6
-    %strong= @app.name
-  .col-xs-6.text-right
-    %a.btn.btn-primary.btn-sm{ href: edit_app_path(@app)}
-      %span.glyphicon.glyphicon-edit
-      Edit
-%hr
-.row.text-center
-  .col-md-8.col-md-offset-2.col-sm-12
-    .row
-      .col-sm-12
-        .form-group
-          %a{href: "#"}
-            %img.img-thumbnail{width: 100, height: 100, src: @app.logo_url}
-    .row
-      .col-sm-12
-        = @app.name
-        %hr
-
-    .row
-      .col-sm-12
-        = @app.description
-        %hr
-.row.text-center
-  .col-sm-12
-    %fieldset
-      %legend Configuration
-      .row
-        .col-md-2.col-md-offset-1.platform-images.col-xs-12
-          = image_tag 'platform-ios.png', width: 100, height: 100
-          %span.ios
-            %i.fa.fa-check.fa-fw
-        .col-md-9.col-xs-12
-          .row{style: 'padding: 10px 0 10px 0;'}
-            .col-md-4.text-right.col-xs-12
-              CLIENT ID:
-            .col-md-8.text-left.col-xs-12.primary-color
-              = @app.client_id
-          .row{style: 'padding: 10px 0 10px 0;'}
-            .col-md-4.text-right.col-xs-12
-              CLIENT TOKEN:
-            .col-md-8.secret-token-text.text-left.col-xs-12.primary-color
-              = @app.secret_token
-          .row
-            .col-md-12.col-md-offset-3.text-left.col-xs-12.underline-text
-              %a{href: '#'} download sdk
-.row.text-center
-  .col-sm-12
-    %fieldset
-      %legend &nbsp;
-      .row
-        .col-md-2.col-md-offset-1.platform-images
-          = image_tag 'platform-android-grey.png', width: 100, height: 100
-          %span.android
-            %i.fa.fa-check.fa-fw
-        .col-md-9
-          .row{style: 'padding: 10px 0 10px 0;'}
-            .col-md-4.text-right
-              CLIENT ID:
-            .col-md-8.text-left.primary-color
-              = '..'
-          .row{style: 'padding: 10px 0 10px 0;'}
-            .col-md-4.text-right
-              CLIENT TOKEN:
-            .col-md-8.secret-token-text.text-left.primary-color
-              = '..'
-.row
-  .col-md-12.col-xs-12.text-center
-    %a.btn.btn-danger.btn-sm{ href: app_path(@app), data: { method: :delete, confirm: 'Are you sure?' }}
-      %span.glyphicon.glyphicon-trash
-      Delete
-
-
-
-
+= page_title("App | #{@app.name}")
+%section.content-header
+  %h4 &nbsp;
+  %ol.breadcrumb
+    %li
+      %a{:href => '#'}
+        %i.fa.fa-dashboard
+        Dashboard
+    %li
+      %a{:href => my_apps_path}
+        Apps
+    %li.active= @app.name
+%section.content
+  .box.box-default
+    .box-header.with-border
+      %h3.box-title= @app.name
+      .box-tools.pull-right
+        %button.btn.btn-box-tool{ data:{'original-title'=> 'Collapse',toggle: 'tooltip', widget: 'collapse'}}
+          %i.fa.fa-minus
+        %a.btn.btn-box-tool{href: edit_app_path(@app), data:{'original-title'=> 'Edit',toggle: 'tooltip'}}
+          %i.fa.fa-edit
+    .box-body
+      .products-list.product-list-in-box
+        %li.item
+          .product-img
+            %img.img-responsive.img-thumbnail{width: 100, height: 100, src: @app.logo_url}
+          .product-info
+            %a.product-title{:href => "javascript:void(0)"}
+              = @app.name
+              %span.label.label-success.pull-right= "version #{@app.current_version}"
+            %span.product-description
+              = @app.description
+    .box-footer
+      %a.btn.btn-danger.btn-sm{href: app_path(@app), data: { method: :delete, confirm: 'Are you sure?' }}
+        Delete
+      %a.btn.btn-primary.btn-sm.pull-right{href: edit_app_path(@app)} Edit
+  .box.box-solid
+    .box-header.with-border
+      %h3.box-title Configuration
+    / /.box-header
+    .box-body
+      #accordion.box-group
+        / we are adding the .panel class so bootstrap.js collapse plugin detects it
+        .panel.box.box-success
+          .box-header.with-border
+            %h4.box-title
+              %a{"aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}
+                %i.fa.fa-apple
+                iOS
+          #collapseOne.panel-collapse.collapse.in{"aria-expanded" => "true", :style => "padding-bottom: 20px;"}
+            .box-body.table-responsive.no-padding
+              %table.table.table-hover
+                %tbody
+                  %tr
+                    %th CLIENT ID
+                    %th CLIENT TOKEN
+                    %th
+                  %tr
+                    %td.text-light-blue= @app.client_id
+                    %td.text-light-blue= @app.secret_token
+                    %td
+                      %a.btn.btn-primary.btn-sm.btn-block
+                        %i.fa.fa-download
+                        = space
+                        Download SDK
+        .panel.box.box-default
+          .box-header.with-border
+            %h4.box-title
+              %a.collapsed{"aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo"}
+                %i.fa.fa-android
+                Android
+          #collapseTwo.panel-collapse.collapse{"aria-expanded" => "false", :style => "height: 0px; padding: 20px;"}
+            .box-body
+              %h3.text-yellow Coming Soon..

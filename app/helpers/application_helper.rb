@@ -49,4 +49,8 @@ module ApplicationHelper
       alert: 'alert-warning', notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
   end
 
+  def space
+    '&nbsp;'.html_safe
+  end
+
 end
