@@ -52,5 +52,10 @@ $( document ).ready(function() {
         }
     });
 
+    // fix for tooltip remain on the doc when clicks on 'add more rounded btn'
+    $('.btn-circle-mini, .btn-circle-sm').click(function () {
+        $(this).blur();
+    });
+
 
 });
