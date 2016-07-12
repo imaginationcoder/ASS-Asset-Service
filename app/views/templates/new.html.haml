@@ -83,11 +83,9 @@
                   .col-xs-12
                     = f.fields_for :text_assets do |ts|
                       = render 'templates/text_asset_fields', f: ts
-                    .links.pull-right
-                      = link_to_add_association f, :text_assets, title: 'Add another',class: 'btn btn-primary btn-sm', data: {toggle: 'tooltip'} do
-                        %i.fa.fa-plus
-                        = space
-                        Add
+                    .links
+                      = link_to_add_association f, :text_assets, title: 'Add another',class: 'btn btn-circle-mini bg-primary', data: {toggle: 'tooltip'} do
+                        %span.glyphicon.glyphicon-plus
             / Button Actions
             .row
               .col-xs-12
@@ -98,12 +96,10 @@
                   .col-xs-12
                     = f.fields_for :button_actions do |ts|
                       = render 'templates/button_action_fields', f: ts
-                    .links.pull-right
-                      = link_to_add_association f, :button_actions, title: 'Add another',class: 'btn btn-primary btn-sm', data: {toggle: 'tooltip'} do
-                        %i.fa.fa-plus
-                        = space
-                        Add
+                    .links
+                      = link_to_add_association f, :button_actions, title: 'Add another',class: 'btn btn-circle-mini bg-primary', data: {toggle: 'tooltip'} do
+                        %span.glyphicon.glyphicon-plus
       .box-footer
-        %a.btn.btn-default.btn-lg{href: app_path(@app)}
+        %a.btn.btn-default{href: app_path(@app)}
           CANCEL
-        %button.btn.btn-primary.btn-progress.btn-lg.pull-right{"data-loading-text"=>btn_prog_text('Saving'), type: 'submit'} SAVE AS DRAFT
+        %button.btn.btn-primary.btn-progress.pull-right.bg-olive{"data-loading-text"=>btn_prog_text('Saving'), type: 'submit'} SAVE AS DRAFT
