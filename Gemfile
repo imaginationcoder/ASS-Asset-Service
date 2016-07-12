@@ -86,3 +86,4 @@ gem 'bootstrap-social-rails'
 
 gem "font-awesome-rails"
 gem "font-ionicons-rails"
+gem 'nprogress-rails'

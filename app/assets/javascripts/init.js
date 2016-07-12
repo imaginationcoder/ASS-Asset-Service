@@ -14,7 +14,12 @@ previewUploadedImage = function(input) {
 $( document ).ready(function() {
     //https://codediode.io/lessons/8736-loading-spinners-in-rails
     //Enable trubolinks prgress indicator
-    Turbolinks.enableProgressBar();
+    // Turbolinks.enableProgressBar();
+    // Turbolinks progress bar replacement
+    NProgress.configure({
+        showSpinner: true,
+        speed: 500
+    });
 
     // button disables with loading spinner
     $('.btn-progress').on('click', function() {

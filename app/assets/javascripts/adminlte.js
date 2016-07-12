@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require nprogress
+//= require nprogress-turbolinks
 //= require magnific-popup 
 //= require growlyflash
 //= require admin-lte
@@ -24,6 +26,6 @@
 //= require init
 //= require apps
 //= require templates
-//= require tour
+//= require tour 
 
 
