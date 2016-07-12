@@ -42,9 +42,15 @@
           = f.fields_for :templates, @template do |tf|
             = render 'tour/template_fields', f: tf
           .links.text-center
-            = link_to_add_association f, :templates, title: 'Add one more step',class: 'btn btn-circle-sm bg-primary', data: {toggle: 'tooltip'} do
+            = link_to_add_association f, :templates, title: 'Add one more step',class: 'btn btn-circle-sm bg-aqua-active', data: {toggle: 'tooltip'} do
               %span.glyphicon.glyphicon-plus
         .row{style: 'margin-top: 20px;'}
           .col-sm-12
-            %button.btn.btn-default{type: 'reset'} CANCEL
-            %button.btn.btn-primary SAVE AS DRAFT
+            %button.btn.btn-default{type: 'reset'}
+              %i.fa.fa-close
+              = space
+              CANCEL
+            %button.btn.btn-progress.pull-right.bg-olive{"data-loading-text"=>btn_prog_text('Saving'), type: 'submit'}
+              %i.fa.fa-check
+              = space
+              SAVE AS DRAFT

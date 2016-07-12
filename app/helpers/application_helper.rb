@@ -49,8 +49,9 @@ module ApplicationHelper
       alert: 'alert-warning', notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
   end
 
-  def space
-    '&nbsp;'.html_safe
+  # to add space in html
+  def space(number = 1)
+    ( '&nbsp;' * number).html_safe
   end
 
   # helper for a button disabled with progressing text on sumbit

@@ -1,3 +1,6 @@
+= f.hidden_field :permission_id, value: @permission.id
+= f.hidden_field :app_id, value: @app.id
+= f.hidden_field :platform_category_id, value: @platform_categories.first.id
 .box.box-primary.nested-fields
   .box-header.with-border
     %h3.box-title.text-light-blue
@@ -8,7 +11,45 @@
         %i.fa.fa-minus
       = link_to_remove_association f ,title: 'Remove',class: 'btn btn-danger btn-sm',data: { toggle: 'tooltip' } do
         %i.fa.fa-times
-  .box-body
+  .box-body.text-center
+    / Images Assets
+    .row
+      .col-xs-12
+        %h3 Image Assets
+    .row.text-center
+      .col-xs-12
+        .form-group
+          %a{href: "#"}
+            %img.img-thumbnail#source-preview{width: 100, height: 100, src: 'http://placehold.it/100x100&text=Browse'}/
+          %label.btn.btn-default.btn-sm.btn-file{style: 'margin-left: 10px;'}
+            Choose..
+            = f.file_field :source , style: 'display: none;'
+    / Text Assets
+    .row
+      .col-xs-12
+        .row
+          .col-xs-12
+            %h3 Text Assets
+        .row.text_assets_fields
+          .col-xs-12
+            = f.fields_for :text_assets, @text_assets  do |text_asset|
+              = render 'text_asset_fields', f: text_asset
+            .links
+              = link_to_add_association f, :text_assets, title: 'Add another',class: 'btn btn-circle-mini bg-light-blue-active', data: {toggle: 'tooltip'} do
+                %span.glyphicon.glyphicon-plus
+    / Button Actions
+    .row
+      .col-xs-12
+        .row
+          .col-xs-12
+            %h3 Actions
+        .row.button_actions_fields
+          .col-xs-12
+            = f.fields_for :button_actions, @button_actions  do |btn_action|
+              = render 'button_action_fields', f: btn_action
+            .links
+              = link_to_add_association f, :button_actions, title: 'Add another',class: 'btn btn-circle-mini bg-light-blue-active', data: {toggle: 'tooltip'} do
+                %span.glyphicon.glyphicon-plus
 
 
 -#.row.text-center.nested-fields

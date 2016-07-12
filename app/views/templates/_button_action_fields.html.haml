@@ -1,19 +1,21 @@
 .row.nested-fields
-  .col-xs-3
-    .form-group
-      = f.select :btn_type, [['Text', 1], ['Image', 2]], { include_blank: false}, {class: 'form-control btn-action-type'}
-  .col-xs-3.btn-action-label
-    .form-group
-      = f.text_field :label, class: 'form-control btn-action-label', placeholder: 'Label'
-  .col-xs-3.btn-action-source.hide
-    .form-group
-      %label.btn.btn-default.btn-file{style: 'margin-left: 10px;'}
-        Choose..
-        = f.file_field :source , style: 'display: none;', class: 'btn-action-source-input'
-        %span.label.label-info
-  .col-xs-3
-    .form-group
-      = f.text_field :target_event, class: 'form-control', placeholder: 'Target Event'
-  .col-xs-3.text-left
-    = link_to_remove_association f, title: 'Remove',class: 'btn btn-default btn-sm', data: {toggle: 'tooltip'} do
-      %i.fa.fa-remove
+  .col-xs-12.col-md-9.col-md-offset-2
+    .row
+      .col-xs-3
+        .form-group
+          = f.select :btn_type, [['Text', 1], ['Image', 2]], { include_blank: false}, {class: 'form-control btn-action-type'}
+      .col-xs-3.btn-action-label
+        .form-group
+          = f.text_field :label, class: 'form-control btn-action-label', placeholder: 'Label'
+      .col-xs-3.btn-action-source.hide
+        .form-group
+          %label.btn.btn-default.btn-file{style: 'margin-left: 10px;'}
+            Choose..
+            = f.file_field :source , style: 'display: none;', class: 'btn-action-source-input'
+            %span.label.label-info
+      .col-xs-3
+        .form-group
+          = f.text_field :target_event, class: 'form-control', placeholder: 'Target Event'
+      .col-xs-3.text-left
+        = link_to_remove_association f, title: 'Remove',class: 'btn btn-default btn-sm', data: {toggle: 'tooltip'} do
+          %i.fa.fa-remove

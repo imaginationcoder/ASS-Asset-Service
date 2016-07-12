@@ -84,7 +84,7 @@
                     = f.fields_for :text_assets do |ts|
                       = render 'templates/text_asset_fields', f: ts
                     .links
-                      = link_to_add_association f, :text_assets, title: 'Add another',class: 'btn btn-circle-mini bg-primary', data: {toggle: 'tooltip'} do
+                      = link_to_add_association f, :text_assets, title: 'Add another',class: 'btn btn-circle-mini bg-light-blue-active', data: {toggle: 'tooltip'} do
                         %span.glyphicon.glyphicon-plus
             / Button Actions
             .row
@@ -97,7 +97,7 @@
                     = f.fields_for :button_actions do |ts|
                       = render 'templates/button_action_fields', f: ts
                     .links
-                      = link_to_add_association f, :button_actions, title: 'Add another',class: 'btn bg-primary btn-circle-mini', data: {toggle: 'tooltip'} do
+                      = link_to_add_association f, :button_actions, title: 'Add another',class: 'btn btn-circle-mini bg-light-blue-active', data: {toggle: 'tooltip'} do
                         %span.glyphicon.glyphicon-plus
       .box-footer
         %a.btn.btn-default{href: app_path(@app)}
