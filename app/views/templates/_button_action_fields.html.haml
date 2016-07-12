@@ -1,5 +1,5 @@
 .row.nested-fields
-  .col-xs-12.col-md-9.col-md-offset-2
+  .col-xs-12.col-md-11.col-md-offset-1
     .row
       .col-xs-3
         .form-group
@@ -9,7 +9,7 @@
           = f.text_field :label, class: 'form-control btn-action-label', placeholder: 'Label'
       .col-xs-3.btn-action-source.hide
         .form-group
-          %label.btn.btn-default.btn-file{style: 'margin-left: 10px;'}
+          %label.btn.btn-default.btn-file.btn.sm{style: 'margin-left: 10px;'}
             Choose..
             = f.file_field :source , style: 'display: none;', class: 'btn-action-source-input'
             %span.label.label-info
