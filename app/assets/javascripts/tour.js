@@ -21,7 +21,7 @@ function tourNestedButtonActionsCallabacks() {
 
 $(document).ready(function() {
     tourNestedTextAssetsCallabacks();
-    tourNestedButtonActionsCallabacks(); 
+    tourNestedButtonActionsCallabacks();
     var tour_step;
     tour_step = 1;
     $('#templates_fields').on('cocoon:before-insert', function(e, to_be_added) {
@@ -34,10 +34,11 @@ $(document).ready(function() {
                 var _this = box.closest('box-header');
                 //Find the body and the footer
                 var box_content = box.find("> .box-body, > .box-footer");
+                var btn_box_tool = box.children(".box-header").children(".box-tools").children('.btn-box-tool').first();
                 //Convert minus into plus
-                box.children(".box-header").children(".box-tools").children('.btn-box-tool').children(":first")
-                    .removeClass('fa-minus')
-                    .addClass('fa-plus');
+                btn_box_tool.children(":first").removeClass('fa-minus').addClass('fa-plus');
+                //TODO below not working
+                btn_box_tool.data('original-title', 'Expand');
                 //Hide the content
                 box_content.slideUp(300, function () {
                     box.addClass("collapsed-box");
@@ -46,9 +47,10 @@ $(document).ready(function() {
             //to_be_added.hide();
             to_be_added.fadeIn('slow');
             var box_content = to_be_added.find("> .box-body, > .box-footer");
-            to_be_added.children(".box-header").children(".box-tools").children('.btn-box-tool').children(":first")
-                .removeClass('fa-plus')
-                .addClass('fa-minus');
+            var btn_box_tool = to_be_added.children(".box-header").children(".box-tools").children('.btn-box-tool').first();
+            btn_box_tool.children(":first").removeClass('fa-plus').addClass('fa-minus');
+            //TODO below not working 
+            btn_box_tool.data('original-title', 'Collapse');
             //Show the content
             box_content.slideDown(1000, function () {
                 to_be_added.removeClass("collapsed-box");
