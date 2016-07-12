@@ -1,6 +1,8 @@
 .box.box-primary.nested-fields
   .box-header.with-border
-    %h3.box-title Step 1
+    %h3.box-title.text-light-blue
+      Step
+      %span.tour-step-number 1
     .box-tools.pull-right
       %button.btn.btn-box-tool{ data:{ 'original-title'=> 'Collapse',toggle: 'tooltip', widget: 'collapse'}}
         %i.fa.fa-minus
@@ -44,4 +46,4 @@
           = f.fields_for :button_actions, @button_actions, :wrapper => 'inline' do |button_action|
             = render 'button_action_fields', f: button_action
         .links
-          = link_to_add_association 'add text asset', f, :button_actions, :render_options => { :wrapper => 'inline' } 
+          = link_to_add_association 'add text asset', f, :button_actions, :render_options => { :wrapper => 'inline' }
