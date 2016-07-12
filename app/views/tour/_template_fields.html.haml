@@ -1,4 +1,15 @@
-.row.text-center.nested-fields
+.box.box-primary.nested-fields
+  .box-header.with-border
+    %h3.box-title Step 1
+    .box-tools.pull-right
+      %button.btn.btn-box-tool{ data:{ 'original-title'=> 'Collapse',toggle: 'tooltip', widget: 'collapse'}}
+        %i.fa.fa-minus
+      = link_to_remove_association f ,title: 'Remove',class: 'btn btn-danger btn-sm',data: { toggle: 'tooltip' } do
+        %i.fa.fa-times
+  .box-body
+
+
+-#.row.text-center.nested-fields
   = f.hidden_field :permission_id, value: @permission.id
   = f.hidden_field :app_id, value: @app.id
   = f.hidden_field :platform_category_id, value: @platform_categories.first.id
@@ -33,5 +44,4 @@
           = f.fields_for :button_actions, @button_actions, :wrapper => 'inline' do |button_action|
             = render 'button_action_fields', f: button_action
         .links
-          = link_to_add_association 'add text asset', f, :button_actions, :render_options => { :wrapper => 'inline' }
-%hr
+          = link_to_add_association 'add text asset', f, :button_actions, :render_options => { :wrapper => 'inline' } 

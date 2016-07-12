@@ -97,9 +97,9 @@
                     = f.fields_for :button_actions do |ts|
                       = render 'templates/button_action_fields', f: ts
                     .links
-                      = link_to_add_association f, :button_actions, title: 'Add another',class: 'btn btn-circle-mini bg-primary', data: {toggle: 'tooltip'} do
+                      = link_to_add_association f, :button_actions, title: 'Add another',class: 'btn bg-primary btn-circle-mini', data: {toggle: 'tooltip'} do
                         %span.glyphicon.glyphicon-plus
       .box-footer
         %a.btn.btn-default{href: app_path(@app)}
           CANCEL
-        %button.btn.btn-primary.btn-progress.pull-right.bg-olive{"data-loading-text"=>btn_prog_text('Saving'), type: 'submit'} SAVE AS DRAFT
+        %button.btn.btn-progress.pull-right.bg-olive{"data-loading-text"=>btn_prog_text('Saving'), type: 'submit'} SAVE AS DRAFT

@@ -1,21 +1,50 @@
-.row.add-edit-template-from
-  .col-sm-12.text-right
-    %span.editing-version editing version 1*
-  .col-sm-12.form-content
-    .row
-      .col-sm-12.text-center
-        = form_for(@app, url: create_tour_app_path(@app), method: :post) do |f|
-          - if @app.errors.any?
-            .row
-              .col-sm-12
-                = render 'shared/error_messages', resource: @app
-          .templates_fields
-            = f.fields_for :templates, @template do |tf|
-              = render 'tour/template_fields', f: tf
-            .links
-              = link_to_add_association '+ add', f, :templates
-          .row{style: 'margin-top: 20px;'}
-            .col-sm-12
-              %button.btn.btn-default{type: 'reset'} CANCEL
-              %button.btn.btn-primary SAVE AS DRAFT
+:css
+  #add-tour-to-app legend{
+    font-size: 16px;
+  }
 
+= page_title("#{@app.name}- #{@permission.name}")
+%section.content-header
+  %h4
+    = @permission.name
+    %small #{@app.name}
+  %ol.breadcrumb
+    %li
+      %a{:href => '#'}
+        %i.fa.fa-dashboard
+        Dashboard
+    %li
+      %a{:href => my_apps_path}
+        Apps
+    %li
+      %a{:href => app_path(@app)}
+        = @app.name
+    %li.active= @permission.name
+%section.content#add-tour-to-app
+  .row
+    .col-md-10.col-md-offset-1.col-xs-12
+      = form_for(@app, url: create_tour_app_path(@app), method: :post) do |f|
+        %fieldset
+          %legend.text-center TARGET PLATFORM
+          .row
+            .col-md-6.col-xs-6
+              .form-group
+                %select.form-control{name: "template[:platform_id]"}
+                  %option{selected: "selected", value: @platform.id}= @platform.name
+            .col-md-6.col-xs-6
+              .form-group
+                = select_tag :platform_category_id, options_for_select(@platform_categories.pluck(:name, :id), 'iPhone 6s'),  include_blank: false ,class: 'form-control'
+        - if @app.errors.any?
+          .row
+            .col-sm-12
+              = render 'shared/error_messages', resource: @app
+        #templates_fields
+          = f.fields_for :templates, @template do |tf|
+            = render 'tour/template_fields', f: tf
+          .links.text-center
+            = link_to_add_association f, :templates, title: 'Add one more step',class: 'btn btn-circle-sm bg-primary', data: {toggle: 'tooltip'} do
+              %span.glyphicon.glyphicon-plus
+        .row{style: 'margin-top: 20px;'}
+          .col-sm-12
+            %button.btn.btn-default{type: 'reset'} CANCEL
+            %button.btn.btn-primary SAVE AS DRAFT

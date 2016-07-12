@@ -1,4 +1,5 @@
 class TourController < ApplicationController
+  layout 'adminlte'
 
   def new
     @app = App.find(params[:id])
