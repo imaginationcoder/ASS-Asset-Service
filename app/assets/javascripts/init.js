@@ -1,8 +1,7 @@
 // below functionality in separate functions because they need to be invoke cocoon callbacks also with document.ready
 var uploadImageAssetSource;
 var previewImageAssetSource; 
-var buttonActionsBtnTypeChange;
-
+var buttonActionsBtnTypeChange; 
 //ImageAssets: a common function to replace the source of file input with selected once
 uploadImageAssetSource = function(input) {
     var reader;
@@ -42,7 +41,19 @@ buttonActionsBtnTypeChange = function() {
         $(this).siblings('.label-info').first().html($(this).val());
     });
 };
+ 
+// Turbolinks fetch, change, restore etc..
+$(document).on('page:fetch',   function() {
+    /*if(spinner == null) {
+        spinner = new Spinner(opts).spin(spinner_div);
+    } else {
+        spinner.spin(spinner_div);
+    }*/
+});
 
+$(document).on('page:restore', function() {
+    /*spinner.stop(spinner_div);*/
+});
 
 $( document ).ready(function() {
     //https://codediode.io/lessons/8736-loading-spinners-in-rails
