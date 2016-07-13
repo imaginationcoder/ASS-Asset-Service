@@ -11,20 +11,22 @@
       <h3 class="control-sidebar-heading">Recent Activity</h3>
       <ul class="control-sidebar-menu">
         <li>
-          <a href="javascript::;">
-            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+          <a href="#">
+            <i class="menu-icon fa fa-calendar-check-o bg-red"></i>
 
             <div class="menu-info">
-              <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-              <p>Will be 23 on April 24th</p>
+              <% activity_app =  @my_apps.last %>
+              <% if activity_app  %>
+                  <h4 class="control-sidebar-subheading"><%= activity_app.name %></h4>
+                  <p>app updated <%= time_ago_in_words(activity_app.updated_at) %> ago</p>
+              <% end %>
             </div>
           </a>
         </li>
       </ul>
       <!-- /.control-sidebar-menu -->
 
-      <h3 class="control-sidebar-heading">Tasks Progress</h3>
+      <!--<h3 class="control-sidebar-heading">Tasks Progress</h3>
       <ul class="control-sidebar-menu">
         <li>
           <a href="javascript::;">
@@ -40,7 +42,7 @@
             </div>
           </a>
         </li>
-      </ul>
+      </ul>-->
       <!-- /.control-sidebar-menu -->
 
     </div>
@@ -55,13 +57,19 @@
 
         <div class="form-group">
           <label class="control-sidebar-subheading">
-            Report panel usage
-            <input type="checkbox" class="pull-right" checked>
+             Change Password
+            <a class="text-green pull-right" href="#"><i class="fa fa-edit"></i></a>
           </label>
-
           <p>
-            Some information about this general settings option
+            <i>current password is required</i>
           </p>
+        </div>
+
+        <div class="form-group">
+          <label class="control-sidebar-subheading">
+             Upload Avatar
+            <a class="text-yellow pull-right" href="#"><i class="fa fa-upload"></i></a>
+          </label>
         </div>
         <!-- /.form-group -->
       </form>
