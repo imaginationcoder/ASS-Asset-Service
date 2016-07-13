@@ -3,6 +3,11 @@ class TemplatesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_app, only: [:create]
 
+  def show
+    @template = Template.find(params[:id])
+    @permission = @template.permission
+  end
+
   def new
     @app = App.find(params[:app_id])
     @permission = Permission.find(params[:permission_id])
