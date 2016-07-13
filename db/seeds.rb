@@ -16,7 +16,11 @@ Template.collection.drop
 
 
 {'Tour'=> 'TR','Camera'=> 'CAM', 'Contacts'=> 'CT', 'Location'=> 'LN', 'Notifications'=> 'NF' }.each do |key,val|
-  Permission.create(name: key, abbreviation: val)
+  description = "#{key} permission allows you to setu-up a dynamica pre-prompt before the standard system
+            #{key.downcase} permission dialog. ASSSDK supports pre-prompts containg text, imgages, etc."
+  pro_tip = "Informing users why you need #{key.upcase.singularize} PERMISSION in-advance increase chances of
+            user giving you the required permission."
+  Permission.create(name: key, abbreviation: val, description: description, pro_tip: pro_tip)
 end
 
 
@@ -48,8 +52,6 @@ tour_permission = Permission.tour
 
 ['1','2','3'].each do |n|
   File.open(Rails.root.join('app', 'assets', 'images', 'home', "background#{n}.jpg")) do |f|
-
-
     template = app.templates.build(source: f, permission: tour_permission, platform_category_id: platform.platform_categories.first.id)
     template.text_assets_attributes = [{text: 'Welcome to my app', position: TextAsset::POSITIONS[0]},
                                                            {text: 'I am center', position: TextAsset::POSITIONS[1]},

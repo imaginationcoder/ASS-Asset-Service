@@ -23,8 +23,7 @@
             %h4
               %i.icon.fa.fa-question
               What is it?
-            Notifcations permission allows you to setu-up a dynamica pre-prompt before the standard system
-            notifications permission dialog. ASSSDK supports pre-prompts containg text, imgages, etc.
+            = @permission.description
       .row
         .col-sm-12
           .alert.alert-success.alert-dismissible.fade.in
@@ -32,8 +31,7 @@
             %h4
               %i.icon.fa.fa-info-circle
               Pro Tip
-            Informing users why you need NOTIFICATION PERMISSION in-advance increase chances of
-            user giving you the required permission.
+            = @permission.pro_tip
       = form_for(@template, url: app_templates_path(@app)) do |f|
         = f.hidden_field :permission_id
         = f.hidden_field :app_id
