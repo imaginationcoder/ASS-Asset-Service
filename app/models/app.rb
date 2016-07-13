@@ -40,6 +40,10 @@ class App
     logo.present? ? logo.thumb.url : 'http://placehold.it/100x100&text=Logo'
   end
 
+  def find_template(permission)
+    templates.where(permission: permission).first
+  end
+
 
 
 end

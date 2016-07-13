@@ -9,7 +9,7 @@
 
 = page_title("App | #{@app.name}")
 %section.content-header
-  %h4 &nbsp;
+  %h4= @app.name
   %ol.breadcrumb
     %li
       %a{:href => '#'}
@@ -22,7 +22,7 @@
 %section.content
   .box.box-default
     .box-header.with-border
-      %h3.box-title= @app.name
+      %h3.box-title Details
       .box-tools.pull-right
         %button.btn.btn-box-tool{ data:{'original-title'=> 'Collapse',toggle: 'tooltip', widget: 'collapse'}}
           %i.fa.fa-minus

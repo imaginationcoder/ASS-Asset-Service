@@ -51,7 +51,7 @@
                 %ul.treeview-menu{class: is_active_link?(app_templates_path(app), :inclusive) ?  'menu-open' : nil }
                   - @permissions.each do |permission|
                     %li{class: permission_active_link_class(app, permission)}
-                      %a{:href => add_template_path(app, permission)}
+                      %a{href: sidebar_permission_path(app, permission)}
                         %i.fa.fa-circle-o
                         = permission.name
               %li{class:  is_active_link?(app_path(app), :exclusive)  ? 'active' : nil}
