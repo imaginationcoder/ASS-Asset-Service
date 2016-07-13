@@ -20,7 +20,7 @@ class App
 
   ## Indexes
   index({ current_version: 1 })
-  index({ versions: '2d' })
+  index({ versions: 1 })
   ## Uploader
   mount_uploader :logo, AssetUploader, dependent: :destroy
 
