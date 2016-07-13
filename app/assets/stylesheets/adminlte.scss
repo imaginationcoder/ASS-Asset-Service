@@ -15,6 +15,7 @@ $nprogress-zindex: 10100;
 @import "magnific-popup";
 @import "circle_buttons";
 
+// TODO place below content in seperate css file
 .table {
   td, th {
     text-align: center !important;
@@ -30,8 +31,8 @@ $nprogress-zindex: 10100;
   left: -66px;
   position: relative;
   &.ios {
-    border: 2px solid green;
-    color: green;
+    border: 2px solid #3d9970;
+    color: #3d9970;
   }
   &.android {
     border: 2px solid gray;

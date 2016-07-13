@@ -6,6 +6,8 @@ function tourNestedTextAssetsCallabacks() {
         e.preventDefault();
         // $(this).data('remove-timeout', 3000);
         to_be_removed.fadeOut(3000);
+    }).on('cocoon:after-insert', function(e, added_one) {
+       // do whatever
     });
 }
 // Nested button actions
@@ -15,6 +17,8 @@ function tourNestedButtonActionsCallabacks() {
     }).on('cocoon:before-remove', function (e, to_be_removed) {
         // $(this).data('remove-timeout', 3000);
         to_be_removed.fadeOut(3000);
+    }).on('cocoon:after-insert', function(e, added_one) {
+        buttonActionsBtnTypeChange();
     });
 }
 
@@ -65,6 +69,9 @@ $(document).ready(function() {
             ns = added_one.closest('.nested-fields');
             ns.find('.tour-step-number').text(tour_step);
         }
+        // preview the source of image ImageAsset when uploaded
+        previewImageAssetSource();
+        buttonActionsBtnTypeChange();
         // invoke nested text and button action's callbacks after-insert
         tourNestedTextAssetsCallabacks();
         tourNestedButtonActionsCallabacks();
