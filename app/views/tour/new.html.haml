@@ -1,3 +1,7 @@
+:css
+  .btn-circle-mini{
+    padding: 4px 0 0 2px;
+  }
 = page_title("#{@app.name}- #{@permission.name}")
 %section.content-header
   %h4
@@ -37,7 +41,7 @@
           = f.fields_for :templates, @template do |tf|
             = render 'tour/template_fields', f: tf
           .links.text-center
-            = link_to_add_association f, :templates, title: 'Add one more step',class: 'btn btn-circle-sm bg-aqua-active', data: {toggle: 'tooltip'} do
+            = link_to_add_association f, :templates, title: 'Add one more step',class: 'btn btn-circle-sm btn-success', data: {toggle: 'tooltip'} do
               %span.glyphicon.glyphicon-plus
         .row{style: 'margin-top: 20px;'}
           .col-sm-12
