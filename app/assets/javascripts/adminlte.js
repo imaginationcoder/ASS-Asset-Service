@@ -23,6 +23,7 @@
 //= require fastclick  
 //= require jquery.slimscroll
 //= require cocoon
+//= require skins
 //= require init
 //= require apps
 //= require templates
