@@ -51,3 +51,15 @@ $nprogress-zindex: 10100;
 .content {
   padding-top: 10px; //default is 15px
 }
+
+// override for left sidebar treeview active class
+.treeview-menu > li {
+  &.active > a, > a:hover {
+    font-weight: 600;
+  }
+}
+.sidebar-menu > li {
+  &:hover > a, &.active > a {
+    font-weight: 600;
+  }
+}
