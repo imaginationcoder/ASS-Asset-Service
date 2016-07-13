@@ -59,4 +59,8 @@ module ApplicationHelper
     "<i class='fa fa-circle-o-notch fa-spin'></i> #{text}".html_safe
   end
 
+  def permission_active_link_class(app,permission)
+    (is_active_link?(add_template_path(app, permission)) and params[:permission_id].eql?(permission.id.to_s)) ? 'active' : nil
+  end
+
 end

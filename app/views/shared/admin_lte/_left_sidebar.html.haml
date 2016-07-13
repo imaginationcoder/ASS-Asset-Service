@@ -24,41 +24,45 @@
       </form>
     / /.search form
     %ul.sidebar-menu
-      %li
+      %li{class: active_link_to_class(my_apps_path)}
         %a{:href => my_apps_path}
           %i.fa.fa-dashboard
           %span Dashboard
       - unless @my_apps.blank?
         %li.header Your Apps
         - @my_apps.each do |app|
-          %li.treeview
+          %li.treeview{class: active_link_to_class(app_path(app))}
             %a{:href => "#"}
               %i.fa.fa-share
               %span= app.name
               %span.pull-right-container
                 %i.fa.fa-angle-left.pull-right
             %ul.treeview-menu
-              %li
+              %li{class: active_link_to_class(new_tour_app_path(app))}
                 %a{:href => new_tour_app_path(app)}
                   %i.fa.fa-picture-o>
                   Tour Setup
-              %li
+              %li{class: active_link_to_class(app_templates_path(app))}
                 %a{:href => "#"}
-                  %i.fa.fa-wrench.text-red
+                  %i.fa.fa-wrench
                   %span.pull-right-container
                     %i.fa.fa-angle-left.pull-right
                   Permissions
-                %ul.treeview-menu
+                %ul.treeview-menu{class: is_active_link?(app_templates_path(app), :inclusive) ?  'menu-open' : nil }
                   - @permissions.each do |permission|
-                    %li
+                    %li{class: permission_active_link_class(app, permission)}
                       %a{:href => add_template_path(app, permission)}
-                        %i.fa.fa-circle-o.text-aqua
+                        %i.fa.fa-circle-o
                         = permission.name
-              %li
+              %li{class:  is_active_link?(app_path(app), :exclusive)  ? 'active' : nil}
+                %a{:href => app_path(app)}
+                  %i.fa.fa-eye>
+                  Show
+              %li{class: active_link_to_class(edit_app_path(app))}
                 %a{:href => edit_app_path(app)}
                   %i.fa.fa-edit>
                   Edit
-      %li
-        %a.text-light-blue{:href => new_app_path}
+      %li{class: active_link_to_class(new_app_path)}
+        %a{:href => new_app_path}
           %i.fa.fa-plus
           %span Add New App
