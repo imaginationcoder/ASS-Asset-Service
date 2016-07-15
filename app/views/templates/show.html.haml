@@ -54,13 +54,27 @@
                   %span.pull-right.text-muted
                     #{time_ago_in_words(@template.created_at)} ago
           #tab_2.tab-pane
-            The European languages are members of the same family. Their separate existence is a myth.
-            For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-            in their grammar, their pronunciation and their most common words. Everyone realizes why a
-            new common language would be desirable: one could refuse to pay expensive translators. To
-            achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-            words. If several languages coalesce, the grammar of the resulting language is more simple
-            and regular than that of the individual languages.
+            .box
+              .box-header
+                -#%h3.box-title Striped Full Width Table
+              .box-body.no-padding
+                %table.table.table-striped
+                  %tbody
+                    %tr
+                      %th{:style => "width: 10px"} #
+                      %th Text
+                      %th Position
+                      %th
+                    - @template.text_assets.each_with_index do |ts, index|
+                      %tr
+                        %td= "#{index+1}."
+                        %td= ts.text
+                        %td
+                          %span.badge.bg-light-blue= ts.position
+                        %td
+                          %a.text-red{href: '#'}
+                            %i.fa.fa-trash-o
+                            Delete
           #tab_3.tab-pane
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
