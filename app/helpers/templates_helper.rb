@@ -11,4 +11,8 @@ module TemplatesHelper
     template ? template_path(template) : add_template_path(app, permission)
   end
 
+  def sidebar_tour_path(app)
+    app.tour_templates.blank? ? new_tour_app_path(app) : tour_app_path(app)
+  end
+
 end

@@ -1,6 +1,11 @@
 class TourController < ApplicationController
   layout 'adminlte'
 
+  def index
+    @app = App.find(params[:id])
+    @templates = @app.tour_templates
+  end
+
   def new
     @app = App.find(params[:id])
     @platform = Platform.default

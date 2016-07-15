@@ -11,18 +11,6 @@
         %a{:href => "#"}
           %i.fa.fa-circle.text-success
           Online
-    / search form (Optional)
-    /
-      <form action="#" method="get" class="sidebar-form">
-      <div class="input-group">
-      <input type="text" name="q" class="form-control" placeholder="Search...">
-      <span class="input-group-btn">
-      <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-      </button>
-      </span>
-      </div>
-      </form>
-    / /.search form
     %ul.sidebar-menu
       %li{class: active_link_to_class(my_apps_path)}
         %a{:href => my_apps_path}
@@ -39,7 +27,7 @@
                 %i.fa.fa-angle-left.pull-right
             %ul.treeview-menu
               %li{class: active_link_to_class(new_tour_app_path(app))}
-                %a{:href => new_tour_app_path(app)}
+                %a{href: sidebar_tour_path(app)}
                   %i.fa.fa-picture-o>
                   Tour Setup
               %li{class: active_link_to_class(app_templates_path(app))}

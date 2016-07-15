@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
       get 'tour/new' => 'tour#new',as: :new_tour
       post 'tour' => 'tour#create',as: :create_tour
+      get 'tour' => 'tour#index'
     end
   end
 

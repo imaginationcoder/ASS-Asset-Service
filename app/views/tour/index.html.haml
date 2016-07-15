@@ -1,0 +1,130 @@
+= page_title("#{@app.name} | Tour ")
+%section.content-header
+  %h4= "#{@app.name} Tour"
+  %ol.breadcrumb
+    %li
+      %a{href: my_apps_path}
+        Apps
+    %li
+      %a{href: app_path(@app)}= @app.name
+    %li.active Tour
+%section.content
+  .row
+    .col-sm-3.pull-right
+      %a.btn.btn-success.btn-block.margin-bottom{href: '#'}
+        %i.fa.fa-edit
+        Edit Tour
+  .row
+    - @templates.each_with_index do |template, index|
+      .col-md-12
+        .box.box-info.collapsed-box
+          .box-header.with-border
+            %h3.box-title Step #{index+1}
+            .box-tools.pull-right
+              %button.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+                %i.fa.fa-plus
+              -#%button.btn.btn-box-tool{"data-widget" => "remove", :type => "button"}
+                %i.fa.fa-times
+          .box-body
+            .nav-tabs-custom
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#tab_image_assets_#{template.id}"} Image Asset
+                %li
+                  %a{"data-toggle" => "tab", :href => "#tab_text_assets_#{template.id}"} Text Assets
+                %li
+                  %a{"data-toggle" => "tab", :href => "#tab_btn_actions_#{template.id}"} Btn Actions
+                %li.pull-right
+                  .btn-group
+                    %button.btn.btn-box-tool.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                      %i.fa.fa-gear
+                    %ul.dropdown-menu.pull-right{:role => "menu"}
+                      %li
+                        %a.text-light-blue{:href => "#"}
+                          %i.fa.fa-edit
+                          Edit
+                      %li.divider
+                      %li
+                        %a.text-red{:href => "#"}
+                          %i.fa.fa-trash-o
+                          Delete
+                    -#%button.btn.btn-box-tool{href: app_path(@app),data: {widget: 'remove',toggle: 'tooltip'}, title: 'Close'}
+                      %i.fa.fa-times
+              .tab-content
+                .tab-pane.active{id: "tab_image_assets_#{template.id}"}
+                  .box.box-solid{style: 'box-shadow: none;'}
+                    .box-header
+                    .box-body
+                      %a.magnific-popup-img{href: template.source.url, title: 'Image Asset'}
+                        %img.img-responsive.pad{:alt => "Photo", :src => template.source.thumb.url}
+                      %p.text-muted
+                        Updated #{time_ago_in_words(template.created_at)} ago
+                      -#%button.btn.btn-default.btn-xs{:type => "button"}
+                        %i.fa.fa-edit
+                        Edit
+                      -#%button.btn.btn-danger.btn-xs{:type => "button"}
+                        %i.fa.fa-remove
+                      -#%span.pull-right.text-muted
+                        #{time_ago_in_words(template.created_at)} ago
+                .tab-pane{id: "tab_text_assets_#{template.id}"}
+                  .box.box-solid{style: 'box-shadow: none;'}
+                    .box-header
+                    -#%h3.box-title Striped Full Width Table
+                    .box-body.table-responsive.no-padding
+                      %table.table.table-striped
+                        %tbody
+                          %tr
+                            %th #
+                            %th Text
+                            %th{style: 'width: 20px'} Position
+                            %th{style: 'width: 100px'}
+                          - template.text_assets.each_with_index do |ts, index|
+                            %tr
+                              %td= "#{index+1}."
+                              %td= ts.text
+                              %td
+                                %span.badge.bg-light-blue= ts.position
+                              %td
+                                %a.text-red{href: '#',data: {toggle: 'tooltip'}, title: 'Delete'}
+                                  %i.fa.fa-trash-o
+                .tab-pane{id: "tab_btn_actions_#{template.id}"}
+                  .box.box-solid{style: 'box-shadow: none;'}
+                    .box-header
+                    -#%h3.box-title Striped Full Width Table
+                    .box-body.table-responsive.no-padding
+                      %table.table.table-striped
+                        %tbody
+                          %tr
+                            %th #
+                            %th Type
+                            %th Label/Image
+                            %th Target Event
+                            %th
+                          - template.button_actions.each_with_index do |bc, index|
+                            %tr
+                              %td= "#{index+1}."
+                              %td
+                                - if bc.btn_type.eql?(1)
+                                  %span.badge.bg-light-blue Text
+                                - else
+                                  %span.badge.bg-yellow Image
+                              %td
+                                - if bc.btn_type.eql?(1)
+                                  = bc.label
+                                - else
+                                  %a.magnific-popup-img{href: template.source.url, title: 'Image Asset'}
+                                    show
+                              %td= bc.target_event
+                              %td
+                                %a.text-red{href: '#',data: {toggle: 'tooltip'}, title: 'Delete'}
+                                  %i.fa.fa-trash-o
+
+          .box-footer.clearfix
+            %a.btn.btn-sm.btn-danger.btn-flat.pull-left{href: '#'}
+              %i.fa.fa-remove
+              = space
+              Delete Step
+            %a.btn.btn-sm.btn-info.btn-flat.pull-right{href: '#'}
+              %i.fa.fa-edit
+              = space
+              Edit Step
