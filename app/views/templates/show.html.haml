@@ -20,23 +20,22 @@
             %a{"data-toggle" => "tab", :href => "#tab_2"} Text Assets
           %li
             %a{"data-toggle" => "tab", :href => "#tab_3"} Btn Actions
-          %li.dropdown
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              Dropdown
-              %span.caret
-            %ul.dropdown-menu
-              %li{:role => "presentation"}
-                %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Action
-              %li{:role => "presentation"}
-                %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
-              %li{:role => "presentation"}
-                %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
-              %li.divider{:role => "presentation"}
-              %li{:role => "presentation"}
-                %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Separated link
           %li.pull-right
-            %a.text-muted{:href => "#"}
-              %i.fa.fa-gear
+            .btn-group
+              %button.btn.btn-box-tool.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                %i.fa.fa-gear
+              %ul.dropdown-menu.pull-right{:role => "menu"}
+                %li
+                  %a.text-light-blue{:href => "#"}
+                    %i.fa.fa-edit
+                    Edit
+                %li.divider
+                %li
+                  %a.text-red{:href => "#"}
+                    %i.fa.fa-trash-o
+                    Delete
+              %button.btn.btn-box-tool{href: app_path(@template.app),data: {widget: 'remove',toggle: 'tooltip'}, title: 'Close'}
+                %i.fa.fa-times
         .tab-content
           #tab_1.tab-pane.active
             .box.box-default
@@ -61,7 +60,7 @@
                 %table.table.table-striped
                   %tbody
                     %tr
-                      %th{style: 'width: 10px'} #
+                      %th #
                       %th Text
                       %th{style: 'width: 20px'} Position
                       %th{style: 'width: 100px'}
@@ -76,11 +75,35 @@
                             %i.fa.fa-trash-o
                             Delete
           #tab_3.tab-pane
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            It has survived not only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-            like Aldus PageMaker including versions of Lorem Ipsum.
+            .box
+              .box-header
+              -#%h3.box-title Striped Full Width Table
+              .box-body.no-padding
+                %table.table.table-striped
+                  %tbody
+                    %tr
+                      %th #
+                      %th Type
+                      %th Label/Image
+                      %th Target Event
+                      %th
+                    - @template.button_actions.each_with_index do |bc, index|
+                      %tr
+                        %td= "#{index+1}."
+                        %td
+                          - if bc.btn_type.eql?(1)
+                            %span.badge.bg-light-blue Text
+                          - else
+                            %span.badge.bg-yellow Image
+                        %td
+                          - if bc.btn_type.eql?(1)
+                            = bc.label
+                          - else
+                            %a.magnific-popup-img{href: @template.source.url, title: 'Image Asset'}
+                              show
+                        %td= bc.target_event
+                        %td
+                          %a.text-red{href: '#'}
+                            %i.fa.fa-trash-o
+                            Delete
 
