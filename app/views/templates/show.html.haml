@@ -61,10 +61,10 @@
                 %table.table.table-striped
                   %tbody
                     %tr
-                      %th{:style => "width: 10px"} #
+                      %th{style: 'width: 10px'} #
                       %th Text
-                      %th Position
-                      %th
+                      %th{style: 'width: 20px'} Position
+                      %th{style: 'width: 100px'}
                     - @template.text_assets.each_with_index do |ts, index|
                       %tr
                         %td= "#{index+1}."
