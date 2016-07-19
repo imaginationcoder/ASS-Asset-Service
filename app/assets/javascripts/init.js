@@ -59,7 +59,7 @@ $(document).on('page:restore', function() {
 // ref: https://github.com/almasaeed2010/AdminLTE/issues/563
 $(document).ready(function() {
     $.AdminLTE.layout.activate();
-}); 
+});
 $(document).on('page:load', function() {
     var o;
     o = $.AdminLTE.options;
