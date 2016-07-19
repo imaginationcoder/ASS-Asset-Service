@@ -8,7 +8,7 @@ uploadImageAssetSource = function(input) {
     if (input.files && input.files[0]) {
         reader = new FileReader;
         reader.onload = function(e) {
-            $('.image-asset-source-preview').attr('src', e.target.result);
+            $(input).parent('label').siblings('a').first().children('.image-asset-source-preview').attr('src', e.target.result);
         };
         reader.readAsDataURL(input.files[0]);
     }
