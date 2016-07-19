@@ -19,8 +19,12 @@
     .row.text-center
       .col-xs-12
         .form-group
-          %a{href: "#"}
-            %img.img-thumbnail.image-asset-source-preview{width: 100, height: 100, src: 'http://placehold.it/100x100&text=Browse'}/
+          - if f.object.new_record? or (!f.object.new_record? and f.object.source.url.nil?)
+            %a{href: "#"}
+              %img.img-thumbnail.image-asset-source-preview{width: 100, height: 100, src: 'http://placehold.it/100x100&text=Browse'}/
+          - else
+            %a.magnific-popup-img{href: f.object.source.url, title: 'Image Asset'}
+              %img.img-thumbnail.image-asset-source-preview{width: 100, height: 100, src: f.object.source.thumb.url}
           %label.btn.btn-default.btn-sm.btn-file{style: 'margin-left: 10px;'}
             Choose..
             = f.file_field :source , style: 'display: none;',class: 'image-asset-source-input'
