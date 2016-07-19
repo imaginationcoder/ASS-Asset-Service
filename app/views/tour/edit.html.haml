@@ -1,0 +1,58 @@
+:css
+  .btn-circle-mini{
+    padding: 4px 0 0 2px;
+  }
+= page_title("#{@app.name}- #{@permission.name} edit")
+%section.content-header
+  %h4
+    = @permission.name
+    %small #{@app.name} edit
+  %ol.breadcrumb
+    %li
+      %a{:href => '#'}
+        %i.fa.fa-dashboard
+        Dashboard
+    %li
+      %a{:href => my_apps_path}
+        Apps
+    %li
+      %a{:href => app_path(@app)}
+        = @app.name
+    %li
+      %a{href: tour_app_path(@app)}
+        Tour
+    %li.active Edit
+%section.content#add-tour-to-app
+  .row
+    .col-md-10.col-md-offset-1.col-xs-12
+      = form_for(@app, url: update_tour_app_path(@app), method: :put) do |f|
+        %fieldset.target-platform.text-center
+          %legend TARGET PLATFORM
+          .row
+            .col-md-6.col-xs-6
+              .form-group
+                %select.form-control{name: "template[:platform_id]"}
+                  %option{selected: "selected", value: @platform.id}= @platform.name
+            .col-md-6.col-xs-6
+              .form-group
+                = select_tag :platform_category_id, options_for_select(@platform_categories.pluck(:name, :id), 'iPhone 6s'),  include_blank: false ,class: 'form-control'
+        - if @app.errors.any?
+          .row
+            .col-sm-12
+              = render 'shared/error_messages', resource: @app
+        #templates_fields
+          = f.fields_for :templates, @template do |tf|
+            = render 'tour/template_fields', f: tf
+          .links.text-center
+            = link_to_add_association f, :templates, title: 'Add one more step',class: 'btn btn-circle-sm btn-success', data: {toggle: 'tooltip'} do
+              %span.glyphicon.glyphicon-plus
+        .row{style: 'margin-top: 20px;'}
+          .col-sm-12
+            %button.btn.btn-default{type: 'reset'}
+              %i.fa.fa-close
+              = space
+              CANCEL
+            %button.btn.btn-progress.pull-right.bg-olive{"data-loading-text"=>btn_prog_text('Saving'), type: 'submit'}
+              %i.fa.fa-check
+              = space
+              Update

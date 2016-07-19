@@ -25,6 +25,22 @@ class TourController < ApplicationController
     end
   end
 
+  def edit
+    @app = App.find(params[:id])
+    @platform = Platform.default
+    @platform_categories = @platform.platform_categories
+    @permission = Permission.tour
+  end
+
+  def update
+    @app = App.find(params[:id])
+    if @app.update_attributes(app_params)
+      redirect_to tour_app_url(@app), notice: 'Tour was successfully updated.'
+    else
+      render action: 'edit'
+    end
+  end
+
   private
 
   # Using a private method to encapsulate the permissible parameters is
@@ -34,7 +50,7 @@ class TourController < ApplicationController
   def app_params
     params.require(:app).permit(:id, :_destroy,
                                 templates_attributes: [
-                                    :app_id, :permission_id, :platform_id,:platform_category_id,:source,
+                                    :id, :_destroy,:app_id, :permission_id, :platform_id,:platform_category_id,:source,
                                     text_assets_attributes: [:text, :position, :_destroy,:id],
                                     button_actions_attributes: [:btn_type, :label, :target_event, :source, :_destroy,:id]
                                 ])
