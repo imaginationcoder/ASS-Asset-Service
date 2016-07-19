@@ -40,9 +40,12 @@
             %span.product-description
               = @app.description
     .box-footer
-      %a.btn.btn-danger.btn-sm{href: app_path(@app), data: { method: :delete, confirm: 'Are you sure?' }}
+      %a.btn.btn-danger.btn-flat.btn-sm{href: app_path(@app), data: { method: :delete, confirm: 'Are you sure?' }}
+        %i.fa.fa-remove
         Delete
-      %a.btn.btn-primary.btn-sm.pull-right{href: edit_app_path(@app)} Edit
+      %a.btn.btn-primary.btn-flat.btn-sm.pull-right{href: edit_app_path(@app)}
+        %i.fa.fa-edit
+        Edit
   .box.box-solid
     .box-header.with-border
       %h3.box-title Configuration
