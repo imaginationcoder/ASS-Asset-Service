@@ -1,7 +1,7 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
-$nprogress-color: #f06292;
-$nprogress-height: 2px;
-$nprogress-zindex: 10100;
+//$nprogress-color: #f06292;
+//$nprogress-height: 2px;
+//$nprogress-zindex: 10100;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
@@ -9,9 +9,8 @@ $nprogress-zindex: 10100;
 @import "admin-lte";
 @import "growlyflash";
 @import "skins/_all-skins";
+@import "pace";
 //@import "turbolinks_progress_bar";
-@import "nprogress";
-@import "nprogress-bootstrap";
 @import "magnific-popup";
 @import "circle_buttons";
 

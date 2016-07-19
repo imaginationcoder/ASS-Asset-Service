@@ -15,8 +15,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
-//= require nprogress
-//= require nprogress-turbolinks
+//= require pace
 //= require magnific-popup 
 //= require growlyflash
 //= require admin-lte

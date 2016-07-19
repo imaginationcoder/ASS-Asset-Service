@@ -1,7 +1,7 @@
 // below functionality in separate functions because they need to be invoke cocoon callbacks also with document.ready
 var uploadImageAssetSource;
-var previewImageAssetSource; 
-var buttonActionsBtnTypeChange; 
+var previewImageAssetSource;
+var buttonActionsBtnTypeChange;
 //ImageAssets: a common function to replace the source of file input with selected once
 uploadImageAssetSource = function(input) {
     var reader;
@@ -41,16 +41,15 @@ buttonActionsBtnTypeChange = function() {
         $(this).siblings('.label-info').first().html($(this).val());
     });
 };
- 
+
+
 // Turbolinks fetch, change, restore etc..
 $(document).on('page:fetch',   function() {
-    /*if(spinner == null) {
-        spinner = new Spinner(opts).spin(spinner_div);
-    } else {
-        spinner.spin(spinner_div);
-    }*/
+    //   Pace.restart();
 });
-
+$(document).on('page:change',   function() {
+    // Pace.restart();
+});
 $(document).on('page:restore', function() {
     /*spinner.stop(spinner_div);*/
 });
@@ -69,18 +68,15 @@ $(document).on('page:load', function() {
     $.AdminLTE.layout.activate();
 });
 
+//$(document).ajaxStart(function() { Pace.restart(); });
 $( document ).ready(function() {
-    //https://codediode.io/lessons/8736-loading-spinners-in-rails
     //Enable trubolinks prgress indicator
     // Turbolinks.enableProgressBar();
-    // Turbolinks progress bar replacement
-    NProgress.configure({
-        showSpinner: true,
-        speed: 500
-    });
+    // Turbolinks progress bar replacement with pace js
+    Pace.restart();
 
     // preview the source of image ImageAsset when uploaded 
-    previewImageAssetSource(); 
+    previewImageAssetSource();
     buttonActionsBtnTypeChange();
 
     // button disables with loading spinner
