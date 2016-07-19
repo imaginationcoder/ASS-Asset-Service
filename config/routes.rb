@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       get 'tour/new' => 'tour#new',as: :new_tour
       post 'tour' => 'tour#create',as: :create_tour
       get 'tour' => 'tour#index'
+      get 'tour/edit' => 'tour#edit', as: :edit_tour
+      put 'tour' => 'tour#update', as: :update_tour
     end
   end
 
