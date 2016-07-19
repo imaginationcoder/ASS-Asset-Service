@@ -21,9 +21,9 @@ class TemplatesController < ApplicationController
   def create
     @template = @app.templates.build(template_params)
     if @template.save
-      redirect_to app_url(@app), notice: 'Pre Prompt added to app.'
+      redirect_to template_url(@template), notice: 'Pre Prompt added to app.'
     else
-      render action: 'old-new'
+      render action: 'new'
     end
   end
 

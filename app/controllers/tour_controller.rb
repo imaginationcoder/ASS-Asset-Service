@@ -19,9 +19,9 @@ class TourController < ApplicationController
   def create
     @app = App.find(params[:id])
     if @app.update_attributes(app_params)
-      redirect_to app_url(@app), notice: 'Tour was successfully updated.'
+      redirect_to tour_app_url(@app), notice: 'Tour was successfully updated.'
     else
-      render action: "new"
+      render action: 'new'
     end
   end
 
