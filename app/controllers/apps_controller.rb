@@ -37,7 +37,7 @@ class AppsController < ApplicationController
     if @app.update_attributes(app_params)
       redirect_to app_url(@app), notice: 'App was successfully updated.'
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 

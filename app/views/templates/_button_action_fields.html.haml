@@ -4,15 +4,25 @@
       .col-xs-3
         .form-group
           = f.select :btn_type, [['Text', 1], ['Image', 2]], { include_blank: false}, {class: 'form-control btn-action-type'}
-      .col-xs-3.btn-action-label
+      - if f.object.new_record?
+        - label_css_class = nil
+      - elsif f.object.label.nil?
+        - label_css_class = 'hide'
+      - else
+        - label_css_class = nil
+      .col-xs-3.btn-action-label{class: label_css_class}
         .form-group
           = f.text_field :label, class: 'form-control btn-action-label', placeholder: 'Label'
-      .col-xs-3.btn-action-source.hide
+      .col-xs-3.btn-action-source{class: label_css_class.eql?('hide') ? nil : 'hide'}
         .form-group
-          %label.btn.btn-default.btn-file.btn.sm
+          %label.btn.btn-default.btn-file.btn-sm
             Choose..
             = f.file_field :source , style: 'display: none;', class: 'btn-action-source-input'
             %span.label.label-info
+          - if label_css_class.eql?('hide')
+            = space
+            %a.magnific-popup-img{href: f.object.source.url, title: 'Btn Asset', data: {toggle: 'tooltip', 'original-name'=> 'Preview Asset'}}
+              .fa.fa-eye
       .col-xs-3
         .form-group
           = f.text_field :target_event, class: 'form-control', placeholder: 'Target Event'

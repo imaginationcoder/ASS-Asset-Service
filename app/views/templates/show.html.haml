@@ -26,7 +26,7 @@
                 %i.fa.fa-gear
               %ul.dropdown-menu.pull-right{:role => "menu"}
                 %li
-                  %a.text-light-blue{:href => "#"}
+                  %a.text-light-blue{href: edit_template_path(@template)}
                     %i.fa.fa-edit
                     Edit
                 %li.divider
@@ -99,8 +99,9 @@
                           - if bc.btn_type.eql?(1)
                             = bc.label
                           - else
-                            %a.magnific-popup-img{href: @template.source.url, title: 'Image Asset'}
-                              show
+                            %a.magnific-popup-img{href: bc.source.url, title: 'Image Asset'}
+                              Show
+                              %i.fa.fa-eye
                         %td= bc.target_event
                         %td
                           %a.text-red{href: '#'}
