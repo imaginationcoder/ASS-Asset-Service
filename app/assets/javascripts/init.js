@@ -45,7 +45,7 @@ buttonActionsBtnTypeChange = function() {
 
 // Turbolinks fetch, change, restore etc..
 $(document).on('page:fetch',   function() {
-    //   Pace.restart();
+    Pace.restart();
 });
 $(document).on('page:change',   function() {
     // Pace.restart();
@@ -73,7 +73,7 @@ $( document ).ready(function() {
     //Enable trubolinks prgress indicator
     // Turbolinks.enableProgressBar();
     // Turbolinks progress bar replacement with pace js
-    Pace.restart();
+    // Pace.restart();
 
     // preview the source of image ImageAsset when uploaded 
     previewImageAssetSource();
