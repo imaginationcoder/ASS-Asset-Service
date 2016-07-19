@@ -55,6 +55,20 @@ $(document).on('page:restore', function() {
     /*spinner.stop(spinner_div);*/
 });
 
+// Below is fix for sidebar toggle not working when visits the pages using turbolinks
+// ref: https://github.com/almasaeed2010/AdminLTE/issues/563
+$(document).ready(function() {
+    $.AdminLTE.layout.activate();
+}); 
+$(document).on('page:load', function() {
+    var o;
+    o = $.AdminLTE.options;
+    if (o.sidebarPushMenu) {
+        $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
+    }
+    $.AdminLTE.layout.activate();
+});
+
 $( document ).ready(function() {
     //https://codediode.io/lessons/8736-loading-spinners-in-rails
     //Enable trubolinks prgress indicator
@@ -97,8 +111,4 @@ $( document ).ready(function() {
     $('.btn-circle-mini, .btn-circle-sm, .btn-box-tool').click(function () {
         $(this).blur();
     });
-
-
-
-
 });
