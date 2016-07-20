@@ -25,6 +25,7 @@
 %section.content#add-tour-to-app
   .row
     .col-md-10.col-md-offset-1.col-xs-12
+      = render 'shared/text_editing_version', app: @app
       = form_for(@app, url: update_tour_app_path(@app), method: :put) do |f|
         %fieldset.target-platform.text-center
           %legend TARGET PLATFORM
