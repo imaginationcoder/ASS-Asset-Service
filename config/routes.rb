@@ -16,6 +16,9 @@ Rails.application.routes.draw do
       get 'tour' => 'tour#index'
       get 'tour/edit' => 'tour#edit', as: :edit_tour
       put 'tour' => 'tour#update', as: :update_tour
+      resources :versions,only: [:index,:destroy]  do
+        post 'publish'=> "versions#publish"
+      end
     end
   end
 
