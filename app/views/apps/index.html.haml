@@ -30,6 +30,7 @@
                 %th Production Version
                 %th Last Access Time
                 %th Last Activity
+                %th
               - @my_apps.each_with_index do |app, index|
                 %tr
                   %td= index+1
@@ -41,6 +42,7 @@
                       %span.label.label-danger editing version #{app.editing_version.number}
                   %td --
                   %td --
+                  %td= link_to 'versions', versions_path(app)
   - else
     .row
       .col-md-12

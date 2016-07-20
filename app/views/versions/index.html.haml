@@ -1,0 +1,64 @@
+= page_title('Dashboard | My Apps')
+%section.content-header
+  %h4
+    = @app.name
+    %small versions
+  %ol.breadcrumb
+    %li
+      %a{:href => "#"}
+        %i.fa.fa-dashboard
+        Dashboard
+    %li
+      %a{href: my_apps_path} Apps
+    %li
+      %a{href: app_path(@app)}= @app.name
+    %li.active Versions
+%section.content
+  .row
+    .col-md-12.col-xs-12
+      .callout.callout-success
+        -#%button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times
+        - if @published_version
+          %h4 Version #{@published_version.number} is Live
+          %p Published #{time_ago_in_words(@app.published_version.published_at)} ago by #{current_user.email}
+        - else
+          %h4 App Not Published
+          %p your app will return a 404 response until published
+  .row
+    .col-xs-12
+      .box
+        .box-header
+          %h3.box-title Versions
+          -#.box-tools
+            .input-group.input-group-sm{:style => "width: 150px;"}
+              %input.form-control.pull-right{:name => "table_search", :placeholder => "Search", :type => "text"}
+                .input-group-btn
+                  %button.btn.btn-default{:type => "submit"}
+                    %i.fa.fa-search
+        .box-body.table-responsive.no-padding
+          %table.my-apps-table.table
+            %tr
+              %th Version ID
+              %th Status
+              %th Created
+              %th Published
+              %th Published By
+              %th Actions
+            - @versions.each do |version|
+              %tr{class: version.published? ? 'text-green' : nil}
+                - if version.editing?
+                  %td= version.number
+                  %td Now Editing
+                  %td
+                  %td
+                  %td
+                  %td Action
+                - else
+                  %td= version.name
+                  %td
+                    - if version.published?
+                      %span.label.label-success Live
+                  %td= l(version.created_at)
+                  %td= l(version.published_at)
+                  %td= @app.user.email
+                  %td Actions
