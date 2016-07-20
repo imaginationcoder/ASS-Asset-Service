@@ -25,4 +25,11 @@ class Template
   ## Scopes
   scope :by_permission, -> (permission) { where(permission: permission) }
 
+  ## Callbacks
+
+  # update app_version with current app editing version
+  before_save do |document|
+    document.app_version = document.app.editing_version.number
+  end
+
 end
