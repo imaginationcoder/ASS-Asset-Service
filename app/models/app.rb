@@ -10,8 +10,6 @@ class App
   token field_name: :secret_token, length: 40, retry_count: 3, contains: :alphanumeric, override_to_param: false
   field :description
   field :is_sandbox_mode , type: Boolean, default: true
-  #field :editing_version , type: Integer, default: 1
-  #field :is_published, type: Boolean, default: false
 
   ## Validations ------------------------------------- ##
   validates :name, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } }
@@ -53,6 +51,21 @@ class App
   def find_template(permission)
     templates.where(permission: permission).first
   end
+
+  ### Version Management related stuff *************************** ----##
+  # checks if atleast one version is published or not
+  def is_published?
+    versions.where(published: true).exists?
+  end
+
+  def published_version
+    versions.where(published: true).first
+  end
+
+  def editing_version
+    versions.where(editing: true).first
+  end
+  ###EDN of Version Management related stuff ********************* ----##
 
 
   ## protected methods ----------------------------------------- ##

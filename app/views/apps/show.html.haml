@@ -6,10 +6,14 @@
   .products-list .product-info{
     margin-left: 120px;
   }
-
+  .small-box h3 {
+     font-size: 20px;
+  }
 = page_title("App | #{@app.name}")
 %section.content-header
-  %h4= @app.name
+  %h4
+    = @app.name
+    %small overview
   %ol.breadcrumb
     %li
       %a{:href => '#'}
@@ -20,6 +24,65 @@
         Apps
     %li.active= @app.name
 %section.content
+  .row
+    .col-lg-4.col-xs-12
+      .small-box.bg-aqua
+        .inner
+          %h3 Now Editing
+          %p version #{@app.editing_version.number}
+          %p{style: 'margin-top: 50px;'}
+          %p
+            last updated #{time_ago_in_words(@app.updated_at)} ago
+            %br by #{current_user.email}
+        .icon
+          %i.ion.ion-edit
+        %a.small-box-footer{:href => "#"}
+          view all versions
+          %i.fa.fa-arrow-circle-right6
+    .col-lg-4.col-xs-12
+      .small-box.bg-green
+        - if @app.published_version
+          .inner
+            %h3 Last published
+            %p version 1
+            %p{style: 'margin-top: 50px;'}
+            %p
+              published #{time_ago_in_words(@app.published_version.published_at)} ago
+              %br by #{current_user.email}
+          .icon
+            %i.ion.ion-checkmark-circled
+        - else
+          .inner
+            %h3 App Not Published
+            %p &nbsp;
+            %p{style: 'margin-top: 50px;'}
+            %p add tour/permission assets and publish to make your changes live
+          .icon
+            %i.ion.ion-alert-circled
+        %a.small-box-footer{:href => "#"}
+          More info
+          %i.fa.fa-arrow-circle-right6
+    .col-lg-4.col-xs-12
+      .row
+        .col-lg-12.col-xs-12
+          .info-box
+            %span.info-box-icon.bg-aqua
+              %i.ion.ion-ios-clock-outline
+            .info-box-content
+              %span.info-box-text Last Access Time
+              %span.info-box-number
+                1 hour ago
+      .row
+        .col-lg-12.col-xs-12
+          .info-box
+            %span.info-box-icon.bg-aqua
+              %i.ion.ion-images
+            .info-box-content
+              %span.info-box-text Last Activity
+              %span.info-box-number
+                permission
+                %small camera
+
   .box.box-default
     .box-header.with-border
       %h3.box-title Details
@@ -36,7 +99,10 @@
           .product-info
             %a.product-title{:href => "javascript:void(0)"}
               = @app.name
-              %span.label.label-success.pull-right= "version #{@app.current_version}"
+              - if @app.published_version
+                %span.label.label-success.pull-right= "version #{@app.published_version.number}"
+              - else
+                %span.label.label-danger.pull-right= "editing #{@app.editing_version.number}"
             %span.product-description
               = @app.description
     .box-footer
