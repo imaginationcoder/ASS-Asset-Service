@@ -6,7 +6,7 @@ class Version
   ## Fields
   field :number , type: Integer
   field :published, type: Boolean, default: false
-  field :published_at, type: Time
+  field :published_at, type: Time, default: nil
 
   ## Associations
   embedded_in :app
