@@ -35,8 +35,7 @@ end
 
 
 user = User.create(fname: 'test', lname: 'user', email: 'testuser@test.com',password: '12345678', password_confirmation: '12345678', company: 'Maisa')
-app = user.apps.new(platform: platform, name: 'test iOS',published: true,
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.')
+app = user.apps.new(platform: platform, name: 'test iOS',description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.')
 ## Add Logo
 File.open(Rails.root.join('app', 'assets', 'images', "small-logo-blue.png")) do |f|
   app.logo = f
