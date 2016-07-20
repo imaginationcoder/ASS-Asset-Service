@@ -10,8 +10,8 @@ class App
   token field_name: :secret_token, length: 40, retry_count: 3, contains: :alphanumeric, override_to_param: false
   field :description
   field :is_sandbox_mode , type: Boolean, default: true
-  field :current_version , type: Integer, default: 1
-  field :is_published, type: Boolean, default: false
+  #field :editing_version , type: Integer, default: 1
+  #field :is_published, type: Boolean, default: false
 
   ## Validations ------------------------------------- ##
   validates :name, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } }
@@ -26,7 +26,7 @@ class App
   ## Associations ------------------------------------- ##
   belongs_to :user, index: true
   has_many :app_access_tokens , dependent: :destroy, autosave: true
-  has_many :templates, dependent: :destroy, autosave: true#, after_add: :send_email_to_subscribers
+  has_many :templates, dependent: :destroy, autosave: true#,after_add: :some_action, after_remove: :some_action
   belongs_to :platform,index: true
   embeds_many :versions, cascade_callbacks: true
 
@@ -54,10 +54,11 @@ class App
     templates.where(permission: permission).first
   end
 
-  ## protected methods
+
+  ## protected methods ----------------------------------------- ##
   protected
   def create_default_version
-    self.versions.create(number: 1, published: false)
+    self.versions.create(number: 1)
   end
 
 
