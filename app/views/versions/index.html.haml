@@ -52,17 +52,17 @@
                   %td
                   %td
                   %td
-                  %td
-                    -#.dropdown
-                      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                        Actions
-                        %b.caret
-                      %ul.dropdown-menu.pull-right
-                        %li
-                          %a{:href => "#"} Preview
-                        %li.divider
-                        %li
-                          %a{:href => "#"} Create Version
+                  %td.dropdown
+                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                      Actions
+                      %b.caret
+                    %ul.dropdown-menu.pull-right
+                      %li
+                        %a{:href => "#", data: {app_id: @app.id,version_number: version.number,version_id: version.id,
+                                                toggle: 'modal', target: '#version-publish-modal'}} Publish
+                      %li.divider
+                      %li
+                        %a{:href => "#"} Delete
                 - else
                   %td= version.number
                   %td
@@ -77,21 +77,21 @@
                       %b.caret
                     %ul.dropdown-menu.pull-right
                       %li
-                        %a{:href => "#", data: {toggle: 'modal', target: '#myModal'}} Publish
+                        %a{:href => "#", data: {app_id: @app.id,version_number: version.number,version_id: version.id,
+                                                toggle: 'modal', target: '#version-publish-modal'}} Publish
                       %li.divider
                       %li
-                        %a{:href => "#", tabindex: '-1'} Delete
-#myModal.modal.fade
+                        %a{:href => "#"} Delete
+#version-publish-modal.modal.fade
   .modal-dialog
     .modal-content
       .modal-header
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} &times
-        %h4.modal-title Default Modal
-      .modal-body
-        %p One fine body…
+        %h4.modal-title Publish Version
+      .modal-body.bg-primary
+        %p
+          Publishing will push the changes to live.
       .modal-footer
         %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
-        %button.btn.btn-primary{:type => "button"} Save changes
-:javascript
-  // $('.table-responsive tbody tr').slice(-2).find('.dropdown').addClass('dropup');
+        %button.btn.btn-progress.bg-olive.btn-publish-now{"data-loading-text"=>btn_prog_text('Publishing..'), type: 'submit'} Publish Now

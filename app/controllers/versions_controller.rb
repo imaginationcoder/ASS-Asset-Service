@@ -11,7 +11,8 @@ class VersionsController < ApplicationController
   def publish
     @version = @app.versions.find(params[:version_id])
     @version.update(published: true)
-    redirect_to versions_url(@app) , notice: "Version #{@version.number} published successfully."
+    flash[:notice] = "Version #{@version.number} published successfully."
+    render nothing: true
   end
 
 

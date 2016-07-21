@@ -27,5 +27,6 @@
 //= require apps
 //= require templates
 //= require tour 
+//= require versions
 
 
