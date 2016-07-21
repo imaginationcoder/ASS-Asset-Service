@@ -35,8 +35,8 @@
                 .input-group-btn
                   %button.btn.btn-default{:type => "submit"}
                     %i.fa.fa-search
-        .box-body.table-responsive.no-padding
-          %table.my-apps-table.table.table-hover
+        .box-body.app-versions-list.table-responsive.no-padding
+          %table.table.table-hover
             %tr
               %th Version ID
               %th Status
@@ -52,7 +52,19 @@
                   %td
                   %td
                   %td
-                  %td Action
+                  %td
+                    .btn-group.dropup
+                      %button.btn.btn-sm.btn-default{:type => 'button'} Actions
+                      %button.btn.btn-sm.btn-default.dropdown-toggle{'aria-expanded' => "false",
+                                                                     'data-toggle' => 'dropdown', :type => 'button'}
+                        %span.caret
+                        %span.sr-only Toggle Dropdown
+                      %ul.dropdown-menu.pull-right{ :role => "menu"}
+                        %li
+                          %a{:href => "#"} Preview
+                        %li.divider
+                        %li
+                          %a{:href => "#"} Create Version
                 - else
                   %td= version.number
                   %td
@@ -61,4 +73,16 @@
                   %td= l(version.created_at)
                   %td= version.published? ? l(version.published_at) : nil
                   %td= @app.user.email
-                  %td Actions
+                  %td
+                    .btn-group.dropup
+                      %button.btn.btn-sm.btn-default{class: version.published? ? 'text-green' : nil,:type => 'button'} Actions
+                      %button.btn.btn-sm.btn-default.dropdown-toggle{class: version.published? ? 'text-green' : nil,'aria-expanded' => "false",
+                                                                     'data-toggle' => 'dropdown', :type => 'button'}
+                        %span.caret
+                        %span.sr-only Toggle Dropdown
+                      %ul.dropdown-menu.pull-right{ :role => "menu"}
+                        %li
+                          %a{:href => "#"} Publish
+                        %li.divider
+                        %li
+                          %a{:href => "#"} Delete

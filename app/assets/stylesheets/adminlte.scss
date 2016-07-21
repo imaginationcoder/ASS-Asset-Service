@@ -15,11 +15,26 @@
 @import "circle_buttons";
 
 // TODO place below content in seperate css file
-.my-apps-table.table {
+.table {
   td, th {
     text-align: center !important;
     // deafult is left
   }
+}
+/*fix for: button drop-down inside responsive table not visible because of scroll*/
+.app-versions-list.table-responsive{
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+}
+/* decrease drowdown btn height in app versions table*/
+.app-versions-list .table .btn {
+  line-height: 1; // default is 1.5
+}
+
+/*dropdown menu hover color change*/
+.app-versions-list ul.dropdown-menu>li>a:hover{
+  background: #3c8dbc !important;
+  color: #fff;
 }
 
 /*Create New APP: Platform images*/
