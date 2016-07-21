@@ -25,17 +25,18 @@ class Version
   private
   def check_if_published
     # self.published_changed?(from: false, to: true)
-    if self.published_changed? and self.published.eql?(true)
-      app_versions = self.app.versions
+    if published_changed? and published.eql?(true)
+      puts "##### Callback Fired"
+      # except this update all to unpublished and editing false
+      app.versions.update_all(published: false, editing: false, published_at: nil)
       # set published time to now
       self.published_at = Time.now
       self.editing = false
-      # except this update all to unpublished and editing false
-      app_versions.where(:id.ne => self.id).update(published: false, editing: false)
-      count = app_versions.count + 1
+      self.published = true
+      count = app.versions.count + 1
       # then create a new version(i.e editing one) unless editing version exists
-      unless app_versions.where(number: count).exists?
-        app_versions.create(number: count)
+      unless app.versions.where(number: count).exists?
+        app.versions.create(number: count, editing: true)
         #TODO create app templates with newly generated version
       end
     end

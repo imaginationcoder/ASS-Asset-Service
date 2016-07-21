@@ -20,11 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  date:
+  time:
     formats:
       default: "%m/%d/%Y"
       short: "%b %d"
       long: "%B %d, %Y %I:%M %p"
+  date:
+      formats:
+        default: "%m/%d/%Y"
+        short: "%b %d"
+        long: "%B %d, %Y"
   hello: "Hello world"
   app:
     name: "ASSSDK"

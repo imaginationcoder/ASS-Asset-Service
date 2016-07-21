@@ -16,17 +16,17 @@
 %section.content
   .row
     .col-md-12.col-xs-12
-      .callout.callout-success
+      .callout{class: @published_version ? 'callout-success' : 'callout-danger'}
         -#%button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times
         - if @published_version
           %h4 Version #{@published_version.number} is Live
-          %p Published #{time_ago_in_words(@app.published_version.published_at)} ago by #{current_user.email}
+          %p Published #{l(@app.published_version.published_at, format: :long)} by #{current_user.email}
         - else
           %h4 App Not Published
           %p your app will return a 404 response until published
   .row
     .col-xs-12
-      .box
+      .box{class: @published_version ? 'box-success' : 'box-danger'}
         .box-header
           %h3.box-title Versions
           -#.box-tools
@@ -36,7 +36,7 @@
                   %button.btn.btn-default{:type => "submit"}
                     %i.fa.fa-search
         .box-body.table-responsive.no-padding
-          %table.my-apps-table.table
+          %table.my-apps-table.table.table-hover
             %tr
               %th Version ID
               %th Status
@@ -54,11 +54,11 @@
                   %td
                   %td Action
                 - else
-                  %td= version.name
+                  %td= version.number
                   %td
                     - if version.published?
                       %span.label.label-success Live
                   %td= l(version.created_at)
-                  %td= l(version.published_at)
+                  %td= version.published? ? l(version.published_at) : nil
                   %td= @app.user.email
                   %td Actions
