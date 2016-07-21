@@ -20,7 +20,7 @@
         -#%button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times
         - if @published_version
           %h4 Version #{@published_version.number} is Live
-          %p Published #{l(@app.published_version.published_at, format: :long)} by #{current_user.email}
+          %p Published #{time_ago_in_words(@published_version.published_at)} ago by #{current_user.email}
         - else
           %h4 App Not Published
           %p your app will return a 404 response until published
