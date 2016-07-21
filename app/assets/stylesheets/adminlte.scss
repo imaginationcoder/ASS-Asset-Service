@@ -21,11 +21,23 @@
     // deafult is left
   }
 }
-/*fix for: button drop-down inside responsive table not visible because of scroll*/
-.app-versions-list.table-responsive{
-    overflow-x: visible !important;
-    overflow-y: visible !important;
+
+/* modal box to be centered a window */
+.modal {
+  text-align: center;
 }
+.modal:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: " ";
+  height: 100%;
+}
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
 /* decrease drowdown btn height in app versions table*/
 .app-versions-list .table .btn {
   line-height: 1; // default is 1.5

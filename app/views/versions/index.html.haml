@@ -36,7 +36,7 @@
                   %button.btn.btn-default{:type => "submit"}
                     %i.fa.fa-search
         .box-body.app-versions-list.table-responsive.no-padding
-          %table.table.table-hover
+          %table.table
             %tr
               %th Version ID
               %th Status
@@ -53,13 +53,11 @@
                   %td
                   %td
                   %td
-                    .btn-group.dropup
-                      %button.btn.btn-sm.btn-default{:type => 'button'} Actions
-                      %button.btn.btn-sm.btn-default.dropdown-toggle{'aria-expanded' => "false",
-                                                                     'data-toggle' => 'dropdown', :type => 'button'}
-                        %span.caret
-                        %span.sr-only Toggle Dropdown
-                      %ul.dropdown-menu.pull-right{ :role => "menu"}
+                    -#.dropdown
+                      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                        Actions
+                        %b.caret
+                      %ul.dropdown-menu.pull-right
                         %li
                           %a{:href => "#"} Preview
                         %li.divider
@@ -73,16 +71,27 @@
                   %td= l(version.created_at)
                   %td= version.published? ? l(version.published_at) : nil
                   %td= @app.user.email
-                  %td
-                    .btn-group.dropup
-                      %button.btn.btn-sm.btn-default{class: version.published? ? 'text-green' : nil,:type => 'button'} Actions
-                      %button.btn.btn-sm.btn-default.dropdown-toggle{class: version.published? ? 'text-green' : nil,'aria-expanded' => "false",
-                                                                     'data-toggle' => 'dropdown', :type => 'button'}
-                        %span.caret
-                        %span.sr-only Toggle Dropdown
-                      %ul.dropdown-menu.pull-right{ :role => "menu"}
-                        %li
-                          %a{:href => "#"} Publish
-                        %li.divider
-                        %li
-                          %a{:href => "#"} Delete
+                  %td.dropdown.dropup
+                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                      Actions
+                      %b.caret
+                    %ul.dropdown-menu.pull-right
+                      %li
+                        %a{:href => "#", data: {toggle: 'modal', target: '#myModal'}} Publish
+                      %li.divider
+                      %li
+                        %a{:href => "#", tabindex: '-1'} Delete
+#myModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times
+        %h4.modal-title Default Modal
+      .modal-body
+        %p One fine body…
+      .modal-footer
+        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary{:type => "button"} Save changes
+:javascript
+  // $('.table-responsive tbody tr').slice(-2).find('.dropdown').addClass('dropup');
