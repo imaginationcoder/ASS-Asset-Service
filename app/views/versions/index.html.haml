@@ -95,3 +95,21 @@
       .modal-footer
         %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
         %button.btn.btn-progress.bg-olive.btn-publish-now{"data-loading-text"=>btn_prog_text('Publishing..'), type: 'submit'} Publish Now
+#published-success-modal.modal.fade{data: {backdrop: 'static', keyboard: 'false'} }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        -#%button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times
+        %h4.modal-title Success
+      .modal-body.bg-primary
+        %p
+          Your changes are live now!
+        %p
+          %h4.published-version Version #{@published_version.number}
+        %p
+          -#%h5 Published on #{l(@published_version.published_at, format: :long)}
+          %h5 Published just now.
+
+      .modal-footer
+        %button.btn.btn-primary.btn-done.pull-left{:type => "button"} Done

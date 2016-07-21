@@ -1,6 +1,7 @@
 $(document).ready(function() {
+    $('.btn-publish-now').button('reset');
     // fix for dropdown not showing in responsive table
-    $('.table-responsive tbody tr').slice(-3).find('.dropdown').addClass('dropup');
+    //$('.table-responsive tbody tr').slice(-2).find('.dropdown').addClass('dropup');
     // open modal when publish action selected
     $('#version-publish-modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
@@ -14,17 +15,22 @@ $(document).ready(function() {
         // send ajax request to server onclick of publish now button
         modal.find('.btn-publish-now').on('click', function () {
             var url = "/apps/" + app_id + "/versions/" + version_id + "/publish/";
-            var btn = $(this)
+            var btn = $(this);
             $.post(url, function (data) {
-                // reload the page after ajax call success
-                Turbolinks.visit(window.location.pathname);
-            })
-            .done(function() {
-              // btn.button('reset');
-            })
-            .fail(function() {
-               // alert( "error" );
+                $("#published-success-modal").find('.published-version').text('Version '+version_number);
+            }).done(function() {
+                btn.button('reset');
+                modal.hide();
+                $("#published-success-modal").modal();
+            }).fail(function() {
+                // alert( "error" );
             })
         })
     });
+    $("#published-success-modal").find('.btn-done').on('click', function(){
+        $("#published-success-modal").modal().hide();
+        // reload the page
+        Turbolinks.visit(window.location.pathname);
+    })
+
 });

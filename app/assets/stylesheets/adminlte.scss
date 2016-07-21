@@ -21,6 +21,20 @@
     // deafult is left
   }
 }
+/*fix for: button drop-down inside responsive table not visible because of scroll*/
+@media (max-width: 300px) {
+  .table-responsive .dropdown-menu,
+  .table-responsive .dropdown-toggle {
+    position: static !important;
+  }
+}
+
+@media (min-width: 300px) {
+  .table-responsive {
+    overflow: visible;
+  }
+}
+
 
 /* modal box to be centered a window */
 .modal {
