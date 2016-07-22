@@ -9,7 +9,7 @@
         %ul.list-unstyled
           %li
             = f.text_field :fname,  class: 'text-box-dark', required: true,
-                           :onblur => "if (this.value == '') {this.value = 'Frist Name';}",
+                           :onblur => "if (this.value == '') {this.value = 'First Name';}",
                            :onfocus => "this.value = '';", :type => "text", :value => "Frist Name"
           %li
             = f.text_field :lname,  class: 'text-box-dark', required: true,
