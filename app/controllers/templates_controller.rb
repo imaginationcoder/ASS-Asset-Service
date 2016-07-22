@@ -22,6 +22,8 @@ class TemplatesController < ApplicationController
     @template = Template.find(params[:id])
     @permission = @template.permission
     @app = @template.app
+    @template.text_assets.build
+    @template.button_actions.build
     @platform = Platform.default
     @platform_categories = @platform.platform_categories
   end

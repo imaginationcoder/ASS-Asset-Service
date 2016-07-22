@@ -40,12 +40,12 @@ class Version
           # Set timestamps to nil so that new timestamps are added when saved
           cloned_template.created_at = nil;cloned_template.updated_at = nil
           # copy source of original template to cloned template
-          CopyCarrierwaveFile::CopyFileService.new(template, cloned_template, :source).set_file
+          CopyCarrierwaveFile::CopyFileService.new(template, cloned_template, :source).set_file if template.source.url
           cloned_template.text_assets.each  {|ts| ts.created_at = nil;ts.updated_at = nil }
           cloned_template.button_actions.each_with_index do |bc, index|
             bc.created_at = nil; bc.updated_at = nil
             if template.button_actions[index].btn_type.eql?(2)
-              CopyCarrierwaveFile::CopyFileService.new(template.button_actions[index], bc, :source).set_file
+              CopyCarrierwaveFile::CopyFileService.new(template.button_actions[index], bc, :source).set_file if template.button_actions[index].source.url
             end
           end
           cloned_template.save
