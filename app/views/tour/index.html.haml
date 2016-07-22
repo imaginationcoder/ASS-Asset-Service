@@ -10,7 +10,10 @@
     %li.active Tour
 %section.content
   .row
-    .col-md-3.col-md-offset-9.col-sm-3.pull-right
+    .col-md-9.col-xs-7.text-right
+      .editing-version
+        %h4.text-light-blue Now Editing Version #{@app.editing_version.number}*
+    .col-md-3.col-xs-5.pull-right
       %a.btn.btn-success.btn-block.margin-bottom{href: edit_tour_app_path(@app)}
         %i.fa.fa-edit
         Edit Tour

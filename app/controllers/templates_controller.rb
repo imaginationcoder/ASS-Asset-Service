@@ -6,6 +6,7 @@ class TemplatesController < ApplicationController
   def show
     @template = Template.find(params[:id])
     @permission = @template.permission
+    @app = @template.app
   end
 
   def new

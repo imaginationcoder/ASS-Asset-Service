@@ -6,10 +6,11 @@
       %a{href: my_apps_path}
         Apps
     %li
-      %a{href: app_path(@template.app)}= @template.app.name
+      %a{href: app_path(@app)}= @template.app.name
     %li Permissions
     %li.active= @permission.name
 %section.content
+  = render 'shared/text_editing_version', app: @app
   .row
     .col-md-12
       .nav-tabs-custom
