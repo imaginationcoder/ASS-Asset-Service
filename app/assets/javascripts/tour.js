@@ -56,7 +56,7 @@ $(document).ready(function() {
             //TODO below not working 
             btn_box_tool.data('original-title', 'Collapse');
             //Show the content
-            box_content.slideDown(1000, function () {
+            box_content.slideDown(600, function () {
                 to_be_added.removeClass("collapsed-box");
             });
         }

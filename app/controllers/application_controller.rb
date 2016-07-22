@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def fetch_my_apps
     if current_user
-      @my_apps = current_user.apps.order(created_at: :desc)
+      @my_apps = current_user.apps.order(created_at: :asc)
       @tour_permission = Permission.tour
       @permissions = Permission.nin(name: @tour_permission.name)
     end
