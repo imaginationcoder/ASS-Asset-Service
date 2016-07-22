@@ -51,6 +51,7 @@ class App
     logo.present? ? logo.thumb.url : 'http://placehold.it/100x100&text=Logo'
   end
 
+  # currently editing version permission assets
   def find_template(permission)
     templates.where(app_version: editing_version.number).where(permission: permission).first
   end
