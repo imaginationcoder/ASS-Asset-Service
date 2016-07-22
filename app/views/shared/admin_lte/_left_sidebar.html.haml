@@ -7,22 +7,23 @@
         = image_tag 'user-avatar.png',class: "img-circle"
       .pull-left.info
         %p= current_user.full_name
+        %a{:href => "#"}= current_user.email
         / Status
-        %a{:href => "#"}
-          %i.fa.fa-circle.text-success
-          Online
+        -#%a{:href => "#"}
+              %i.fa.fa-circle.text-success
+              Online
     %ul.sidebar-menu
       %li{class: active_link_to_class(my_apps_path)}
         %a{:href => my_apps_path}
           %i.fa.fa-dashboard
           %span Dashboard
       - unless @my_apps.blank?
-        %li.header Your Apps
+        %li.header.text-center Your Apps
         - @my_apps.each do |app|
           %li.treeview{class: active_link_to_class(app_path(app))}
             %a{:href => "#"}
               %i.fa.fa-share
-              %span= app.name
+              %span.text-uppercase= app.name
               %span.pull-right-container
                 %i.fa.fa-angle-left.pull-right
             %ul.treeview-menu
@@ -42,11 +43,11 @@
                       %a{href: sidebar_permission_path(app, permission)}
                         %i.fa.fa-circle-o
                         = permission.name
-              %li{class:  is_active_link?(app_path(app), :exclusive)  ? 'active' : nil}
+              -#%li{class:  is_active_link?(app_path(app), :exclusive)  ? 'active' : nil}
                 %a{:href => app_path(app)}
                   %i.fa.fa-eye>
                   Show
-              %li{class: active_link_to_class(edit_app_path(app))}
+              -#%li{class: active_link_to_class(edit_app_path(app))}
                 %a{:href => edit_app_path(app)}
                   %i.fa.fa-edit>
                   Edit
@@ -54,4 +55,4 @@
         %a{:href => new_app_path}
           %i.fa.fa-plus
           %span
-            %i Add New App
+            %i New App
