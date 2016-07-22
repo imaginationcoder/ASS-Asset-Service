@@ -87,3 +87,6 @@ gem 'bootstrap-social-rails'
 gem "font-awesome-rails"
 gem "font-ionicons-rails"
 gem 'active_link_to'
+# Simple gem for copying CarrierWave files between resources.
+# It's solving issues with local and remote storage discussed here
+gem 'copy_carrierwave_file'
