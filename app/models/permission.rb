@@ -9,7 +9,8 @@ class Permission
   field :description
   field :pro_tip
 
-
+  ## Indexes
+  index({ name: 1 }, { unique: true})
 
   def self.tour
     find_or_create_by(name: 'Tour')

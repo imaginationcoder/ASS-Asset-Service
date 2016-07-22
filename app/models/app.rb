@@ -15,9 +15,6 @@ class App
   validates :name, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } }
   validates :user, associated: true
 
-  ## Indexes ----------------------------------------- ##
-   index({ current_version: 1 })
-
   ## Uploader ----------------------------------------- ##
   mount_uploader :logo, AssetUploader, dependent: :destroy
 
@@ -30,6 +27,11 @@ class App
 
   accepts_nested_attributes_for :templates, allow_destroy: true
 
+  ## Indexes ----------------------------------------- ##
+  index "versions.editing" => 1
+  index "versions.publishing" => 1
+
+
   ## Callbacks ----------------------------------------- ##
   # build default version with unpublished state (user will publish the version from dashboard later)
   after_create :create_default_version
@@ -40,8 +42,9 @@ class App
 
 
   ## Instance methods
+  # currently editing version tour assets
   def tour_templates
-    templates.where(permission: Permission.tour)
+    templates.where(app_version: editing_version.number, permission: Permission.tour)
   end
 
   def logo_url
@@ -49,7 +52,7 @@ class App
   end
 
   def find_template(permission)
-    templates.where(permission: permission).first
+    templates.where(app_version: editing_version.number).where(permission: permission).first
   end
 
   ### Version Management related stuff *************************** ----##

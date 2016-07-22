@@ -4,7 +4,6 @@ class Template
   include Mongoid::Paranoia
 
   ## Fields
-  #TODO update below with its app version when documents are updated
   field :app_version, type: Integer, default: 1
   field :platform_category_id
 
@@ -16,6 +15,11 @@ class Template
   embeds_many :button_actions, cascade_callbacks: true
   belongs_to :permission, index: true
   belongs_to :app, index: true
+
+  ## Indexes ----------------------------------------- ##
+  index({ app_version: 1 })
+  index({ app_id: 1, app_version: 1, permission_id: 1 })
+  index "button_actions.btn_type" => 1
 
   accepts_nested_attributes_for :text_assets, allow_destroy: true,
                                 reject_if: proc { |attributes| attributes['text'].blank? }
