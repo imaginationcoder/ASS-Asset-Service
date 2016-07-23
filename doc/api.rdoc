@@ -1,8 +1,9 @@
-1) http://assets-sdk.herokuapp.com/oauth/applications
+1) Get oauth applicationId and secret from below url to invoke next api's
+  http://root-url/oauth/applications
 
-1) Get access_token to communicate throu server(app)
+2) Get access_token to communicate through server(app)
   Method: POST
-  URL: http://localhost:3000/api/clients/token
+  URL: http://root-url/api/clients/token
   Body: {
       "grant_type":"client_credentials",
       "client_id":"< xxxx >",
@@ -18,9 +19,9 @@
   }
 
 
-2) Authorize App with ClientId and ClientSecret
+3) Authorize App with ClientId and ClientSecret
    Method: POST
-   URL: http://localhost:3000/api/v1/authorize_app
+   URL: http://root-url/api/v1/authorize_app
    Headers: { Authorization: "Bearer <access_token>"}
    Body: { client_id: <dev applition's id>, client_secret_token: <dev application's secret> }
 
@@ -31,7 +32,14 @@
 
 
 
-23) Get applicaiton Tour
+4) Get Applicaiton Tour Assets
   Method: GET
-  URL: http://localhost:3000/api/v1/tour/
+  URL: http://root-url/api/v1/tour/assets
   Headers: { Authorization: "Bearer <access_token>"}
+
+5) Get Applicaiton Permission assets
+  Method: GET
+  URL: http://root-url/api/v1/permission/<:name>/assets
+  Headers: { Authorization: "Bearer <access_token>"}
+  Required Parameter :name possible values are
+    'camera', 'notifications', 'contacts', 'location'
