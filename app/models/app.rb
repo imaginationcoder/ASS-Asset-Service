@@ -47,13 +47,21 @@ class App
     templates.where(app_version: editing_version.number, permission: Permission.tour)
   end
 
+  def published_tour_templates
+    templates.where(app_version: published_version.number, permission: Permission.tour)
+  end
+
   def logo_url
     logo.present? ? logo.thumb.url : 'http://placehold.it/100x100&text=Logo'
   end
 
   # currently editing version permission assets
   def find_template(permission)
-    templates.where(app_version: editing_version.number).where(permission: permission).first
+    templates.where(app_version: editing_version.number,permission: permission).first
+  end
+
+  def find_published_template(permission)
+    templates.where(app_version: published_version.number,permission: permission).first
   end
 
   ### Version Management related stuff *************************** ----##

@@ -33,7 +33,8 @@ Rails.application.routes.draw do
         #delete 'logout' => 'sessions#destroy'
       end
 
-      get 'tour'=>"tour#index"
+      get 'tour/assets'=>"tour#index"
+      get 'permission/:name/assets'=>"permissions#index"
     end
   end
 

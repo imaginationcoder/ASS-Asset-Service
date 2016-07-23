@@ -1,7 +1,7 @@
 i = 0
 json.tour do
   json.templates @tour_templates do |template|
-    json.s_no i
+    json.step i
     json.asset_url template.source.url
     json.text_assets template.text_assets do |asset|
       json.text asset.text
