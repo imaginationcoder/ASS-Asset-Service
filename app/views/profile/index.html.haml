@@ -119,7 +119,7 @@
               .form-group
                 %label.col-sm-4.control-label{:for => "currentPassword"} Confirm New Password*
                 .col-sm-7
-                  = f.password_field :confirm_password, class: 'form-control', placeholder: 'Confirm New Password*', autocomplete: 'off'
+                  = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm New Password*', autocomplete: 'off'
               .form-group
                 .col-sm-offset-2.col-sm-10
                   %a.btn.btn-default{href: profile_path}
