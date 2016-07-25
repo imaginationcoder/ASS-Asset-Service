@@ -63,4 +63,8 @@ module ApplicationHelper
     (is_active_link?(add_template_path(app, permission)) and params[:permission_id].eql?(permission.id.to_s)) ? 'active' : nil
   end
 
+  def user_avatar_thumb_src
+    current_user.avatar.thumb.url || asset_path('user-avatar.png')
+  end
+
 end

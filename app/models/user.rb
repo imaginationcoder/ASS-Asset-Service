@@ -49,6 +49,9 @@ class User
   field :designation
   field :notes
 
+  ## Uploader ----------------------------------------- ##
+  mount_uploader :avatar, AvatarUploader, dependent: :destroy
+
 
   ## Associations
   has_many :apps, autosave: true

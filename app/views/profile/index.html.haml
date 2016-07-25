@@ -5,35 +5,42 @@
     %small
   %ol.breadcrumb
     %li
-      %a{:href => "#"}
+      %a{href: my_apps_path}
         %i.fa.fa-dashboard
         Dashboard
     %li
       User
     %li.active
       %a{href: profile_path} Profile
-%section.content
+%section.content.user-profile
   .row
     .col-md-3
       / Profile Image
       .box.box-primary
-        .box-body.box-profile
-          %img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", :src => asset_path('user-avatar.png')}/
-          %h3.profile-username.text-center= current_user.full_name
-          %p.text-muted.text-center
-            - if current_user.designation.present?
-              = current_user.designation
-            - else
-              = current_user.email
-          %ul.list-group.list-group-unbordered
-            %li.list-group-item
-              %b Apps
-              %a.pull-right= @my_apps.count
-            %li.list-group-item
-              %b Published
-              %a.pull-right= @my_apps.where('versions.published' => true).count
-          -#a.btn.btn-primary.btn-block{:href => "#"}
-            %b Follow
+        = form_for current_user, url: update_avatar_path, html: {method: :post,class: 'form-change-avatar'} do |f|
+          = f.file_field :avatar, class:'hide input-change-avatar'
+          .box-body.box-profile
+            %a.magnific-popup-img{href:  current_user.avatar.url || '#' , title: 'Profile Picture'}
+              %img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", src: user_avatar_thumb_src}/
+            %h3.profile-username.text-center= current_user.full_name
+            %p.text-muted.text-center
+              - if current_user.designation.present?
+                = current_user.designation
+              - else
+                = current_user.email
+            %ul.list-group.list-group-unbordered
+              %li.list-group-item
+                %b Apps
+                %a.pull-right{href: my_apps_path}
+                  %u= @my_apps.count
+              %li.list-group-item
+                %b Published
+                %a.pull-right{href: my_apps_path}
+                  %u= @my_apps.where('versions.published' => true).count
+            %a.btn.btn-primary.btn-block.btn-change-avatar{"data-loading-text"=>btn_prog_text('Uploading ..'),:href => "#"}
+              %i.fa.fa-upload
+              = space
+              Change Avatar
       .box.box-primary
         .box-header.with-border
           %h3.box-title About Me

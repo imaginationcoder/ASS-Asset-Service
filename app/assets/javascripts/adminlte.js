@@ -28,5 +28,6 @@
 //= require templates
 //= require tour 
 //= require versions
+//= require profile
 
 

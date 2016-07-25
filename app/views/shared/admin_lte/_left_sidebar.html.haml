@@ -4,7 +4,7 @@
     / Sidebar user panel (optional)
     .user-panel
       .pull-left.image
-        = image_tag 'user-avatar.png',class: "img-circle"
+        = image_tag user_avatar_thumb_src ,class: "img-circle"
       .pull-left.info
         %p
           %a{href: profile_path}= current_user.full_name
