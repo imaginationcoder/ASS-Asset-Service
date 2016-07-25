@@ -1,4 +1,4 @@
-= page_title('Dashboard | Profile')
+= page_title('Profile')
 %section.content-header
   %h4
     Profile
@@ -13,6 +13,7 @@
     %li.active
       %a{href: profile_path} Profile
 %section.content.user-profile
+  = render 'shared/error_messages', resource: current_user
   .row
     .col-md-3
       / Profile Image
@@ -46,20 +47,20 @@
           %h3.box-title About Me
         .box-body
           %strong
-            %i.fa.fa-book.margin-r-5
+            %i.fa.fa-bank.margin-r-5
             Company
           %p.text-muted
             = current_user.company
           %hr/
           %strong
-            %i.fa.fa-map-marker.margin-r-5
+            %i.fa.fa-phone.margin-r-5
             Phone
           %p.text-muted= current_user.phone
           %hr/
           %strong
             %i.fa.fa-file-text-o.margin-r-5
             Notes
-          %p= current_user.notes
+          %p.text-muted= current_user.notes
     .col-md-9
       .nav-tabs-custom
         %ul.nav.nav-tabs
@@ -69,37 +70,41 @@
             %a{"data-toggle" => "tab", :href => "#change-password"} Change Password
         .tab-content
           #profile.tab-pane.active
-            %form.form-horizontal
+            = form_for current_user, url: update_profile_path, html: {method: :post,class: 'form-update-profile form-horizontal'} do |f|
               .form-group
-                %label.col-sm-2.control-label{:for => "inputName"} Name
+                %label.col-sm-2.control-label{:for => 'firstName'} First Name*
                 .col-sm-10
-                  %input#inputName.form-control{:placeholder => "Name", :type => "email"}/
+                  = f.text_field :fname, class: 'form-control', placeholder: 'First Name'
               .form-group
-                %label.col-sm-2.control-label{:for => "inputEmail"} Email
+                %label.col-sm-2.control-label{:for => 'lastName'} last Name*
                 .col-sm-10
-                  %input#inputEmail.form-control{:placeholder => "Email", :type => "email"}/
+                  = f.text_field :lname, class: 'form-control', placeholder: 'Last Name'
               .form-group
-                %label.col-sm-2.control-label{:for => "inputName"} Name
+                %label.col-sm-2.control-label{:for => 'email'} Email*
                 .col-sm-10
-                  %input#inputName.form-control{:placeholder => "Name", :type => "text"}/
+                  = f.text_field :email, class: 'form-control', type: 'email', disabled: true
               .form-group
-                %label.col-sm-2.control-label{:for => "inputExperience"} Experience
+                %label.col-sm-2.control-label{:for => 'phone'} Phone
                 .col-sm-10
-                  %textarea#inputExperience.form-control{:placeholder => "Experience"}
+                  = f.text_field :phone, class: 'form-control', placeholder: 'Phone'
               .form-group
-                %label.col-sm-2.control-label{:for => "inputSkills"} Skills
+                %label.col-sm-2.control-label{:for => 'company'} Company*
                 .col-sm-10
-                  %input#inputSkills.form-control{:placeholder => "Skills", :type => "text"}/
+                  = f.text_field :company, class: 'form-control', placeholder: 'Company'
+              .form-group
+                %label.col-sm-2.control-label{:for => 'company'} Designation
+                .col-sm-10
+                  = f.text_field :designation, class: 'form-control', placeholder: 'Designation'
+              .form-group
+                %label.col-sm-2.control-label{:for => 'notes'} Notes
+                .col-sm-10
+                  = f.text_area :notes, class: 'form-control', placeholder: 'Notes About me'
               .form-group
                 .col-sm-offset-2.col-sm-10
-                  .checkbox
-                    %label
-                      %input{:type => "checkbox"}/
-                      I agree to the
-                      %a{:href => "#"} terms and conditions
-              .form-group
-                .col-sm-offset-2.col-sm-10
-                  %button.btn.btn-danger{:type => "submit"} Submit
+                  %a.btn.btn-default{href: profile_path}
+                    %i.fa.fa-close
+                    Cancel
+                  %button.btn.btn-success.btn-progress.bg-olive.pull-right{'data-loading-text'=>btn_prog_text('Updating ..'),:type => 'submit'} Update Profile
           #change-password.tab-pane
             %form.form-horizontal
               .form-group

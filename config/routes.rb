@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
   ## Profile
   get 'profile'=>"profile#index", as: :profile
+  post 'profile/update'=>"profile#update", as: :update_profile
   post 'update_avatar'=> "profile#update_avatar", as: :update_avatar
   get 'change_password'=> "profile#change_password", as: :change_password
   post 'update_password'=> "profile#update_password", as: :update_password
