@@ -17,6 +17,10 @@
             = f.submit "Log in"
         .clearfix
         .row.authentication-other
-          .col-lg-12.text-center
+          .col-lg-6.text-center
+            Forgot Password?
+            %a{href: new_password_path(resource_name)} Click Here
+          .col-lg-6.text-center
             Don't have an account?
             %a.popup-with-zoom-anim{href: '#signup-dialog'} Sign Up Here
+
