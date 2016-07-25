@@ -106,35 +106,23 @@
                     Cancel
                   %button.btn.btn-success.btn-progress.bg-olive.pull-right{'data-loading-text'=>btn_prog_text('Updating ..'),:type => 'submit'} Update Profile
           #change-password.tab-pane
-            %form.form-horizontal
+            = form_for current_user, url: update_password_path, html: {method: :post,class: 'form-update-profile form-horizontal'} do |f|
               .form-group
-                %label.col-sm-2.control-label{:for => "inputName"} Name
-                .col-sm-10
-                  %input#inputName.form-control{:placeholder => "Name", :type => "email"}/
+                %label.col-sm-4.control-label{:for => "currentPassword"} Current Password*
+                .col-sm-7
+                  = f.password_field :current_password, class: 'form-control', placeholder: 'Current Password*', autocomplete: 'off'
               .form-group
-                %label.col-sm-2.control-label{:for => "inputEmail"} Email
-                .col-sm-10
-                  %input#inputEmail.form-control{:placeholder => "Email", :type => "email"}/
+                %label.col-sm-4.control-label{:for => "currentPassword"} New Password*
+                .col-sm-7
+                  = f.password_field :password, class: 'form-control', placeholder: 'New Password*', autocomplete: 'off'
               .form-group
-                %label.col-sm-2.control-label{:for => "inputName"} Name
-                .col-sm-10
-                  %input#inputName.form-control{:placeholder => "Name", :type => "text"}/
-              .form-group
-                %label.col-sm-2.control-label{:for => "inputExperience"} Experience
-                .col-sm-10
-                  %textarea#inputExperience.form-control{:placeholder => "Experience"}
-              .form-group
-                %label.col-sm-2.control-label{:for => "inputSkills"} Skills
-                .col-sm-10
-                  %input#inputSkills.form-control{:placeholder => "Skills", :type => "text"}/
+                %label.col-sm-4.control-label{:for => "currentPassword"} Confirm New Password*
+                .col-sm-7
+                  = f.password_field :confirm_password, class: 'form-control', placeholder: 'Confirm New Password*', autocomplete: 'off'
               .form-group
                 .col-sm-offset-2.col-sm-10
-                  .checkbox
-                    %label
-                      %input{:type => "checkbox"}/
-                      I agree to the
-                      %a{:href => "#"} terms and conditions
-              .form-group
-                .col-sm-offset-2.col-sm-10
-                  %button.btn.btn-primary{:type => "submit"} Upate Password
+                  %a.btn.btn-default{href: profile_path}
+                    %i.fa.fa-close
+                    Cancel
+                  %button.btn.btn-danger.btn-progress.pull-right{'data-loading-text'=>btn_prog_text('Updating ..'),:type => 'submit'} Update Password
 
