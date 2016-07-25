@@ -43,12 +43,19 @@ class User
   field :fname
   field :lname
   field :company
-  field :phone
   field :is_developer, type: Boolean, default: true
+  ## optional
+  field :phone
+  field :designation
+  field :notes
 
 
   ## Associations
   has_many :apps, autosave: true
+
+  def published_apps
+    apps.where('versions.published' => true)
+  end
 
   def full_name
     "#{fname} #{lname}"

@@ -31,6 +31,9 @@ class App
   index "versions.editing" => 1
   index "versions.publishing" => 1
 
+  ## Scopes ------------------------------------------ ##
+  scope :published, -> { where('versions.published' => true) }
+
 
   ## Callbacks ----------------------------------------- ##
   # build default version with unpublished state (user will publish the version from dashboard later)

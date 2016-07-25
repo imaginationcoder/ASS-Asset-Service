@@ -1,0 +1,128 @@
+= page_title('Dashboard | Profile')
+%section.content-header
+  %h4
+    Profile
+    %small
+  %ol.breadcrumb
+    %li
+      %a{:href => "#"}
+        %i.fa.fa-dashboard
+        Dashboard
+    %li
+      User
+    %li.active
+      %a{href: profile_path} Profile
+%section.content
+  .row
+    .col-md-3
+      / Profile Image
+      .box.box-primary
+        .box-body.box-profile
+          %img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", :src => asset_path('user-avatar.png')}/
+          %h3.profile-username.text-center= current_user.full_name
+          %p.text-muted.text-center
+            - if current_user.designation.present?
+              = current_user.designation
+            - else
+              = current_user.email
+          %ul.list-group.list-group-unbordered
+            %li.list-group-item
+              %b Apps
+              %a.pull-right= @my_apps.count
+            %li.list-group-item
+              %b Published
+              %a.pull-right= @my_apps.where('versions.published' => true).count
+          -#a.btn.btn-primary.btn-block{:href => "#"}
+            %b Follow
+      .box.box-primary
+        .box-header.with-border
+          %h3.box-title About Me
+        .box-body
+          %strong
+            %i.fa.fa-book.margin-r-5
+            Company
+          %p.text-muted
+            = current_user.company
+          %hr/
+          %strong
+            %i.fa.fa-map-marker.margin-r-5
+            Phone
+          %p.text-muted= current_user.phone
+          %hr/
+          %strong
+            %i.fa.fa-file-text-o.margin-r-5
+            Notes
+          %p= current_user.notes
+    .col-md-9
+      .nav-tabs-custom
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#profile"} Profile
+          %li
+            %a{"data-toggle" => "tab", :href => "#change-password"} Change Password
+        .tab-content
+          #profile.tab-pane.active
+            %form.form-horizontal
+              .form-group
+                %label.col-sm-2.control-label{:for => "inputName"} Name
+                .col-sm-10
+                  %input#inputName.form-control{:placeholder => "Name", :type => "email"}/
+              .form-group
+                %label.col-sm-2.control-label{:for => "inputEmail"} Email
+                .col-sm-10
+                  %input#inputEmail.form-control{:placeholder => "Email", :type => "email"}/
+              .form-group
+                %label.col-sm-2.control-label{:for => "inputName"} Name
+                .col-sm-10
+                  %input#inputName.form-control{:placeholder => "Name", :type => "text"}/
+              .form-group
+                %label.col-sm-2.control-label{:for => "inputExperience"} Experience
+                .col-sm-10
+                  %textarea#inputExperience.form-control{:placeholder => "Experience"}
+              .form-group
+                %label.col-sm-2.control-label{:for => "inputSkills"} Skills
+                .col-sm-10
+                  %input#inputSkills.form-control{:placeholder => "Skills", :type => "text"}/
+              .form-group
+                .col-sm-offset-2.col-sm-10
+                  .checkbox
+                    %label
+                      %input{:type => "checkbox"}/
+                      I agree to the
+                      %a{:href => "#"} terms and conditions
+              .form-group
+                .col-sm-offset-2.col-sm-10
+                  %button.btn.btn-danger{:type => "submit"} Submit
+          #change-password.tab-pane
+            %form.form-horizontal
+              .form-group
+                %label.col-sm-2.control-label{:for => "inputName"} Name
+                .col-sm-10
+                  %input#inputName.form-control{:placeholder => "Name", :type => "email"}/
+              .form-group
+                %label.col-sm-2.control-label{:for => "inputEmail"} Email
+                .col-sm-10
+                  %input#inputEmail.form-control{:placeholder => "Email", :type => "email"}/
+              .form-group
+                %label.col-sm-2.control-label{:for => "inputName"} Name
+                .col-sm-10
+                  %input#inputName.form-control{:placeholder => "Name", :type => "text"}/
+              .form-group
+                %label.col-sm-2.control-label{:for => "inputExperience"} Experience
+                .col-sm-10
+                  %textarea#inputExperience.form-control{:placeholder => "Experience"}
+              .form-group
+                %label.col-sm-2.control-label{:for => "inputSkills"} Skills
+                .col-sm-10
+                  %input#inputSkills.form-control{:placeholder => "Skills", :type => "text"}/
+              .form-group
+                .col-sm-offset-2.col-sm-10
+                  .checkbox
+                    %label
+                      %input{:type => "checkbox"}/
+                      I agree to the
+                      %a{:href => "#"} terms and conditions
+              .form-group
+                .col-sm-offset-2.col-sm-10
+                  %button.btn.btn-primary{:type => "submit"} Upate Password
+

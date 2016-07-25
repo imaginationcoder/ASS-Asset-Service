@@ -1,5 +1,6 @@
 class TourController < ApplicationController
   layout 'adminlte'
+  before_action :authenticate_user!
 
   def index
     @app = App.find(params[:id])

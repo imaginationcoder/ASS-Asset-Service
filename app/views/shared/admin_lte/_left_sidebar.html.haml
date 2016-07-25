@@ -6,8 +6,9 @@
       .pull-left.image
         = image_tag 'user-avatar.png',class: "img-circle"
       .pull-left.info
-        %p= current_user.full_name
-        %a{:href => "#"}= current_user.email
+        %p
+          %a{href: profile_path}= current_user.full_name
+        %a{href: profile_path}= current_user.email
         / Status
         -#%a{:href => "#"}
               %i.fa.fa-circle.text-success

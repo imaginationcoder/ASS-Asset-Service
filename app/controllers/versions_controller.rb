@@ -1,5 +1,6 @@
 class VersionsController < ApplicationController
   layout 'adminlte'
+  before_action :authenticate_user!
   before_action :load_app
 
 
