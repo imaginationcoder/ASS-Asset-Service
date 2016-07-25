@@ -17,7 +17,7 @@
     .col-md-3
       / Profile Image
       .box.box-primary
-        = form_for current_user, url: update_avatar_path, html: {method: :post,class: 'form-change-avatar'} do |f|
+        = form_for current_user, url: update_avatar_path, html: {method: :put,class: 'form-change-avatar'} do |f|
           = f.file_field :avatar, class:'hide input-change-avatar'
           .box-body.box-profile
             %a.magnific-popup-img{href:  current_user.avatar.url || '#' , title: 'Profile Picture'}
@@ -71,7 +71,7 @@
             %a{"data-toggle" => "tab", :href => "#change-password"} Change Password
         .tab-content
           #profile.tab-pane.active
-            = form_for current_user, url: update_profile_path, html: {method: :post,class: 'form-update-profile form-horizontal'} do |f|
+            = form_for current_user, url: update_profile_path, html: {method: :put,class: 'form-update-profile form-horizontal'} do |f|
               .form-group
                 %label.col-sm-2.control-label{:for => 'firstName'} First Name*
                 .col-sm-10
@@ -107,7 +107,7 @@
                     Cancel
                   %button.btn.btn-success.btn-progress.bg-olive.pull-right{'data-loading-text'=>btn_prog_text('Updating ..'),:type => 'submit'} Update Profile
           #change-password.tab-pane
-            = form_for current_user, url: update_password_path, remote: true, html: {method: :post,class: 'form-update-profile form-horizontal'} do |f|
+            = form_for current_user, url: update_password_path, remote: true, html: {method: :put,class: 'form-update-profile form-horizontal'} do |f|
               .form-group
                 %label.col-sm-4.control-label{:for => "currentPassword"} Current Password*
                 .col-sm-7
