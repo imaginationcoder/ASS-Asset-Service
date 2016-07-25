@@ -13,8 +13,6 @@
     %li.active
       %a{href: profile_path} Profile
 %section.content.user-profile
-  .form-error-messages
-    = render 'shared/error_messages', resource: current_user
   .row
     .col-md-3
       / Profile Image
@@ -63,6 +61,8 @@
             Notes
           %p.text-muted= current_user.notes
     .col-md-9
+      .form-error-messages
+        = render 'shared/error_messages', resource: current_user
       .nav-tabs-custom
         %ul.nav.nav-tabs
           %li.active
