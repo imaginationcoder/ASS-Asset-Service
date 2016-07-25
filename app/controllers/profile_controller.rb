@@ -32,9 +32,6 @@ class ProfileController < ApplicationController
       # Sign in the user by passing validation in case their password changed
       sign_in @user, bypass: true
       flash[:success] = 'Password updated successfully.'
-      redirect_to profile_url
-    else
-      render 'index'
     end
 
   end

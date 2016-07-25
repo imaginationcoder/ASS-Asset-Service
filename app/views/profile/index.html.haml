@@ -13,7 +13,8 @@
     %li.active
       %a{href: profile_path} Profile
 %section.content.user-profile
-  = render 'shared/error_messages', resource: current_user
+  .form-error-messages
+    = render 'shared/error_messages', resource: current_user
   .row
     .col-md-3
       / Profile Image
@@ -106,7 +107,7 @@
                     Cancel
                   %button.btn.btn-success.btn-progress.bg-olive.pull-right{'data-loading-text'=>btn_prog_text('Updating ..'),:type => 'submit'} Update Profile
           #change-password.tab-pane
-            = form_for current_user, url: update_password_path, html: {method: :post,class: 'form-update-profile form-horizontal'} do |f|
+            = form_for current_user, url: update_password_path, remote: true, html: {method: :post,class: 'form-update-profile form-horizontal'} do |f|
               .form-group
                 %label.col-sm-4.control-label{:for => "currentPassword"} Current Password*
                 .col-sm-7
