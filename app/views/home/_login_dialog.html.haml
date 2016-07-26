@@ -7,10 +7,10 @@
           Login
         %ul.list-unstyled
           %li
-            = f.email_field :email, class: 'text-box-dark' ,placeholder: 'Email', style: 'width: 100%'
+            = f.email_field :email, class: 'text-box-dark' ,placeholder: 'Email', style: 'width: 100%',required: true
         %ul.list-unstyled
           %li
-            = f.password_field :password, autocomplete: "off" ,class: 'text-box-dark',placeholder: 'Password', style: 'width: 100%'
+            = f.password_field :password, autocomplete: "off" ,class: 'text-box-dark',placeholder: 'Password', style: 'width: 100%', required: true
         .clearfix
         %ul.payment-sendbtns.list-unstyled
           %li

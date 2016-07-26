@@ -8,31 +8,19 @@
           Register
         %ul.list-unstyled
           %li
-            = f.text_field :fname,  class: 'text-box-dark', required: true,
-                           :onblur => "if (this.value == '') {this.value = 'First Name';}",
-                           :onfocus => "this.value = '';", :type => "text", :value => "First Name"
+            = f.text_field :fname,  class: 'text-box-dark', required: true ,placeholder: 'First Name*'
           %li
-            = f.text_field :lname,  class: 'text-box-dark', required: true,
-                           :onblur => "if (this.value == '') {this.value = 'Last Name';}",
-                           :onfocus => "this.value = '';", :type => "text", :value => "Last Name"
+            = f.text_field :lname,  class: 'text-box-dark', required: true, placeholder: 'Last Name*'
         %ul.list-unstyled
           %li
-            = f.email_field :email,  class: 'text-box-dark', required: true,
-                            :onblur => "if (this.value == '') {this.value = 'Email';}",
-                            :onfocus => "this.value = '';", :type => "text", :value => "Email"
+            = f.email_field :email,  class: 'text-box-dark', required: true, placeholder: 'Email*'
           %li
-            = f.email_field :company,  class: 'text-box-dark', required: true,
-                            :onblur => "if (this.value == '') {this.value = 'Company Name';}",
-                            :onfocus => "this.value = '';", :type => "text", :value => "Company Name"
+            = f.email_field :company,  class: 'text-box-dark', required: true,placeholder: 'Company Name*'
         %ul.list-unstyled
           %li
-            = f.password_field :password, autocomplete: "off", required: true, class: 'text-box-dark',
-                               :onblur => "if (this.value == '') {this.value = 'Password';}",
-                               :onfocus => "this.value = '';", :type => "text", :value => "Password"
+            = f.password_field :password, autocomplete: "off", required: true, class: 'text-box-dark',placeholder: 'Password*'
           %li
-            = f.password_field :password_confirmation, autocomplete: "off", required: true, class: 'text-box-dark',
-                               :onblur => "if (this.value == '') {this.value = 'Confirm password';}",
-                               :onfocus => "this.value = '';", :type => "text", :value => "Confirm password"
+            = f.password_field :password_confirmation, autocomplete: "off", required: true, class: 'text-box-dark',placeholder: 'Confirm Password*'
           .clear
         .clearfix
         %ul.payment-sendbtns.list-unstyled
