@@ -37,7 +37,7 @@ class User
   # field :locked_at,       type: Time
 
   # Validations
-  validates :fname, :lname , :company, presence: true
+  validates :fname, :lname , presence: true
 
   ## Custom
   field :fname
