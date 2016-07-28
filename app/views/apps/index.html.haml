@@ -42,7 +42,7 @@
                       %span.label.label-danger editing version #{app.editing_version.number}
                   %td --
                   %td --
-                  %td= link_to 'versions', versions_path(app)
+                  %td= link_to "versions (#{app.versions.count})", versions_path(app)
   - else
     .row
       .col-md-12

@@ -13,7 +13,14 @@
     %li #{@version.number}
     %li.active Preview
 %section.content
-  %h2.page-header Tour Assets
+  .row
+    .col-md-6.col-xs-6
+      %h2.page-header Tour Assets
+    .col-md-6.col-xs-6.text-right
+      = link_to version_publish_path(@app,@version.id), method: :post, class: 'btn btn-progress btn-success btn-sm btn-flat',
+        data: {"loading-text": btn_prog_text('Publishing ..'),confirm: 'Are you sure?'} do
+        Publish
+        %i.fa.fa-share
   .row
     .col-md-12.col-sx-12
       .nav-tabs-custom
@@ -81,64 +88,68 @@
           %h3.box-title Permission Assets
         .box-body
           #accordion.box-group
-            - @permission_templates.each_with_index do |template,index|
-              .panel.box
-                .box-header.with-border
-                  %h4.box-title
-                    %a{"aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-#{template.id}"}
-                      = template.permission.name
-                .panel-collapse.collapse{id: "collapse-#{template.id}","aria-expanded" => "true", class: index == 0 ? 'in' : nil}
-                  .box-body
-                    .nav-tabs-custom{style: 'box-shadow: none;'}
-                      %ul.nav.nav-tabs
-                        %li.active
-                          %a{"data-toggle" => "tab", :href => "#image-assets-tab-#{template.id}"} Image Asset
-                        %li
-                          %a{"data-toggle" => "tab", :href => "#text-assets-tab-#{template.id}"} Text Assets
-                        %li
-                          %a{"data-toggle" => "tab", :href => "#button-assets-tab-#{template.id}"} Btn Actions
-                      .tab-content
-                        .tab-pane.active{id: "image-assets-tab-#{template.id}"}
-                          .box-body
-                            %a.magnific-popup-img{href: template.source.url, title: 'Image Asset'}
-                              %img.img-responsive.pad{:alt => "Photo", :src => template.source.thumb.url}
-                            %p click on above image to preview
-                            %span.pull-right.text-muted
-                              #{time_ago_in_words(template.created_at)} ago
-                        .tab-pane.table-responsive.no-padding{id: "text-assets-tab-#{template.id}"}
-                          %table.table.table-striped
-                            %tr
-                              %th #
-                              %th Text
-                              %th{style: 'width: 20px'} Position
-                            - template.text_assets.each_with_index do |ts, index|
+            - if @permission_templates.blank?
+              %p
+                %code No Assets added.
+            - else
+              - @permission_templates.each_with_index do |template,index|
+                .panel.box
+                  .box-header.with-border
+                    %h4.box-title
+                      %a{"aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-#{template.id}"}
+                        = template.permission.name
+                  .panel-collapse.collapse{id: "collapse-#{template.id}","aria-expanded" => "true", class: index == 0 ? 'in' : nil}
+                    .box-body
+                      .nav-tabs-custom{style: 'box-shadow: none;'}
+                        %ul.nav.nav-tabs
+                          %li.active
+                            %a{"data-toggle" => "tab", :href => "#image-assets-tab-#{template.id}"} Image Asset
+                          %li
+                            %a{"data-toggle" => "tab", :href => "#text-assets-tab-#{template.id}"} Text Assets
+                          %li
+                            %a{"data-toggle" => "tab", :href => "#button-assets-tab-#{template.id}"} Btn Actions
+                        .tab-content
+                          .tab-pane.active{id: "image-assets-tab-#{template.id}"}
+                            .box-body
+                              %a.magnific-popup-img{href: template.source.url, title: 'Image Asset'}
+                                %img.img-responsive.pad{:alt => "Photo", :src => template.source.thumb.url}
+                              %p click on above image to preview
+                              %span.pull-right.text-muted
+                                #{time_ago_in_words(template.created_at)} ago
+                          .tab-pane.table-responsive.no-padding{id: "text-assets-tab-#{template.id}"}
+                            %table.table.table-striped
                               %tr
-                                %td= "#{index+1}."
-                                %td= ts.text
-                                %td
-                                  %span.badge.bg-light-blue= ts.position
-                        .tab-pane.table-responsive.no-padding{id: "button-assets-tab-#{template.id}"}
-                          %table.table.table-striped
-                            %tr
-                              %th #
-                              %th Type
-                              %th Label/Image
-                              %th Target Event
-                            - template.button_actions.each_with_index do |bc, index|
+                                %th #
+                                %th Text
+                                %th{style: 'width: 20px'} Position
+                              - template.text_assets.each_with_index do |ts, index|
+                                %tr
+                                  %td= "#{index+1}."
+                                  %td= ts.text
+                                  %td
+                                    %span.badge.bg-light-blue= ts.position
+                          .tab-pane.table-responsive.no-padding{id: "button-assets-tab-#{template.id}"}
+                            %table.table.table-striped
                               %tr
-                                %td= "#{index+1}."
-                                %td
-                                  - if bc.btn_type.eql?(1)
-                                    %span.badge.bg-light-blue Text
-                                  - else
-                                    %span.badge.bg-yellow Image
-                                %td
-                                  - if bc.btn_type.eql?(1)
-                                    = bc.label
-                                  - else
-                                    %a.magnific-popup-img{href: bc.source.url, title: 'Image Asset'}
-                                      Show
-                                      %i.fa.fa-eye
-                                %td= bc.target_event
+                                %th #
+                                %th Type
+                                %th Label/Image
+                                %th Target Event
+                              - template.button_actions.each_with_index do |bc, index|
+                                %tr
+                                  %td= "#{index+1}."
+                                  %td
+                                    - if bc.btn_type.eql?(1)
+                                      %span.badge.bg-light-blue Text
+                                    - else
+                                      %span.badge.bg-yellow Image
+                                  %td
+                                    - if bc.btn_type.eql?(1)
+                                      = bc.label
+                                    - else
+                                      %a.magnific-popup-img{href: bc.source.url, title: 'Image Asset'}
+                                        Show
+                                        %i.fa.fa-eye
+                                  %td= bc.target_event
 
 

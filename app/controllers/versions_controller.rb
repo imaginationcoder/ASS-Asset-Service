@@ -11,8 +11,13 @@ class VersionsController < ApplicationController
 
   def publish
     @version.update(published: true)
-    #flash[:notice] = "Version #{@version.number} published successfully."
-    render nothing: true
+    respond_to do |format|
+      format.js {  render nothing: true }
+      format.html do
+        flash[:success] = "Version #{@version.number} published successfully."
+        redirect_to versions_path(@app)
+      end
+    end
   end
 
   def preview
