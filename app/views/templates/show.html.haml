@@ -41,18 +41,18 @@
           #tab_1.tab-pane.active
             .box.box-default
               .box-header.with-border
-                .box-body
-                  %a.magnific-popup-img{href: @template.source.url, title: 'Image Asset'}
-                    %img.img-responsive.pad{:alt => "Photo", :src => @template.source.thumb.url}
-                  %p click on above image to preview
-                  -#%button.btn.btn-default.btn-xs{:type => "button"}
-                    %i.fa.fa-edit
-                    Edit
-                  -#%button.btn.btn-danger.btn-xs{:type => "button"}
-                    %i.fa.fa-remove
-                    Delete
-                  %span.pull-right.text-muted
-                    #{time_ago_in_words(@template.created_at)} ago
+              .box-body
+                %a.magnific-popup-img{href: @template.source.url, title: 'Image Asset'}
+                  %img.img-responsive.pad{:alt => "Photo", :src => @template.source.thumb.url}
+                %p click on above image to preview
+                -#%button.btn.btn-default.btn-xs{:type => "button"}
+                  %i.fa.fa-edit
+                  Edit
+                -#%button.btn.btn-danger.btn-xs{:type => "button"}
+                  %i.fa.fa-remove
+                  Delete
+                %span.pull-right.text-muted
+                  #{time_ago_in_words(@template.created_at)} ago
           #tab_2.tab-pane
             .box
               .box-header

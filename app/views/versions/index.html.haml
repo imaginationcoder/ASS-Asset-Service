@@ -61,7 +61,7 @@
                         %a{:href => "#", data: {app_id: @app.id,version_number: version.number,version_id: version.id,
                                                 toggle: 'modal', target: '#version-publish-modal'}} Publish
                       %li
-                        %a{:href => "#"} Preview
+                        %a{:href =>  version_preview_path(@app.id, version.id)} Preview
                       %li.divider
                       %li
                         %a{:href => "#"} Delete
@@ -82,7 +82,7 @@
                         %a{:href => "#", data: {app_id: @app.id,version_number: version.number,version_id: version.id,
                                                 toggle: 'modal', target: '#version-publish-modal'}} Publish
                       %li
-                        %a{:href => "#"} Preview
+                        %a{:href => version_preview_path(@app.id, version.id)} Preview
                       %li.divider
                       %li
                         %a{:href => "#"} Delete
