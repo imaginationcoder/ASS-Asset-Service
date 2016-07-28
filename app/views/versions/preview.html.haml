@@ -115,6 +115,13 @@
                             %a{"data-toggle" => "tab", :href => "#text-assets-tab-#{template.id}"} Text Assets
                           %li
                             %a{"data-toggle" => "tab", :href => "#button-assets-tab-#{template.id}"} Btn Actions
+                          %li.dropdown.pull-right
+                            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                              Actions
+                              %span.caret
+                            %ul.dropdown-menu
+                              %li{:role => "presentation"}
+                                %a{:href => edit_template_path(template), :role => "menuitem", :tabindex => "-1"} Edit Permission
                         .tab-content
                           .tab-pane.active{id: "image-assets-tab-#{template.id}"}
                             .box-body
