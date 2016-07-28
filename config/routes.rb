@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   ## dev app's dashboard
   get 'my-apps' => 'apps#index', as: :my_apps
   resources :apps ,except: [:index] do
-    resources :pre_prompts , shallow: true
     resources :templates , shallow: true
     member do
       get 'tour/new' => 'tour#new',as: :new_tour
@@ -18,7 +17,9 @@ Rails.application.routes.draw do
       put 'tour' => 'tour#update', as: :update_tour
       resources :versions,only: [:index,:destroy]  do
         post 'publish'=> "versions#publish"
+        get 'preview'=> 'versions#preview', as: :preview
       end
+
     end
   end
   ## Profile
