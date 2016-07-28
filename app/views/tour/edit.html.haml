@@ -42,7 +42,7 @@
             .col-sm-12
               = render 'shared/error_messages', resource: @app
         #templates_fields
-          = f.fields_for :templates, @template do |tf|
+          = f.fields_for :templates,f.object.new_record? ? @template : @templates do |tf|
             = render 'tour/template_fields', f: tf
           .links.text-center
             = link_to_add_association f, :templates, title: 'Add one more step',class: 'btn btn-circle-sm btn-success', data: {toggle: 'tooltip'} do

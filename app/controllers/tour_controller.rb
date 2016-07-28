@@ -31,6 +31,7 @@ class TourController < ApplicationController
     @platform = Platform.default
     @platform_categories = @platform.platform_categories
     @permission = Permission.tour
+    @templates = @app.tour_templates
   end
 
   def update

@@ -44,6 +44,9 @@
                       %a{href: sidebar_permission_path(app, permission)}
                         %i.fa.fa-circle-o
                         = permission.name
+                %li{class:  is_active_link?(versions_path(app), :exclusive)  ? 'active' : nil}
+                  %a{:href => versions_path(app)}
+                    Versions
               -#%li{class:  is_active_link?(app_path(app), :exclusive)  ? 'active' : nil}
                 %a{:href => app_path(app)}
                   %i.fa.fa-eye>

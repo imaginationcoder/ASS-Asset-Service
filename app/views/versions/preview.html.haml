@@ -28,6 +28,13 @@
           - @tour_templates.each_with_index do |template, index|
             %li{class: index == 0 ? 'active' : nil}
               %a{"data-toggle" => "tab", :href => "#tour-tab-#{template.id}"} Step #{index+1}
+          %li.dropdown.pull-right
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Actions
+              %span.caret
+            %ul.dropdown-menu
+              %li{:role => "presentation"}
+                %a{:href => edit_tour_app_path(@app), :role => "menuitem", :tabindex => "-1"} Edit Tour
         .tab-content
           - @tour_templates.each_with_index do |template, index|
             .tab-pane{id: "tour-tab-#{template.id}", class: index == 0 ? 'active' : nil}

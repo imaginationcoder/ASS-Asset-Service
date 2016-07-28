@@ -25,18 +25,20 @@ class Version
     if published_changed? and published.eql?(true)
       # except this update all to unpublished and editing false
       app.versions.update_all(published: false, published_at: nil)
-      # set published time to now
-      self.published_at = Time.now;
-      self.editing = false; self.published = true
       count = app.versions.count + 1
+      # set published time to now
+      self.published_at = Time.now
+      self.published = true
+      #self.editing = false
       # then create a new version(i.e editing one) unless editing version exists
-      unless app.versions.where(editing: true).exists?
+      if self.editing.eql?(true)
         app.versions.update(editing: false)
-        app.versions.create(number: count, editing: true)
+        self.editing = false
+        new_version = app.versions.create(number: count, editing: true)
         # Now create app templates with newly generated version by cloning previous version's templates
-        app.templates.each do |template|
+        app.templates.where(app_version: new_version.number - 1).each do |template|
           cloned_template = template.clone
-          cloned_template.app_version = count # update app_version with newly generated one
+          cloned_template.app_version = new_version.number # update app_version with newly generated one
           # Set timestamps to nil so that new timestamps are added when saved
           cloned_template.created_at = nil;cloned_template.updated_at = nil
           # copy source of original template to cloned template
@@ -51,6 +53,9 @@ class Version
           cloned_template.save
         end
       end
+
+
+
     end
   end
 
