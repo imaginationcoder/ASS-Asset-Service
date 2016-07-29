@@ -28,14 +28,13 @@
               %ul.dropdown-menu.pull-right{:role => "menu"}
                 %li
                   %a.text-light-blue{href: edit_template_path(@template)}
-                    %i.fa.fa-edit
+                    %i.fa.fa-fw.fa-pencil
                     Edit
-                %li.divider
                 %li
                   %a.text-red{href: template_path(@template), data: { method: :delete,confirm: 'Are you sure?'}}
-                    %i.fa.fa-trash-o
+                    %i.fa.fa-fw.fa-trash-o
                     Delete
-              %button.btn.btn-box-tool{href: app_path(@template.app),data: {widget: 'remove',toggle: 'tooltip'}, title: 'Close'}
+              -#%button.btn.btn-box-tool{href: app_path(@template.app),data: {widget: 'remove',toggle: 'tooltip'}, title: 'Close'}
                 %i.fa.fa-times
         .tab-content
           #tab_1.tab-pane.active
@@ -115,6 +114,6 @@
             = space
             Delete
           %a.btn.btn-sm.btn-primary.btn-flat.pull-right{href: edit_template_path(@template)}
-            %i.fa.fa-edit
+            %i.fa.fa-pencil
             = space
             Edit

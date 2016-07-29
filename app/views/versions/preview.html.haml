@@ -37,9 +37,9 @@
                 Actions
                 %span.caret
               %ul.dropdown-menu
-                %li{:role => "presentation"}
+                %li
                   %a{:href => edit_tour_app_path(@app, version: @tour_templates.first.app_version), :role => "menuitem", :tabindex => "-1"}
-                    %i.fa.fa-pencil
+                    %i.fa.fa-fw.fa-pencil
                     Edit Tour
           .tab-content
             - @tour_templates.each_with_index do |template, index|
@@ -116,17 +116,16 @@
                       - if template
                         %li
                           %a{:href => edit_template_path(template,version: template.app_version), :role => "menuitem", :tabindex => "-1"}
-                            %i.fa.fa-pencil
+                            %i.fa.fa-fw.fa-pencil
                             Edit Assets
-                        %li.divider
                         %li
                           %a.text-red{href: template_path(template,version: template.app_version), data: { method: :delete,confirm: 'Are you sure?'}}
-                            %i.fa.fa-trash-o
+                            %i.fa.fa-fw.fa-trash-o
                             Delete
                       - else
                         %li
                           %a{:href => add_template_path(@app, permission,@version.number), :role => "menuitem", :tabindex => "-1"}
-                            %i.fa.fa-plus
+                            %i.fa.fa-fw.fa-plus
                             Add Assets
                 .panel-collapse.collapse{id: "collapse-#{permission.id}","aria-expanded" => "true", class: index == 0 ? 'in' : nil}
                   .box-body
