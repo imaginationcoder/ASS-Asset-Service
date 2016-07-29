@@ -24,70 +24,74 @@
   .row
     .col-md-12.col-sx-12
       .nav-tabs-custom
-        %ul.nav.nav-tabs
-          - @tour_templates.each_with_index do |template, index|
-            %li{class: index == 0 ? 'active' : nil}
-              %a{"data-toggle" => "tab", :href => "#tour-tab-#{template.id}"} Step #{index+1}
-          %li.dropdown.pull-right
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              Actions
-              %span.caret
-            %ul.dropdown-menu
-              %li{:role => "presentation"}
-                %a{:href => edit_tour_app_path(@app), :role => "menuitem", :tabindex => "-1"} Edit Tour
-        .tab-content
-          - @tour_templates.each_with_index do |template, index|
-            .tab-pane{id: "tour-tab-#{template.id}", class: index == 0 ? 'active' : nil}
-              .box.box-solid
-                .box-header
-                  %h3.box-title Image Asset
-                .box-body
-                  %a.magnific-popup-img{href: template.source.url, title: 'Image Asset'}
-                    %img.img-responsive.pad{:alt => "Photo", :src => template.source.thumb.url}
-                  %p click on above image to preview
-                  %span.pull-right.text-muted
-                    #{time_ago_in_words(template.created_at)} ago
-              .box.box-solid
-                .box-header
-                  %h3.box-title Text Assets
-                .box-body.table-responsive.no-padding
-                  %table.table.table-striped
-                    %tr
-                      %th #
-                      %th Text
-                      %th{style: 'width: 20px'} Position
-                    - template.text_assets.each_with_index do |ts, index|
+        - if @tour_templates.blank?
+          %p
+            %code No Assets found.
+        - else
+          %ul.nav.nav-tabs
+            - @tour_templates.each_with_index do |template, index|
+              %li{class: index == 0 ? 'active' : nil}
+                %a{"data-toggle" => "tab", :href => "#tour-tab-#{template.id}"} Step #{index+1}
+            %li.dropdown.pull-right
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Actions
+                %span.caret
+              %ul.dropdown-menu
+                %li{:role => "presentation"}
+                  %a{:href => edit_tour_app_path(@app), :role => "menuitem", :tabindex => "-1"} Edit Tour
+          .tab-content
+            - @tour_templates.each_with_index do |template, index|
+              .tab-pane{id: "tour-tab-#{template.id}", class: index == 0 ? 'active' : nil}
+                .box.box-solid
+                  .box-header
+                    %h3.box-title Image Asset
+                  .box-body
+                    %a.magnific-popup-img{href: template.source.url, title: 'Image Asset'}
+                      %img.img-responsive.pad{:alt => "Photo", :src => template.source.thumb.url}
+                    %p click on above image to preview
+                    %span.pull-right.text-muted
+                      #{time_ago_in_words(template.created_at)} ago
+                .box.box-solid
+                  .box-header
+                    %h3.box-title Text Assets
+                  .box-body.table-responsive.no-padding
+                    %table.table.table-striped
                       %tr
-                        %td= "#{index+1}."
-                        %td= ts.text
-                        %td
-                          %span.badge.bg-light-blue= ts.position
-              .box.box-solid
-                .box-header
-                  %h3.box-title Button Actions
-                .box-body.table-responsive.no-padding
-                  %table.table.table-striped
-                    %tr
-                      %th #
-                      %th Type
-                      %th Label/Image
-                      %th Target Event
-                    - template.button_actions.each_with_index do |bc, index|
+                        %th #
+                        %th Text
+                        %th{style: 'width: 20px'} Position
+                      - template.text_assets.each_with_index do |ts, index|
+                        %tr
+                          %td= "#{index+1}."
+                          %td= ts.text
+                          %td
+                            %span.badge.bg-light-blue= ts.position
+                .box.box-solid
+                  .box-header
+                    %h3.box-title Button Actions
+                  .box-body.table-responsive.no-padding
+                    %table.table.table-striped
                       %tr
-                        %td= "#{index+1}."
-                        %td
-                          - if bc.btn_type.eql?(1)
-                            %span.badge.bg-light-blue Text
-                          - else
-                            %span.badge.bg-yellow Image
-                        %td
-                          - if bc.btn_type.eql?(1)
-                            = bc.label
-                          - else
-                            %a.magnific-popup-img{href: bc.source.url, title: 'Image Asset'}
-                              Show
-                              %i.fa.fa-eye
-                        %td= bc.target_event
+                        %th #
+                        %th Type
+                        %th Label/Image
+                        %th Target Event
+                      - template.button_actions.each_with_index do |bc, index|
+                        %tr
+                          %td= "#{index+1}."
+                          %td
+                            - if bc.btn_type.eql?(1)
+                              %span.badge.bg-light-blue Text
+                            - else
+                              %span.badge.bg-yellow Image
+                          %td
+                            - if bc.btn_type.eql?(1)
+                              = bc.label
+                            - else
+                              %a.magnific-popup-img{href: bc.source.url, title: 'Image Asset'}
+                                Show
+                                %i.fa.fa-eye
+                          %td= bc.target_event
   .row
     .col-md-12.col-sx-12
       .box.box-solid
@@ -97,7 +101,7 @@
           #accordion.box-group
             - if @permission_templates.blank?
               %p
-                %code No Assets added.
+                %code No Assets found.
             - else
               - @permission_templates.each_with_index do |template,index|
                 .panel.box

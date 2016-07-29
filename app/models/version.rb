@@ -38,6 +38,7 @@ class Version
         # Now create app templates with newly generated version by cloning previous version's templates
         app.templates.where(app_version: new_version.number - 1).each do |template|
           cloned_template = template.clone
+          cloned_template.via_publishing = true
           cloned_template.app_version = new_version.number # update app_version with newly generated one
           # Set timestamps to nil so that new timestamps are added when saved
           cloned_template.created_at = nil;cloned_template.updated_at = nil

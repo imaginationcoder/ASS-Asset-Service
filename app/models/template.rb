@@ -6,6 +6,8 @@ class Template
   ## Fields
   field :app_version, type: Integer, default: 1
   field :platform_category_id
+  ## below field is to check whether this template creating from when version is publishing
+  field :via_publishing , type: Boolean, default: false
 
   ## Uploader
   mount_uploader :source, AssetUploader, dependent: :destroy
@@ -32,8 +34,12 @@ class Template
   ## Callbacks
 
   # update app_version with current app editing version
-  before_save do |document|
-    document.app_version = document.app.editing_version.number
+  before_create do |document|
+    # don't assign app_version if it is creating when app version is published
+     unless document.via_publishing.eql?(true)
+       document.app_version = document.app.editing_version.number
+       document.unset(:via_publishing)
+     end
   end
 
 end
