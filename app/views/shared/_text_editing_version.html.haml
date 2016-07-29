@@ -1,6 +1,6 @@
 .row
   .col-md-3.col-md-offset-9.col-sm-3.text-right.pull-right.editing-version
-    %a.text-light-blue{href:  versions_path(@app)}
+    %a.text-light-blue{href:  versions_path(app)}
       %h4
         %u
-          Now Editing Version #{template ? template.app_version : app.editing_version.number}*
+          Now Editing Version #{version || app.editing_version.number}*

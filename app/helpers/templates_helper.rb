@@ -1,7 +1,7 @@
 module TemplatesHelper
 
-  def add_template_path(app, permission)
-    new_app_template_path(app, permission_id: permission)
+  def add_template_path(app, permission, version= nil)
+    new_app_template_path(app, permission_id: permission.id, version: version)
   end
 
   # if permission pre-prompt(template) is already added to an app

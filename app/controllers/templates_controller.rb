@@ -31,8 +31,17 @@ class TemplatesController < ApplicationController
 
   def create
     @template = @app.templates.build(template_params)
+    if params[:version].present?
+      @template.app_version = params[:version]
+      @template.via_publishing = true
+    end
     if @template.save
-      redirect_to template_url(@template), notice: 'Pre Prompt added to app.'
+      if params[:version].present?
+        version = @template.app.versions.where(number: params[:version]).first
+        redirect_to version_preview_path(@template.app.id, version.id), notice: 'Permission was successfully added.Below is the preview'
+      else
+        redirect_to template_url(@template), notice: 'Permission added to app.'
+      end
     else
       render action: 'new'
     end
@@ -48,7 +57,6 @@ class TemplatesController < ApplicationController
       else
         redirect_to template_url(@template), notice: 'Permission was successfully updated.'
       end
-
     else
       render action: 'edit'
     end
@@ -58,7 +66,13 @@ class TemplatesController < ApplicationController
   def destroy
     @template = Template.find(params[:id])
     @template.destroy
-    redirect_to app_url(@template.app), notice: 'Pre Prompt was successfully deleted.'
+    if params[:version].present?
+      version = @template.app.versions.where(number: params[:version]).first
+      redirect_to version_preview_path(@template.app.id, version.id), notice: 'Permission was successfully deleted.Below is the preview'
+    else
+      redirect_to app_url(@template.app), notice: 'Permission was successfully deleted.'
+    end
+
   end
 
   private

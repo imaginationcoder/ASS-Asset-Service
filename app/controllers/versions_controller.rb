@@ -21,9 +21,10 @@ class VersionsController < ApplicationController
   end
 
   def preview
-    templates = @app.templates.where(app_version: @version.number)
-    @tour_templates = templates.where(permission_id: Permission.tour.id)
-    @permission_templates =  templates.where(:permission_id.ne=> Permission.tour.id)
+    @templates = @app.templates.where(app_version: @version.number)
+    tour_permission = Permission.tour
+    @tour_templates = @templates.where(permission_id: tour_permission.id)
+    @permissions = Permission.where(:id.ne=> tour_permission.id)
   end
 
   private

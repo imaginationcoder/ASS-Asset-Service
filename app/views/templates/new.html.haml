@@ -16,7 +16,7 @@
 %section.content
   .row
     .col-md-10.col-md-offset-1.col-xs-12
-      = render 'shared/text_editing_version', app: @app, template: nil
+      = render 'shared/text_editing_version', app: @app, version: params[:version]
       .row
         .col-sm-12
           .alert.alert-info.alert-dismissible.fade.in
@@ -34,6 +34,7 @@
               Pro Tip
             = @permission.pro_tip
       = form_for(@template, url: app_templates_path(@app)) do |f|
+        = hidden_field_tag :version , params[:version]
         = f.hidden_field :permission_id
         = f.hidden_field :app_id
         %fieldset.target-platform.text-center

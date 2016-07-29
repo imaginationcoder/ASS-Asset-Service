@@ -10,7 +10,7 @@
     %li Permissions
     %li.active= @permission.name
 %section.content
-  = render 'shared/text_editing_version', app: @app, template: @template
+  = render 'shared/text_editing_version', app: @app, version: @template.app_version
   .row
     .col-md-12
       .nav-tabs-custom

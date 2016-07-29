@@ -15,7 +15,7 @@
         = @app.name
     %li.active Edit
 %section.content
-  = render 'shared/text_editing_version', app: @app
+  = render 'shared/text_editing_version', app: @app, version: nil
   = form_for(@app) do |f|
     .box.box-primary
       .box-header.with-border

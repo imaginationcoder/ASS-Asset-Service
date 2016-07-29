@@ -19,7 +19,7 @@
 %section.content
   .row
     .col-md-10.col-md-offset-1.col-xs-12
-      = render 'shared/text_editing_version', app: @app, template: @template
+      = render 'shared/text_editing_version', app: @app, version: @template.app_version
       -#.row
         .col-sm-12
           .alert.alert-info.alert-dismissible.fade.in

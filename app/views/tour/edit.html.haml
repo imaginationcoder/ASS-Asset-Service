@@ -25,7 +25,7 @@
 %section.content#add-tour-to-app
   .row
     .col-md-10.col-md-offset-1.col-xs-12
-      = render 'shared/text_editing_version', app: @app, template: @templates.first
+      = render 'shared/text_editing_version', app: @app, version: @templates.first.app_version
       = form_for(@app, url: update_tour_app_path(@app), method: :put) do |f|
         = hidden_field_tag :version , params[:version]
         %fieldset.target-platform.text-center
