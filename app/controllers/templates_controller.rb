@@ -42,7 +42,13 @@ class TemplatesController < ApplicationController
   def update
     @template = Template.find(params[:id])
     if @template.update_attributes(template_params)
-      redirect_to template_url(@template), notice: 'Pre Prompt was successfully updated.'
+      if params[:version].present?
+        version = @template.app.versions.where(number: params[:version]).first
+        redirect_to version_preview_path(@template.app.id, version.id), notice: 'Permission was successfully updated.Below is the preview'
+      else
+        redirect_to template_url(@template), notice: 'Permission was successfully updated.'
+      end
+
     else
       render action: 'edit'
     end

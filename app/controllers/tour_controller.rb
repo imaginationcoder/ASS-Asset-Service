@@ -31,13 +31,18 @@ class TourController < ApplicationController
     @platform = Platform.default
     @platform_categories = @platform.platform_categories
     @permission = Permission.tour
-    @templates = @app.tour_templates
+    @templates = params[:version].present? ?  @app.templates.where(permission: Permission.tour, app_version: params[:version]) : @app.tour_templates
   end
 
   def update
     @app = App.find(params[:id])
     if @app.update_attributes(app_params)
-      redirect_to tour_app_url(@app), notice: 'Tour was successfully updated.'
+      if params[:version].present?
+        version = @app.versions.where(number: params[:version]).first
+        redirect_to version_preview_path(@app.id, version.id), notice: 'Tour was successfully updated.Below is the preview'
+      else
+        redirect_to tour_app_url(@app), notice: 'Tour was successfully updated.'
+      end
     else
       render action: 'edit'
     end

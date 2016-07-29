@@ -38,7 +38,7 @@
                 %span.caret
               %ul.dropdown-menu
                 %li{:role => "presentation"}
-                  %a{:href => edit_tour_app_path(@app), :role => "menuitem", :tabindex => "-1"} Edit Tour
+                  %a{:href => edit_tour_app_path(@app, version: @tour_templates.first.app_version), :role => "menuitem", :tabindex => "-1"} Edit Tour
           .tab-content
             - @tour_templates.each_with_index do |template, index|
               .tab-pane{id: "tour-tab-#{template.id}", class: index == 0 ? 'active' : nil}
@@ -125,7 +125,7 @@
                               %span.caret
                             %ul.dropdown-menu
                               %li{:role => "presentation"}
-                                %a{:href => edit_template_path(template), :role => "menuitem", :tabindex => "-1"} Edit Permission
+                                %a{:href => edit_template_path(template,version: template.app_version), :role => "menuitem", :tabindex => "-1"} Edit Permission
                         .tab-content
                           .tab-pane.active{id: "image-assets-tab-#{template.id}"}
                             .box-body
