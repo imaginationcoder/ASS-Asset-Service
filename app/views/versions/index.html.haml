@@ -19,7 +19,10 @@
       .callout{class: @published_version ? 'callout-success' : 'callout-danger'}
         -#%button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times
         - if @published_version
-          %h4 Version #{@published_version.number} is Live
+          %h4
+            %i.fa.fa-code-fork
+            = space
+            Version #{@published_version.number} is Live
           %p Published #{time_ago_in_words(@published_version.published_at)} ago by #{current_user.email}
         - else
           %h4 App Not Published
