@@ -75,9 +75,6 @@ gem 'cancancan'
 gem 'mongoid_paranoia'
 
 gem 'bootstrap_sb_admin_base_v2'
-# show flash messages
-gem 'growlyflash'
-
 gem 'cocoon'
 
 gem 'magnific-popup-rails', '~> 1.1.0'

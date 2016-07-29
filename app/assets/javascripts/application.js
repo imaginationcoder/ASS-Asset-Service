@@ -17,7 +17,6 @@
 //= require turbolinks
 //= require magnific-popup
 // require bootstrap_sb_admin_base_v2
-//= require growlyflash
 //= require cocoon
 // require init
 //= require apps

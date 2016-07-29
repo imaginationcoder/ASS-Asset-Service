@@ -70,6 +70,7 @@ $(document).on('page:load', function() {
 
 //$(document).ajaxStart(function() { Pace.restart(); });
 $( document ).ready(function() {
+
     //Enable trubolinks prgress indicator
     // Turbolinks.enableProgressBar();
     // Turbolinks progress bar replacement with pace js

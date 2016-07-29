@@ -17,7 +17,7 @@
 //= require turbolinks
 //= require pace
 //= require magnific-popup 
-//= require growlyflash
+//= require toastr
 //= require admin-lte
 //= require fastclick  
 //= require jquery.slimscroll

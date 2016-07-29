@@ -18,8 +18,6 @@
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'adminlte',  'data-turbolinks-track' => true %>
-  <%= growlyflash_static_notices %>
-
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -49,6 +47,7 @@ desired effect
   <%= render 'shared/admin_lte/left_sidebar' %>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <%= render 'shared/flash_messages' %>
    <%= yield %>
   </div>
   <!-- /.content-wrapper -->

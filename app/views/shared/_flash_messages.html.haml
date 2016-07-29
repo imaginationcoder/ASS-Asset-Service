@@ -1,5 +1,5 @@
-- flash.each do |msg_type, message|
-  .alert.alert-dismissible.fade.in{role: 'alert',class: bootstrap_class_for(msg_type)}
-    %button.close{"aria-label" => "Close", "data-dismiss" => "alert", type: 'button'}
-      %span{"aria-hidden" => "true"} &times;
-    = message
+- unless flash.empty?
+  - flash.each do |f|
+    - type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info')
+    =javascript_tag do
+      toastr["#{type}"]("#{f[1]}")
