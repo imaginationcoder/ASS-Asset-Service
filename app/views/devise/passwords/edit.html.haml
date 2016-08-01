@@ -19,6 +19,6 @@
           %span.glyphicon.glyphicon-log-in.form-control-feedback
         .row
           .col-xs-12.pull-right
-            = f.submit 'Change My Password', class: 'btn btn-primary btn-block btn-flat'
+            %button.btn.btn-primary.btn-block.btn-flat.btn-progress{"data-loading-text"=>btn_prog_text('Change My Password'),:type => "submit"} Change My Password
         %br
         = render "devise/shared/links"

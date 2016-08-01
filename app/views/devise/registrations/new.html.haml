@@ -32,8 +32,8 @@
                 %input{:type => "checkbox"}/
                 I agree to the
                 %a{:href => "#"} terms
-          .col-xs-4
-            = f.submit 'Register', class: 'btn btn-primary btn-block btn-flat'
+          .col-xs-4 
+            %button.btn.btn-primary.btn-block.btn-flat.btn-progress{"data-loading-text"=>btn_prog_text('Register'),:type => "submit"} Register
         .social-auth-links.text-center
           %p - OR -
           %a.btn.btn-block.btn-social.btn-github.btn-flat{:href => "#"}

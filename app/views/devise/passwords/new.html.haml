@@ -14,6 +14,6 @@
           %span.glyphicon.glyphicon-envelope.form-control-feedback
         .row
           .col-xs-12.pull-right
-            = f.submit 'Send', class: 'btn btn-primary btn-block btn-flat'
+            %button.btn.btn-primary.btn-block.btn-flat.btn-progress{"data-loading-text"=>btn_prog_text('Sending..'),:type => "submit"} Send
         %br/
         %a.text-center{:href => new_registration_path(resource_name)} Register a new membership
