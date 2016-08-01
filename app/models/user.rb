@@ -37,11 +37,10 @@ class User
   # field :locked_at,       type: Time
 
   # Validations
-  validates :fname, :lname , presence: true
+  validates :full_name , presence: true
 
   ## Custom
-  field :fname
-  field :lname
+  field :full_name
   field :company
   field :is_developer, type: Boolean, default: true
   ## optional
@@ -58,10 +57,6 @@ class User
 
   def published_apps
     apps.where('versions.published' => true)
-  end
-
-  def full_name
-    "#{fname} #{lname}"
   end
 
   def member_since
