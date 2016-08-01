@@ -1,48 +1,38 @@
-- page_title 'Login'
-.container
-  .row.text-justify
-    .middlePage.col-md-6.col-md-offset-6
-      .page-header.text-center
-        %h3.logo
-          = link_to image_tag('small-logo-green.png') , root_path
-      .row
-        .col-sm-12
-          = render 'shared/flash_messages'
-      .panel.panel-info
-        .panel-heading
-          %h3.panel-title Please Sign In
-        .panel-body
-          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-            .row
-              .col-sm-5{style: 'padding-bottom: 10px;'}
-                %a.btn.btn-block.btn-social.btn-google-plus
-                  %span.fa.fa-google-plus
-                  Sign in with Google
-                %a.btn.btn-block.btn-social.btn-facebook
-                  %span.fa.fa-facebook
-                  Sign in with Facebook
-                %a.btn.btn-block.btn-social.btn-github
-                  %span.fa.fa-github
-                  Sign in with Github
-              .col-sm-7{:style => "border-left:1px solid #ccc;height:160px"}
-                %fieldset
-                  = f.email_field :email, class: 'form-control',placeholder: 'Enter Email'
-                  .spacing
-                  = f.password_field :password, autocomplete: "off",class: 'form-control',placeholder: 'Enter Password'
-                  .spacing
-                  = f.check_box :remember_me
-                  %small Remember me
-
-                  .spacing
-                  %a{href: new_password_path(resource_name)}
-                    %small Forgot Password?
-            .row
-              .col-sm-6
-                Don't have an account?
-                %a{href: new_registration_path(resource_name)}
-                  %small Register
-              .col-sm-6.pull-right
-                = f.submit 'Sign In', class: 'btn btn-info btn-sm pull-right hello'
-      %p.text-center
-        %a{href:  t('app.company.url'), target: '_blank'} About
-        · #{t('app.company.name')}
+- page_title 'Log in'
+%body.hold-transition.login-page
+  .login-box
+    .login-logo
+      %a{:href => root_url}
+        %b> ASS
+        SDK
+    .login-box-body
+      = render 'shared/flash_messages'
+      %p.login-box-msg Sign in to start your session
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .form-group.has-feedback
+          = f.email_field :email, class: 'form-control',placeholder: 'Email'
+          %span.glyphicon.glyphicon-envelope.form-control-feedback
+        .form-group.has-feedback
+          = f.password_field :password, autocomplete: "off",class: 'form-control',placeholder: 'Password'
+          %span.glyphicon.glyphicon-lock.form-control-feedback
+        .row
+          .col-xs-8
+            .checkbox.icheck
+              %label
+                = f.check_box :remember_me
+                Remember Me
+          .col-xs-4
+            = f.submit 'Sign In', class: 'btn btn-primary btn-block btn-flat'
+      .social-auth-links.text-center
+        %p - OR -
+        %a.btn.btn-block.btn-social.btn-github.btn-flat{:href => "#"}
+          %i.fa.fa-github
+          Sign in using
+          Git hub
+        %a.btn.btn-block.btn-social.btn-google.btn-flat{:href => "#"}
+          %i.fa.fa-google-plus
+          Sign in using
+          Google+
+      %a{:href =>  new_password_path(resource_name)} I forgot my password
+      %br/
+      %a.text-center{:href => new_registration_path(resource_name)} Register a new membership

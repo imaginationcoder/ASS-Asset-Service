@@ -39,24 +39,21 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue layout-boxed sidebar-mini">
-<div class="wrapper">
-  <!-- Main Header -->
-  <%= render 'shared/admin_lte/main_header' %>
-  <!-- Left side column. contains the logo and sidebar -->
-  <%= render 'shared/admin_lte/left_sidebar' %>
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <%= render 'shared/flash_messages' %>
-   <%= yield %>
-  </div>
-  <!-- /.content-wrapper -->
-  <!-- Main Footer -->
-  <%= render 'shared/admin_lte/footer' %>
-  <!-- Control Sidebar -->
-  <%= render 'shared/admin_lte/right_sidebar' %>
-</div>
-<!-- ./wrapper -->
-<!-- REQUIRED JS SCRIPTS -->
-</body>
+
+<% if devise_controller? %>
+    <%= yield %>
+<% else %>
+    <body class="hold-transition skin-blue layout-boxed sidebar-mini">
+    <div class="wrapper">
+      <%= render 'shared/admin_lte/main_header' %>
+      <%= render 'shared/admin_lte/left_sidebar' %>
+      <div class="content-wrapper">
+        <%= render 'shared/flash_messages' %>
+        <%= yield %>
+      </div>
+      <%= render 'shared/admin_lte/footer' %>
+      <%= render 'shared/admin_lte/right_sidebar' %>
+    </div>
+    </body>
+<% end %>
 </html>
