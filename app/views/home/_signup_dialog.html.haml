@@ -8,9 +8,7 @@
           Register
         %ul.list-unstyled
           %li
-            = f.text_field :fname,  class: 'text-box-dark', required: true ,placeholder: 'First Name*'
-          %li
-            = f.text_field :lname,  class: 'text-box-dark', required: true, placeholder: 'Last Name*'
+            = f.text_field :full_name,  class: 'text-box-dark', required: true ,placeholder: 'Full Name*', style: 'width: 100%'
         %ul.list-unstyled
           %li
             = f.email_field :email,  class: 'text-box-dark', required: true, placeholder: 'Email*'
