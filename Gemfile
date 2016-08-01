@@ -87,3 +87,5 @@ gem 'active_link_to'
 # Simple gem for copying CarrierWave files between resources.
 # It's solving issues with local and remote storage discussed here
 gem 'copy_carrierwave_file'
+#iCheck is a library for creating super customized checkboxes and radio buttons with JQuery & Zepto
+gem 'icheck-rails'

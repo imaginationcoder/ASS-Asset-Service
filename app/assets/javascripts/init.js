@@ -108,4 +108,11 @@ $( document ).ready(function() {
     $('.btn-circle-mini, .btn-circle-sm, .btn-box-tool').click(function () {
         $(this).blur();
     });
+
+    // icheck initialization
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' // optional
+    });
 });

@@ -21,6 +21,7 @@
 //= require admin-lte
 //= require fastclick  
 //= require jquery.slimscroll
+//= require 'icheck'
 //= require cocoon
 //= require skins
 //= require init
