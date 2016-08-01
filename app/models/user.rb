@@ -45,7 +45,7 @@ class User
   field :is_developer, type: Boolean, default: true
   ## optional
   field :phone
-  field :designation
+  #field :designation
   field :notes
 
   ## Uploader ----------------------------------------- ##

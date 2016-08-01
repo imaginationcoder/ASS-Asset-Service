@@ -73,13 +73,9 @@
           #profile.tab-pane.active
             = form_for current_user, url: update_profile_path, html: {method: :put,class: 'form-update-profile form-horizontal'} do |f|
               .form-group
-                %label.col-sm-2.control-label{:for => 'firstName'} First Name*
+                %label.col-sm-2.control-label{:for => 'fullName'} Full Name*
                 .col-sm-10
-                  = f.text_field :fname, class: 'form-control', placeholder: 'First Name'
-              .form-group
-                %label.col-sm-2.control-label{:for => 'lastName'} last Name*
-                .col-sm-10
-                  = f.text_field :lname, class: 'form-control', placeholder: 'Last Name'
+                  = f.text_field :full_name, class: 'form-control', placeholder: 'Full Name'
               .form-group
                 %label.col-sm-2.control-label{:for => 'email'} Email*
                 .col-sm-10
@@ -91,11 +87,7 @@
               .form-group
                 %label.col-sm-2.control-label{:for => 'company'} Company
                 .col-sm-10
-                  = f.text_field :company, class: 'form-control', placeholder: 'Company'
-              .form-group
-                %label.col-sm-2.control-label{:for => 'company'} Designation
-                .col-sm-10
-                  = f.text_field :designation, class: 'form-control', placeholder: 'Designation'
+                  = f.text_field :company, class: 'form-control', placeholder: 'Company' 
               .form-group
                 %label.col-sm-2.control-label{:for => 'notes'} Notes
                 .col-sm-10
