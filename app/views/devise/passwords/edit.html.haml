@@ -1,38 +1,24 @@
 - page_title 'Change your password'
-.container
-  .row.text-justify
+%body.hold-transition.login-page
+  .login-box
+    .login-logo
+      %a{:href => root_url}
+        %b> ASS
+        SDK
     = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
       = f.hidden_field :reset_password_token
-      .middlePage.col-md-6.col-md-offset-6
-        .page-header.text-center
-          %h3.logo
-            = link_to image_tag('small-logo-green.png') , root_path
+      = render 'shared/error_messages', resource: resource
+      .login-box-body
+        = render 'shared/flash_messages'
+        %p.login-box-msg Change your password
+        .form-group.has-feedback
+          = f.password_field :password,  class: 'form-control', placeholder: 'New Password'
+          %span.glyphicon.glyphicon-lock.form-control-feedback
+        .form-group.has-feedback
+          = f.password_field :password_confirmation,  class: 'form-control', required: false, placeholder: 'Confirm New Password'
+          %span.glyphicon.glyphicon-log-in.form-control-feedback
         .row
-          .col-sm-12
-            = render 'shared/error_messages', resource: resource
-        .panel.panel-info
-          .panel-heading
-            %h3.panel-title Change your password
-          .panel-body
-            .row
-              .col-sm-12
-                %fieldset
-                  .row
-                    .col-sm-12
-                      .form-group
-                        = f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: 'New password'
-                  .row
-                    .col-sm-12
-                      .form-group
-                        = f.password_field :password_confirmation, autocomplete: "off" , class: 'form-control', placeholder: 'Confirm new password"'
-
-            .row
-              .col-sm-12.pull-right
-                = f.submit 'Change my password', class: 'btn btn-info btn-sm pull-right hello'
-            .row
-              .col-sm-12
-                .form-group
-                  = render "devise/shared/links"
-        %p.text-center
-          %a{href:  t('app.company.url'), target: '_blank'} About
-          · #{t('app.company.name')}
+          .col-xs-12.pull-right
+            = f.submit 'Change My Password', class: 'btn btn-primary btn-block btn-flat'
+        %br
+        = render "devise/shared/links"

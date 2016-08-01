@@ -1,35 +1,19 @@
 - page_title 'Forgot your password'
-.container
-  .row.text-justify
+%body.hold-transition.login-page
+  .login-box
+    .login-logo
+      %a{:href => root_url}
+        %b> ASS
+        SDK
     = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-      .middlePage.col-md-6.col-md-offset-6
-        .page-header.text-center
-          %h3.logo
-            = link_to image_tag('small-logo-green.png') , root_path
+      = render 'shared/error_messages', resource: resource
+      .login-box-body
+        %p.login-box-msg Forgot your password?
+        .form-group.has-feedback
+          = f.email_field :email, class: 'form-control',placeholder: 'Enter Email'
+          %span.glyphicon.glyphicon-envelope.form-control-feedback
         .row
-          .col-sm-12
-            = render 'shared/error_messages', resource: resource
-        .panel.panel-info
-          .panel-heading
-            %h3.panel-title Forgot your password?
-          .panel-body
-            .row
-              .col-sm-12
-                %fieldset
-                  .row
-                    .col-sm-12
-                      .form-group
-                        = f.email_field :email,  class: 'form-control', required: true, placeholder: 'Email'
-
-            .row
-              .col-sm-12.pull-right
-                = f.submit 'Send', class: 'btn btn-info btn-sm pull-right hello'
-            .row
-              .col-sm-12
-                .form-group
-                  Click here to
-                  %a{href: new_session_path(resource_name)}
-                    %small Login
-        %p.text-center
-          %a{href:  t('app.company.url'), target: '_blank'} About
-          · #{t('app.company.name')}
+          .col-xs-12.pull-right
+            = f.submit 'Send', class: 'btn btn-primary btn-block btn-flat'
+        %br/
+        %a.text-center{:href => new_registration_path(resource_name)} Register a new membership
