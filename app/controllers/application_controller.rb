@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << [:fname, :lname, :company]
-    devise_parameter_sanitizer.for(:account_update) << [:fname, :lname, :company]
+    devise_parameter_sanitizer.for(:sign_up) << [:full_name, :company]
+    devise_parameter_sanitizer.for(:account_update) << [:full_name, :company]
   end
 
   def layout_by_resource

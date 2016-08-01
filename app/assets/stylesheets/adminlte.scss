@@ -111,3 +111,11 @@ ul.dropdown-menu>li>a:hover{
 .editing-version h4 {
   font-style: italic;
 }
+
+// override for login and register page margin
+.login-box{
+  margin: 5% auto;
+}
+.register-box {
+  margin: 1% auto;
+}
