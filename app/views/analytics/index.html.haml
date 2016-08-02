@@ -14,3 +14,94 @@
       %a{href: app_path(@app)}= @app.name
     %li.active Analytics
 %section.content
+  .row
+    .col-md-3.col-xs-6
+      .form-group
+        %label Choose Version
+        = select_tag "analytics_version", options_from_collection_for_select(@app.versions, 'id', 'number'), class: 'form-control select2', style: 'width: 100%;'
+  .row
+    .col-sx-12.text-center.text-light-blue.text-uppercase
+      %h4 #{@app.name} Analytics - Tour
+  .row
+    .col-xs-12
+      .box
+        .box-body.no-padding
+          %table.table.table-striped
+            %tr
+              %th Asset
+              %th Version
+              %th Progress
+              %th Avg time users spent
+            %tr
+              %td
+                %a{href: '#'} Step 1
+              %td 1
+              %td
+                .progress.progress-xs
+                  .progress-bar.progress-bar-danger{:style => "width: 55%"}
+              %td
+                %span.badge.bg-red 55%
+            %tr
+              %td
+                %a{href: '#'} Step 2
+              %td 1
+              %td
+                .progress.progress-xs
+                  .progress-bar.progress-bar-yellow{:style => "width: 70%"}
+              %td
+                %span.badge.bg-yellow 70%
+            %tr
+              %td
+                %a{href: '#'} Step 3
+              %td 1
+              %td
+                .progress.progress-xs.progress-striped.active
+                  .progress-bar.progress-bar-primary{:style => "width: 30%"}
+              %td
+                %span.badge.bg-light-blue 30%
+            %tr
+              %td
+                %a{href: '#'} Step 4
+              %td 1
+              %td
+                .progress.progress-xs.progress-striped.active
+                  .progress-bar.progress-bar-success{:style => "width: 90%"}
+              %td
+                %span.badge.bg-green 90%
+  // permissions
+  .row
+    .col-sx-12.text-center.text-light-blue.text-uppercase
+      %h4 #{@app.name} Analytics - Permissions
+  .row
+    .col-xs-12
+      .box
+        .box-body.no-padding
+          %table.table.table-striped
+            %tr
+              %th Asset
+              %th Version
+              %th Avg time users spent
+            %tr
+              %td.text-uppercase
+                %a{href: '#'} Camera
+              %td 1
+              %td
+                %span.badge.bg-light-blue 1.5
+            %tr
+              %td.text-uppercase
+                %a{href: '#'} Contacts
+              %td 1
+              %td
+                %span.badge.bg-light-blue 2
+            %tr
+              %td.text-uppercase
+                %a{href: '#'} Location
+              %td 1
+              %td
+                %span.badge.bg-light-blue 1.76
+            %tr
+              %td.text-uppercase
+                %a{href: '#'} Notifications
+              %td 1
+              %td
+                %span.badge.bg-light-blue 3.4
