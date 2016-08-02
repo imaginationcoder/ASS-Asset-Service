@@ -40,7 +40,7 @@
                 .progress.progress-xs
                   .progress-bar.progress-bar-danger{:style => "width: 55%"}
               %td
-                %span.badge.bg-red 55%
+                %span.badge.bg-red 30%
             %tr
               %td
                 %a{href: '#'} Step 2
@@ -58,7 +58,7 @@
                 .progress.progress-xs.progress-striped.active
                   .progress-bar.progress-bar-primary{:style => "width: 30%"}
               %td
-                %span.badge.bg-light-blue 30%
+                %span.badge.bg-light-blue 55%
             %tr
               %td
                 %a{href: '#'} Step 4
@@ -76,7 +76,12 @@
             %button.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
               %i.fa.fa-minus
         .box-body
-          %canvas#pieChart{:style => "height:200px"}
+          .row
+            .col-xs-12
+              %canvas#pieChart{:style => "height:200px"}
+          .row
+            .col-xs-12
+              #pieChart-legend
 
   // permissions
   .row
@@ -121,12 +126,11 @@
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
     var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-    var pieChart = new Chart(pieChartCanvas);
     var PieData = [
       {
-        value: 55,
-        color: "#f56954",
-        highlight: "#f56954",
+        value: 30,
+        color: "#dd4b39",
+        highlight: "#dd4b39",
         label: "Step 1"
       },
       {
@@ -136,8 +140,8 @@
         label: "Step 2"
       },
       {
-        value: 30,
-        color: "#3c8dbc",
+        value: 55,
+        color: "#3c8dbc ",
         highlight: "#3c8dbc",
         label: "Step 3"
       },
@@ -172,6 +176,8 @@
       //String - A legend template
       legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
     };
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    pieChart.Doughnut(PieData, pieOptions);
+    // Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below./
+    var pieChart = new Chart(pieChartCanvas).Doughnut(PieData, pieOptions);
+    // legendTemplate is if you want to generate an HTML legend for the chart and use somewhere else on the page
+    //document.getElementById('pieChart-legend').innerHTML = pieChart.generateLegend();
