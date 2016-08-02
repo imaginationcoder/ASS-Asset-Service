@@ -23,7 +23,7 @@
     .col-sx-12.text-center.text-light-blue.text-uppercase
       %h4 #{@app.name} Analytics - Tour
   .row
-    .col-xs-12
+    .col-xs-12.col-md-6
       .box
         .box-body.no-padding
           %table.table.table-striped
@@ -68,6 +68,16 @@
                   .progress-bar.progress-bar-success{:style => "width: 90%"}
               %td
                 %span.badge.bg-green 90%
+    .col-xs-12.col-md-6
+      .box
+        .box-header.with-border
+          %h3.box-title Average time users spent
+          -#.box-tools.pull-right
+            %button.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+              %i.fa.fa-minus
+        .box-body
+          %canvas#pieChart{:style => "height:200px"}
+
   // permissions
   .row
     .col-sx-12.text-center.text-light-blue.text-uppercase
@@ -105,3 +115,63 @@
               %td 1
               %td
                 %span.badge.bg-light-blue 3.4
+:javascript
+    //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+    var pieChart = new Chart(pieChartCanvas);
+    var PieData = [
+      {
+        value: 55,
+        color: "#f56954",
+        highlight: "#f56954",
+        label: "Step 1"
+      },
+      {
+        value: 70,
+        color: "#f39c12",
+        highlight: "#f39c12",
+        label: "Step 2"
+      },
+      {
+        value: 30,
+        color: "#3c8dbc",
+        highlight: "#3c8dbc",
+        label: "Step 3"
+      },
+      {
+        value: 90,
+        color: "#00a65a",
+        highlight: "#00a65a",
+        label: "Step 4"
+      }
+    ];
+    var pieOptions = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke: true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor: "#fff",
+      //Number - The width of each segment stroke
+      segmentStrokeWidth: 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 50, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps: 100,
+      //String - Animation easing effect
+      animationEasing: "easeOutBounce",
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate: true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale: false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+    };
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChart.Doughnut(PieData, pieOptions);
