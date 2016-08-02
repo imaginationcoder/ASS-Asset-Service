@@ -1,0 +1,16 @@
+= page_title('Analytics')
+%section.content-header
+  %h4
+    Analytics
+    %small= @app.name
+  %ol.breadcrumb
+    %li
+      %a{:href => root_url}
+        %i.fa.fa-dashboard
+        Dashboard
+    %li
+      %a{href: my_apps_path} Apps
+    %li
+      %a{href: app_path(@app)}= @app.name
+    %li.active Analytics
+%section.content
