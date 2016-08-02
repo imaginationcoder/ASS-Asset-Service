@@ -6,6 +6,8 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "ionicons";
+@import 'select2';
+@import 'icheck/square/blue';
 @import "admin-lte";
 @import "toastr";
 @import "skins/_all-skins";
@@ -13,7 +15,7 @@
 //@import "turbolinks_progress_bar";
 @import "magnific-popup";
 @import "circle_buttons";
-@import 'icheck/square/blue';
+
 
 // TODO place below content in seperate css file
 .table {
