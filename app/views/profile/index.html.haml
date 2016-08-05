@@ -24,10 +24,7 @@
               %img.profile-user-img.img-responsive.img-circle{:alt => "User profile picture", src: user_avatar_thumb_src}/
             %h3.profile-username.text-center= current_user.full_name
             %p.text-muted.text-center
-              - if current_user.designation.present?
-                = current_user.designation
-              - else
-                = current_user.email
+              = current_user.email
             %ul.list-group.list-group-unbordered
               %li.list-group-item
                 %b Apps

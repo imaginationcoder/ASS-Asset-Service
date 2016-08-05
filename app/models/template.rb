@@ -8,6 +8,9 @@ class Template
   field :platform_category_id
   ## below field is to check whether this template creating from when version is publishing
   field :via_publishing , type: Boolean, default: false
+  #field :is_tour , type: Boolean , default: false
+  #field :step , type: Integer
+
 
   ## Uploader
   mount_uploader :source, AssetUploader, dependent: :destroy
