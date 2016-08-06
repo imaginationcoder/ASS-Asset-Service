@@ -18,7 +18,7 @@
     .col-md-3.col-xs-6
       .form-group
         %label Choose Version
-        = select_tag "analytics_version", options_from_collection_for_select(@app.versions, 'id', 'number'), class: 'form-control select2', style: 'width: 100%;'
+        = select_tag "analytics_version", options_from_collection_for_select(@app.versions, 'id', 'number', @version), class: 'form-control select2', style: 'width: 100%;'
   .row
     .col-sx-12.text-center.text-light-blue.text-uppercase
       %h4 #{@app.name} Analytics - Tour
@@ -30,44 +30,19 @@
             %tr
               %th Asset
               %th Version
-              %th Progress
-              %th Avg time users spent
-            %tr
-              %td
-                %a{href: '#'} Step 1
-              %td 1
-              %td
-                .progress.progress-xs
-                  .progress-bar.progress-bar-danger{:style => "width: 55%"}
-              %td
-                %span.badge.bg-red 30%
-            %tr
-              %td
-                %a{href: '#'} Step 2
-              %td 1
-              %td
-                .progress.progress-xs
-                  .progress-bar.progress-bar-yellow{:style => "width: 70%"}
-              %td
-                %span.badge.bg-yellow 70%
-            %tr
-              %td
-                %a{href: '#'} Step 3
-              %td 1
-              %td
-                .progress.progress-xs.progress-striped.active
-                  .progress-bar.progress-bar-primary{:style => "width: 30%"}
-              %td
-                %span.badge.bg-light-blue 55%
-            %tr
-              %td
-                %a{href: '#'} Step 4
-              %td 1
-              %td
-                .progress.progress-xs.progress-striped.active
-                  .progress-bar.progress-bar-success{:style => "width: 90%"}
-              %td
-                %span.badge.bg-green 90%
+              -#%th Progress
+              %th Avg time users spent(sec)
+            - @tour_templates.each_with_index do |template, index|
+              - average_time_spent = number_with_precision(template.average_time_spent(@version), precision: 1)
+              %tr
+                %td
+                  %a{href: template_path(template)} Step #{index + 1}
+                %td 1
+                -#%td
+                  .progress.progress-xs
+                    .progress-bar.progress-bar-danger{:style => "width: 30%"}
+                %td
+                  %span.badge.bg-light-blue= average_time_spent
     .col-xs-12.col-md-6
       .box
         .box-header.with-border
@@ -96,30 +71,13 @@
               %th Asset
               %th Version
               %th Avg time users spent(sec)
-            %tr
-              %td.text-uppercase
-                %a{href: '#'} Camera
-              %td 1
-              %td
-                %span.badge.bg-light-blue 1.5
-            %tr
-              %td.text-uppercase
-                %a{href: '#'} Contacts
-              %td 1
-              %td
-                %span.badge.bg-light-blue 2
-            %tr
-              %td.text-uppercase
-                %a{href: '#'} Location
-              %td 1
-              %td
-                %span.badge.bg-light-blue 1.76
-            %tr
-              %td.text-uppercase
-                %a{href: '#'} Notifications
-              %td 1
-              %td
-                %span.badge.bg-light-blue 3.4
+            - @permission_templates.each do |template|
+              %tr
+                %td.text-uppercase
+                  %a{href: '#'}= template.permission.name
+                %td= @version
+                %td
+                  %span.badge.bg-light-blue= number_with_precision(template.average_time_spent(@version), precision: 1)
     .col-xs-12.col-md-6
       .box
         .box-header.with-border

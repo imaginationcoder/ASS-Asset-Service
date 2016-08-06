@@ -19,6 +19,7 @@ class Template
   embeds_many :button_actions, cascade_callbacks: true
   belongs_to :permission, index: true
   belongs_to :app, index: true
+  has_many :analytics
 
   ## Indexes ----------------------------------------- ##
   index({ app_version: 1 })
@@ -32,6 +33,11 @@ class Template
 
   ## Scopes
   scope :by_permission, -> (permission) { where(permission: permission) }
+
+  ## instance methods
+  def average_time_spent(version)
+    analytics.where(_type: 'TimedAnalytics', app_version: version).avg(:time_spent)
+  end
 
   ## Callbacks
 
