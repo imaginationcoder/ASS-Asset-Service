@@ -57,7 +57,7 @@ class TourController < ApplicationController
   def app_params
     params.require(:app).permit(:id, :_destroy,
                                 templates_attributes: [
-                                    :id, :_destroy,:app_id, :permission_id, :platform_id,:platform_category_id,:source,
+                                    :id, :_destroy,:app_id, :permission_id, :is_tour,:platform_id,:platform_category_id,:source,
                                     text_assets_attributes: [:text, :position, :_destroy,:id],
                                     button_actions_attributes: [:btn_type, :label, :target_event, :source, :_destroy,:id]
                                 ])
