@@ -5,7 +5,7 @@ class Analytics
   # Common fields
   field :ip_address # accessed from
   field :event # 'Time Spent', 'Permission visited etc..'
-  field :app_version # current published version
+  field :app_version, type: Integer # current published version
   field :platform_category_id # embedded category
 
   belongs_to :platform # from which platform

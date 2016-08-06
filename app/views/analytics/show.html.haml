@@ -18,7 +18,7 @@
     .col-md-3.col-xs-6
       .form-group
         %label Choose Version
-        = select_tag "analytics_version", options_from_collection_for_select(@app.versions, 'id', 'number', @version), class: 'form-control select2', style: 'width: 100%;'
+        = select_tag "analytics_app_version", options_from_collection_for_select(@app.versions, 'id', 'number', @version), class: 'form-control select2', style: 'width: 100%;'
   .row
     .col-sx-12.text-center.text-light-blue.text-uppercase
       %h4 #{@app.name} Analytics - Tour
@@ -33,16 +33,15 @@
               -#%th Progress
               %th Avg time users spent(sec)
             - @tour_templates.each_with_index do |template, index|
-              - average_time_spent = number_with_precision(template.average_time_spent(@version), precision: 1)
               %tr
                 %td
                   %a{href: template_path(template)} Step #{index + 1}
-                %td 1
+                %td= @version
                 -#%td
                   .progress.progress-xs
                     .progress-bar.progress-bar-danger{:style => "width: 30%"}
                 %td
-                  %span.badge.bg-light-blue= average_time_spent
+                  %span.badge.bg-light-blue= template.average_time_spent(@version)
     .col-xs-12.col-md-6
       .box
         .box-header.with-border
@@ -74,10 +73,10 @@
             - @permission_templates.each do |template|
               %tr
                 %td.text-uppercase
-                  %a{href: '#'}= template.permission.name
+                  %a{href: template_path(template)}= template.permission.name
                 %td= @version
                 %td
-                  %span.badge.bg-light-blue= number_with_precision(template.average_time_spent(@version), precision: 1)
+                  %span.badge.bg-light-blue= template.average_time_spent(@version)
     .col-xs-12.col-md-6
       .box
         .box-header.with-border

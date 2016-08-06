@@ -49,10 +49,7 @@ end
 
 # Create Tour
 tour_permission = Permission.tour
-
-
-
-
+# Tour step assets ---
 ['1','2','3'].each do |n|
   File.open(Rails.root.join('app', 'assets', 'images', 'home', "background#{n}.jpg")) do |f|
     template = app.templates.build(source: f, is_tour: true,permission: tour_permission, platform_category_id: platform_category.id)
@@ -77,45 +74,58 @@ tour_permission = Permission.tour
 
   end
 end
-
 app.save!
+
+
+
+# Create other permission(Cam, Location etc)
+Permission.where(:id.ne => tour_permission.id).each do |permission|
+  File.open(Rails.root.join('app', 'assets', 'images', 'home', "background#{[1,2,3].sample}.jpg")) do |f|
+    template = app.templates.build(source: f, is_tour: false,permission: permission, platform_category_id: platform_category.id)
+    template.text_assets_attributes = [{text: 'I am top', position: TextAsset::POSITIONS[0]},
+                                       {text: 'I am center', position: TextAsset::POSITIONS[1]},
+                                       {text: 'I am bottom', position: TextAsset::POSITIONS.last}]
+
+    # total 5 button actions
+    template.button_actions_attributes = [{ btn_type: 1, label: 'Next'},
+                                          { btn_type: 1, label: 'Go', target_event: 'SOME TARGET'},
+                                          { btn_type: 1, label: 'Skip', target_event: 'SKIP EVENT'} ]
+
+    btn_action =  template.button_actions.build(btn_type: 2)
+    File.open(Rails.root.join('app', 'assets', 'images', 'button_actions', "1.png")) do |f|
+      btn_action.source = f
+    end
+
+    btn_action =  template.button_actions.build(btn_type: 2, target_event: 'SOME BUTTON ACTION EVENT')
+    File.open(Rails.root.join('app', 'assets', 'images', 'button_actions', "2.png")) do |f|
+      btn_action.source = f
+    end
+  end
+end
+app.save!
+
+## update versions
 v1 = app.versions.where(number: 1).first
 v1.update(published: true)
 v2 = app.versions.where(number: 2).first
 v2.update(published: true)
 
-
-## Timed Analytics
-
-tour_templates = app.templates.where(is_tour: true)
-tour_templates.each do |template|
-  app.versions.each do |version|
+## Timed Analytics for all templates
+app.versions.each do |version|
+  app.templates.where(app_version: version.number).each do |template|
     [4,5,6,7,8,9].sample.times do
       TimedAnalytics.create!(app: app, template: template, app_version: version.number, platform: platform,
-                         platform_category_id: platform_category.id, event: 'Time Spent',
-                         ip_address: Faker::Internet.ip_v4_address, time_spent: Faker::Number.between(5, 100))
+                             platform_category_id: platform_category.id, event: 'Time Spent',
+                             ip_address: Faker::Internet.ip_v4_address, time_spent: Faker::Number.between(5, 100))
     end
   end
 end
 
 
-# Create other permission(Cam, Location etc)
-=begin
 
-Permission.nin(name: 'Tour').each do |permission|
-  File.open(Rails.root.join('app', 'assets', 'images', 'home', "background1.jpg")) do |f|
-    pre_prompt = app.pre_prompts.build(source: f, permission: permission,
-                                       header: 'HeaderContent..', footer: 'Footer Content', content: 'Some Content')
-    ['1','2'].each do |m|
-      File.open(Rails.root.join('app', 'assets', 'images', 'button_actions', "#{m}.png")) do |f|
-        pre_prompt.button_actions.build(source: f, btn_text: m)
-      end
-    end
-  end
-end
 
-app.save!
-=end
+
+
 
 
 

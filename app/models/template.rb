@@ -36,7 +36,8 @@ class Template
 
   ## instance methods
   def average_time_spent(version)
-    analytics.where(_type: 'TimedAnalytics', app_version: version).avg(:time_spent)
+    avg = analytics.where(_type: 'TimedAnalytics', app_version: version).avg(:time_spent)
+    "%.1f" % avg
   end
 
   ## Callbacks
