@@ -51,7 +51,7 @@ tour_permission = Permission.tour
 
 ['1','2','3'].each do |n|
   File.open(Rails.root.join('app', 'assets', 'images', 'home', "background#{n}.jpg")) do |f|
-    template = app.templates.build(source: f, permission: tour_permission, platform_category_id: platform.platform_categories.first.id)
+    template = app.templates.build(source: f, is_tour: true,permission: tour_permission, platform_category_id: platform.platform_categories.first.id)
     template.text_assets_attributes = [{text: 'Welcome to my app', position: TextAsset::POSITIONS[0]},
                                                            {text: 'I am center', position: TextAsset::POSITIONS[1]},
                                                            {text: 'I am bottom', position: TextAsset::POSITIONS.last}]
@@ -75,6 +75,9 @@ tour_permission = Permission.tour
 end
 
 app.save!
+
+
+
 
 # Create other permission(Cam, Location etc)
 =begin
