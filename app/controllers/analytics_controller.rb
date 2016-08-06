@@ -3,7 +3,7 @@ class AnalyticsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_app
 
-  def show
+  def index
     @version = params[:version] || @app.published_version.number || @app.editing_version.number
     @templates = @app.templates.where(app_version: @version)
     tour_permission = Permission.tour

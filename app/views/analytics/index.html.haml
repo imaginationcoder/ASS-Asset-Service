@@ -18,7 +18,8 @@
     .col-md-3.col-xs-6
       .form-group
         %label Choose Version
-        = select_tag "analytics_app_version", options_from_collection_for_select(@app.versions, 'id', 'number', @version), class: 'form-control select2', style: 'width: 100%;'
+        = select_tag "select_app_version", options_for_select(@app.versions.map(&:number), @version), data: {url: analytics_app_path(@app)},
+                                           class: 'form-control select2 select_app_version', style: 'width: 100%;'
   .row
     .col-sx-12.text-center.text-light-blue.text-uppercase
       %h4 #{@app.name} Analytics - Tour
@@ -89,6 +90,9 @@
             .col-xs-12
               #barChart-legend
 :javascript
+    $('.app-analytics .select_app_version').change(function (e){
+      Turbolinks.visit($(this).data('url')+'?version='+$(this).val());
+    });
     //-------------
     //- PIE CHART -
     //-------------

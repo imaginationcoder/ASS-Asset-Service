@@ -17,7 +17,6 @@ class Version
 
   before_update :if_published_create_version_and_templates
 
-
   private
   # before publishing version, update editing and published attrs for other versions
   # and create a new version if doesn't exists and create templates for newly generated version
@@ -54,9 +53,6 @@ class Version
           cloned_template.save
         end
       end
-
-
-
     end
   end
 
