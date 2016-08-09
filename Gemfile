@@ -91,3 +91,7 @@ gem 'copy_carrierwave_file'
 gem 'icheck-rails'
 # to generates fake data
 gem 'faker'
+
+# OmniAuth
+gem 'omniauth'
+gem "omniauth-google-oauth2"
