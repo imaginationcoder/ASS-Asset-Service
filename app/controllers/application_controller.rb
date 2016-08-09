@@ -8,10 +8,6 @@ class ApplicationController < ActionController::Base
   before_action :ensure_signup_complete, except: [:sent_email_instructions,:finish_signup]
 
 
-  def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || my_apps_path
-  end
-
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << [:full_name, :company]
@@ -45,6 +41,17 @@ class ApplicationController < ActionController::Base
       @tour_permission = Permission.tour
       @permissions = Permission.nin(name: @tour_permission.name)
     end
+  end
+
+  ## private methods
+  private
+  # Overwriting the sign_in redirect path method
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || stored_location_for(resource) || my_apps_path
+  end
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+    new_user_session_path
   end
 
 
