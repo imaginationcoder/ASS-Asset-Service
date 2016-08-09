@@ -98,32 +98,7 @@
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
     var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-    var PieData = [
-      {
-        value: 30,
-        color: "#dd4b39",
-        highlight: "#dd4b39",
-        label: "Step 1"
-      },
-      {
-        value: 70,
-        color: "#f39c12",
-        highlight: "#f39c12",
-        label: "Step 2"
-      },
-      {
-        value: 55,
-        color: "#3c8dbc ",
-        highlight: "#3c8dbc",
-        label: "Step 3"
-      },
-      {
-        value: 90,
-        color: "#00a65a",
-        highlight: "#00a65a",
-        label: "Step 4"
-      }
-    ];
+    var pieData = #{@pie_data.to_json};
     var pieOptions = {
       //Boolean - Whether we should show a stroke on each segment
       segmentShowStroke: true,
@@ -150,7 +125,7 @@
     };
     // Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below./
-    var pieChart = new Chart(pieChartCanvas).Doughnut(PieData, pieOptions);
+    var pieChart = new Chart(pieChartCanvas).Doughnut(pieData, pieOptions);
     // legendTemplate is if you want to generate an HTML legend for the chart and use somewhere else on the page
     //document.getElementById('pieChart-legend').innerHTML = pieChart.generateLegend();
 
@@ -160,7 +135,7 @@
     var barChartCanvas = $("#barChart").get(0).getContext("2d");
     var barChart = new Chart(barChartCanvas);
     var barChartData = {
-      labels: ["Camera", "Contacts", "Location", "Notifications"],
+      labels: #{@bar_labels.to_json},
       datasets: [
         {
           label: "Digital Goods",
@@ -170,7 +145,7 @@
           pointStrokeColor: "rgba(60,141,188,1)",
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [1.5, 2, 1.76, 3.4]
+          data: #{@bar_data.to_json}
         }
       ]
     };

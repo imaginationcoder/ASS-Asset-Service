@@ -9,6 +9,17 @@ class AnalyticsController < ApplicationController
     tour_permission = Permission.tour
     @tour_templates = @templates.where(permission_id: tour_permission.id)
     @permission_templates = @templates.where(:permission_id.ne=> tour_permission.id)
+    @pie_data , @bar_data,@bar_labels = [], [], []
+    #fill pie chart data
+    colors = %w(#dd4b39 #f39c12 #3c8dbc #00a65a)
+    @tour_templates.each_with_index do |template, index|
+     @pie_data << {value: template.average_time_spent(@version), color: colors[index],highlight: colors[index],label: "Step#{index + 1}"}
+    end
+    @permission_templates.each do |template|
+      @bar_labels <<  template.permission.name
+      @bar_data << template.average_time_spent(@version)
+    end
+
   end
 
   private
