@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   use_doorkeeper
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks' }
   root :to => 'home#index'
 
   ## dev app's dashboard
