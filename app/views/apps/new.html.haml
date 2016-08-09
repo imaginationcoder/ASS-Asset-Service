@@ -51,13 +51,15 @@
                 %strong Platform(s)
             .row
               .col-xs-12{style: 'margin: 10px;'}
-                .form-group.platform-images
-                  = image_tag 'platform-ios.png', width: 100, height: 100
-                  %span.ios
-                    %i.fa.fa-check.fa-fw
-                  = image_tag 'platform-android-grey.png', width: 100, height: 100
-                  %span.android
-                    %i.fa.fa-check.fa-fw
+                .form-group.platforms-options.js-platforms-options
+                  %label.is-ios
+                    %input{:name => "platform_ios", :type => "radio", :value => "ios"}/
+                    %span.label-text iOS
+                  %label.is-android
+                    %input{:name => "platform_android", :type => "radio", :value => "android",  :disabled => "disabled"}/
+                    %span.label-text Android
+
+
       .box-footer
         %a.btn.btn-default{href: my_apps_path}
           %i.fa.fa-close
