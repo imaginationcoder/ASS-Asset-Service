@@ -28,5 +28,15 @@ module Ass
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    if Rails.env.development?
+       # read from local file and assign to env variables
+      dev_config = YAML.load_file('/home/maisapride/upender/RubyMineWorkSpace/dev-assets-secrets.yml')
+      ENV['AWS_KEY'] = dev_config['AWS']['key']
+      ENV['AWS_SECRET'] = dev_config['AWS']['secret']
+      ENV['GOOGLE_KEY'] = dev_config['GOOGLE']['key']
+      ENV['GOOGLE_SECRET'] = dev_config['GOOGLE']['secret']
+    end
+
   end
 end

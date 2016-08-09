@@ -39,21 +39,16 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-
-<% if devise_controller? %>
+<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+<div class="wrapper">
+  <%= render 'shared/admin_lte/main_header' %>
+  <%= render 'shared/admin_lte/left_sidebar' %>
+  <div class="content-wrapper">
+    <%= render 'shared/flash_messages' %>
     <%= yield %>
-<% else %>
-    <body class="hold-transition skin-blue layout-boxed sidebar-mini">
-    <div class="wrapper">
-      <%= render 'shared/admin_lte/main_header' %>
-      <%= render 'shared/admin_lte/left_sidebar' %>
-      <div class="content-wrapper">
-        <%= render 'shared/flash_messages' %>
-        <%= yield %>
-      </div>
-      <%= render 'shared/admin_lte/footer' %>
-      <%= render 'shared/admin_lte/right_sidebar' %>
-    </div>
-    </body>
-<% end %>
+  </div>
+  <%= render 'shared/admin_lte/footer' %>
+  <%= render 'shared/admin_lte/right_sidebar' %>
+</div>
+</body>
 </html>

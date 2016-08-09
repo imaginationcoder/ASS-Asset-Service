@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   use_doorkeeper
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   root :to => 'home#index'
 
   ## dev app's dashboard
@@ -27,6 +27,12 @@ Rails.application.routes.draw do
   put 'profile/update'=>"profile#update", as: :update_profile
   put 'update_avatar'=> "profile#update_avatar", as: :update_avatar
   put 'update_password'=> "profile#update_password", as: :update_password
+
+  # Most OAuth providers give us all the information we need, but if the user signed up with Twitter,
+  # or perhaps for some reason the OAuth provider didn’t provide a verified email address,
+  # or maybe you just want to get some extra information from the user, then we need to implement an extra step for this
+  match '/profile/:id/finish_signup' => 'profile#finish_signup', via: [:get, :patch], as: :finish_signup
+  get '/profile/sent-email-instructions' => 'profile#sent_email_instructions', as: :sent_email_instructions
 
   ## API --------------------------------
   namespace :api , defaults: {format: :json} do

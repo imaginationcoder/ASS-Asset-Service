@@ -36,7 +36,9 @@ end
 platform_category = platform.platform_categories.first
 
 
-user = User.create(full_name: 'test user', email: 'testuser@test.com',password: '12345678', password_confirmation: '12345678', company: 'Maisa')
+user = User.new(full_name: 'test user', email: 'testuser@test.com',password: '12345678', password_confirmation: '12345678', company: 'Maisa')
+user.skip_confirmation!
+user.save!
 app = user.apps.new(platform: platform, name: 'test iOS',description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.')
 
 

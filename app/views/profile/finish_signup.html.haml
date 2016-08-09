@@ -1,0 +1,20 @@
+- page_title 'Finish SignUp'
+%body.hold-transition.login-page
+  .login-box
+    .login-logo
+      %a{:href => root_url}
+        %b> ASS
+        SDK
+    = form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f|
+      - if @show_errors
+        = render 'shared/error_messages', resource: current_user
+      .login-box-body
+        = render 'shared/flash_messages'
+        %p.login-box-msg Add Email to finish SignUp
+        .form-group.has-feedback
+          = f.email_field :email, value: nil,class: 'form-control',placeholder: 'Add Email', required: true
+          %span.glyphicon.glyphicon-envelope.form-control-feedback
+          %span.help-block Please confirm your email address. No spam.
+        .row
+          .col-xs-6.col-md-6.pull-right
+            %button.btn.btn-primary.btn-block.btn-flat{type: 'submit'} Complete

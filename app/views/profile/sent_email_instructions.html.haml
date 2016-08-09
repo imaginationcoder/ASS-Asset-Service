@@ -1,0 +1,15 @@
+- page_title 'Email Instructions'
+%body.hold-transition.login-page
+  .login-box
+    .login-logo
+      %a{:href => root_url}
+        %b> ASS
+        SDK
+    .row
+      .col-md-12
+        .alert.alert-info.alert-dismissible
+          -#%button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+          %h4
+            %i.icon.fa.fa-info
+            Info!
+          = t('devise.confirmations.send_instructions')
