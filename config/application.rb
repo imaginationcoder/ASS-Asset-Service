@@ -30,12 +30,12 @@ module Ass
     # config.i18n.default_locale = :de
 
     if Rails.env.development?
-       # read from local file and assign to env variables
+       # read from local file and assign to env variables for developemnt env for production read them via env
       dev_config = YAML.load_file('/home/maisapride/upender/RubyMineWorkSpace/dev-assets-secrets.yml')
-      ENV['AWS_KEY'] = dev_config['AWS']['key']
-      ENV['AWS_SECRET'] = dev_config['AWS']['secret']
-      ENV['GOOGLE_KEY'] = dev_config['GOOGLE']['key']
-      ENV['GOOGLE_SECRET'] = dev_config['GOOGLE']['secret']
+      %w(AWS GOOGLE GITHUB).each do |name|
+        ENV["#{name}_KEY"] = dev_config[name]['key']
+        ENV["#{name}_SECRET"] = dev_config[name]['secret']
+      end
     end
 
   end

@@ -94,4 +94,5 @@ gem 'faker'
 
 # OmniAuth
 gem 'omniauth'
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2'
+gem 'omniauth-github'

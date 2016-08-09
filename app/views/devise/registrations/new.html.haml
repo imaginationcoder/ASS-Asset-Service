@@ -36,11 +36,11 @@
             %button.btn.btn-primary.btn-block.btn-flat.btn-progress{"data-loading-text"=>btn_prog_text('Register'),:type => "submit"} Register
         .social-auth-links.text-center
           %p - OR -
-          %a.btn.btn-block.btn-social.btn-github.btn-flat{:href => "#"}
+          %a.btn.btn-block.btn-social.btn-github.btn-flat{href: user_omniauth_authorize_path(:github)}
             %i.fa.fa-github
             Sign up using
             GitHub
-          %a.btn.btn-block.btn-social.btn-google.btn-flat{:href => "#"}
+          %a.btn.btn-block.btn-social.btn-google.btn-flat{href: user_omniauth_authorize_path(:google_oauth2)}
             %i.fa.fa-google-plus
             Sign up using
             Google+

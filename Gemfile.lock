@@ -343,6 +343,9 @@ GEM
     omniauth (1.3.1)
       hashie (>= 1.2, < 4)
       rack (>= 1.0, < 3)
+    omniauth-github (1.1.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-google-oauth2 (0.4.1)
       jwt (~> 1.5.2)
       multi_json (~> 1.3)
@@ -508,6 +511,7 @@ DEPENDENCIES
   mongoid_paranoia
   mongoid_token (~> 4.0.0)
   omniauth
+  omniauth-github
   omniauth-google-oauth2
   rails (= 4.2.3)
   rails_12factor
