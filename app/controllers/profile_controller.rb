@@ -42,7 +42,7 @@ class ProfileController < ApplicationController
   end
 
   def profile_params
-    params.require(:user).permit(:fname,:lname,:email,:phone,:company,:designation,:notes)
+    params.require(:user).permit(:full_name,:email,:phone,:company,:notes)
   end
 
   def password_params

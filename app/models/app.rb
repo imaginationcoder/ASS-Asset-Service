@@ -24,6 +24,7 @@ class App
   has_many :templates, dependent: :destroy, autosave: true#,after_add: :some_action, after_remove: :some_action
   belongs_to :platform,index: true
   embeds_many :versions, cascade_callbacks: true
+  has_many :analytics
 
   accepts_nested_attributes_for :templates, allow_destroy: true
 

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         post 'publish'=> "versions#publish"
         get 'preview'=> 'versions#preview', as: :preview
       end
-
+      get 'analytics' => 'analytics#index',as: :analytics
     end
   end
   ## Profile

@@ -22,6 +22,8 @@
 //= require fastclick  
 //= require jquery.slimscroll
 //= require 'icheck'
+//= require select2.full
+//= require Chart
 //= require cocoon
 //= require skins
 //= require init

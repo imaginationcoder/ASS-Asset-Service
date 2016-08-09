@@ -89,3 +89,5 @@ gem 'active_link_to'
 gem 'copy_carrierwave_file'
 #iCheck is a library for creating super customized checkboxes and radio buttons with JQuery & Zepto
 gem 'icheck-rails'
+# to generates fake data
+gem 'faker'

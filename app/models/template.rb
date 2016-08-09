@@ -8,6 +8,8 @@ class Template
   field :platform_category_id
   ## below field is to check whether this template creating from when version is publishing
   field :via_publishing , type: Boolean, default: false
+  field :is_tour , type: Boolean , default: false
+
 
   ## Uploader
   mount_uploader :source, AssetUploader, dependent: :destroy
@@ -17,6 +19,7 @@ class Template
   embeds_many :button_actions, cascade_callbacks: true
   belongs_to :permission, index: true
   belongs_to :app, index: true
+  has_many :analytics
 
   ## Indexes ----------------------------------------- ##
   index({ app_version: 1 })
@@ -30,6 +33,12 @@ class Template
 
   ## Scopes
   scope :by_permission, -> (permission) { where(permission: permission) }
+
+  ## instance methods
+  def average_time_spent(version)
+    avg = analytics.where(_type: 'TimedAnalytics', app_version: version).avg(:time_spent)
+    "%.1f" % avg
+  end
 
   ## Callbacks
 

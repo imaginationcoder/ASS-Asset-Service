@@ -1,4 +1,5 @@
 .box.box-primary.nested-fields.tour-step-box
+  = f.hidden_field :is_tour, value: true
   = f.hidden_field :permission_id, value: @permission.id
   = f.hidden_field :app_id, value: @app.id
   = f.hidden_field :platform_category_id, value: @platform_categories.first.id

@@ -48,8 +48,8 @@
                   %a{:href => versions_path(app)}
                     %i.fa.fa-code-fork
                     Versions
-                %li
-                  %a{:href => '#'}
+                %li{class:  is_active_link?(analytics_app_path(app), :exclusive)  ? 'active' : nil}
+                  %a{:href => analytics_app_path(app)}
                     %i.fa.fa-bar-chart
                     Analytics
               -#%li{class:  is_active_link?(app_path(app), :exclusive)  ? 'active' : nil}
