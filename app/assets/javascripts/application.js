@@ -15,27 +15,3 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
-//= require magnific-popup
-// require bootstrap_sb_admin_base_v2
-//= require cocoon
-// require init
-//= require apps
-//= require templates
-//= require tour
-
-$(document).ready(function() {
-// Home page login, register popups
-    $('.popup-with-zoom-anim').magnificPopup({
-        type: 'inline',
-        fixedContentPos: false,
-        fixedBgPos: true,
-        overflowY: 'auto',
-        closeBtnInside: true,
-        preloader: false,
-        midClick: true,
-        removalDelay: 300,
-        mainClass: 'my-mfp-zoom-in'
-    });
-});
-
-

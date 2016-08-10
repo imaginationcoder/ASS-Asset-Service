@@ -16,12 +16,12 @@
           = f.password_field :password, autocomplete: "off",class: 'form-control',placeholder: 'Password'
           %span.glyphicon.glyphicon-lock.form-control-feedback
         .row
-          .col-xs-8
+          .col-xs-7
             .checkbox.icheck
               %label
                 = f.check_box :remember_me
                 Remember Me
-          .col-xs-4
+          .col-xs-5
             %button.btn.btn-primary.btn-block.btn-flat.btn-progress{"data-loading-text"=>btn_prog_text('Sign In'),:type => "submit"} Sign In
       .social-auth-links.text-center
         %p - OR -
