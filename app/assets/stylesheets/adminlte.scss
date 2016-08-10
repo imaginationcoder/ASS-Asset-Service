@@ -127,11 +127,11 @@ ul.dropdown-menu>li>a:hover{
 }
 
 .platforms-options label.is-ios {
-  background-image: url("platform-ios.png");
+  background-image: image-url("platform-ios.png");
 }
 
 .platforms-options label.is-android {
-  background-image: url("platform-android-grey.png");
+  background-image: image-url("platform-android-grey.png");
 }
 .platforms-options label::before {
   content: "";
