@@ -31,8 +31,8 @@ Rails.application.routes.draw do
   # Most OAuth providers give us all the information we need, but if the user signed up with Twitter,
   # or perhaps for some reason the OAuth provider didn’t provide a verified email address,
   # or maybe you just want to get some extra information from the user, then we need to implement an extra step for this
-  match '/profile/:id/finish_signup' => 'profile#finish_signup', via: [:get, :patch], as: :finish_signup
-  get '/profile/sent-email-instructions' => 'profile#sent_email_instructions', as: :sent_email_instructions
+  match '/profile/:id/finish_signup' => 'pages#finish_signup', via: [:get, :patch], as: :finish_signup
+  get '/profile/sent-email-instructions' => 'pages#sent_email_instructions', as: :sent_email_instructions
 
   ## API --------------------------------
   namespace :api , defaults: {format: :json} do
