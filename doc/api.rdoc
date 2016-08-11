@@ -39,7 +39,7 @@
 
 5) Get Applicaiton Permission assets
   Method: GET
-  URL: http://root-url/api/v1/permission/<:name>/assets
+  URL: http://root-url/api/v1/permission/assets?name="<:name>"
   Headers: { Authorization: "Bearer <access_token>"}
   Required Parameter :name possible values are
     'camera', 'notifications', 'contacts', 'location'

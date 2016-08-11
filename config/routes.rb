@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       end
 
       get 'tour/assets'=>"tour#index"
-      get 'permission/:name/assets'=>"permissions#index"
+      get 'permission/assets'=>"permissions#index"
     end
   end
 
