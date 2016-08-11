@@ -43,3 +43,22 @@
   Headers: { Authorization: "Bearer <access_token>"}
   Required Parameter :name possible values are
     'camera', 'notifications', 'contacts', 'location'
+
+
+6) Analytics: Time Spent on Tour Step or Permission
+   Method: POST
+   URL: http://root-url/api/v1/analytics/time_spent
+   Headers: {
+    Content-Type: "application/json",
+     Authorization: "Bearer <access_token>"
+   }
+   Body: {
+       "uid": "<id of tour step or permission which provided in above response>",
+       "platform": "< ios, android >",
+       "platform_category": "< iPhone-family, iphone 4s etc.. >",
+       "ip_address": "< ip_address of device >",
+       "time_spent": "< total time spent>"
+   }
+
+   desc:
+     post time spent(secs) user on on Tour Step or Permission with <id>

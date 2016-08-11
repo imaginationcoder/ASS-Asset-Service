@@ -38,14 +38,13 @@ Rails.application.routes.draw do
   namespace :api , defaults: {format: :json} do
     #version 1
     namespace :v1 do
-
       devise_scope :user do
         post 'authorize_app' => 'sessions#authorize_app'
         #delete 'logout' => 'sessions#destroy'
       end
-
       get 'tour/assets'=>"tour#index"
       get 'permission/:name/assets'=>"permissions#index"
+      post 'analytics/time_spent'=>"analytics#time_spent"
     end
   end
 
