@@ -41,7 +41,7 @@ en:
       name: "Maisa"
       url: "http://maisasolutions.com/"
   api:
-    errors:
+    messages:
       app:
         unpublished: 'App not published to production mode'
       authentication_fail: "Application authentication failed."
@@ -51,7 +51,7 @@ en:
       client_id_secret_miss: "client_id and client_secret_token missed in body"
       invalid_cleint_secret: "Invalid client_id or client_secret_token or App not found."
       token_expired: "Application Token expired"
-    messages:
+    errors:
       app:
         unpublished: 'Unpublished app'
       not_authenticated: "Not authenticated"

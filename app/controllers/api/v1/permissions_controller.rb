@@ -6,9 +6,9 @@ class API::V1::PermissionsController < API::BaseController
     permission = Permission.where(name: /^#{params[:name]}$/i ).first
     if permission
       @template = @application.find_published_template(permission)
-      render_error_response(404,'Assets Not found',"#{params[:name]} permission assets not yet added, please add from dashboard") unless @template
+      render_error_response(404,"#{params[:name]} permission assets not yet added, please add from dashboard",'Assets Not found') unless @template
     else
-      render_error_response(404,'Not found',"#{params[:name]} permission doesn't find in our records")
+      render_error_response(404,"#{params[:name]} permission doesn't find in our records",'Not found')
     end
   end
 

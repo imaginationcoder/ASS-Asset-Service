@@ -1,4 +1,4 @@
-class API::BaseController < ApplicationController
+class API::BaseController < ActionController::Base
   include Utilities::ErrorHandling
 
   before_action :request_must_be_json
@@ -21,11 +21,11 @@ class API::BaseController < ApplicationController
   private
 
   def doorkeeper_unauthorized_render_options(error: nil)
-    { json: {status: "401", message: t('api.errors.authentication_fail')}}
+    { json: {status: 401, message: t('api.messages.authentication_fail')}}
   end
 
   def user_not_authorized
-    render_error_response(:unauthorized, t('api.messages.unauthorized'), t('api.errors.unauthorized'))
+    render_error_response(401, t('api.messages.unauthorized'), t('api.errors.unauthorized'))
   end
 
   def authenticate_developer_app!
@@ -34,14 +34,14 @@ class API::BaseController < ApplicationController
       @application = app_access_token.app
       sign_in @application.user, store: false
     else
-      render_error_response(401, t('api.messages.unauthorized'), t('api.errors.app_not_found'))
+      render_error_response(401, t('api.messages.app_not_found'), t('api.errors.unauthorized'))
     end
   end
 
   def request_must_be_json
     #if request.format != :json
     if request.content_type != 'application/json'
-      render_error_response(406,t('api.messages.must_be_json'), t('api.errors.must_be_json'))
+      render_error_response(406, t('api.messages.must_be_json'),t('api.errors.must_be_json'))
     end
   end
 
