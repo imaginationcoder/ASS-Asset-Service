@@ -15,3 +15,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require materialize.min
+//= require home_init

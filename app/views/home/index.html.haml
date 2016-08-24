@@ -1,8 +1,156 @@
-= render 'home/bg'
-= render 'home/login_dialog'
-= render 'home/top_grids'
-= render 'home/mid_grids'
-= render 'home/signup_dialog'
-= render 'home/price_tables'
-= render 'home/video'
-= render 'home/footer'
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1.0", :name => "viewport"}/
+    %title Starter Template - Materialize
+    / CSS
+    %link{:href => "https://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}/
+  %body
+    %nav.white.lighten-1{:role => "navigation"}
+      .nav-wrapper.container
+        %a#logo-container.brand-logo.blue-txt{:href => "#"} ASS SDK
+        %ul.right.blue-txt.hide-on-med-and-down
+          - if user_signed_in?
+            %li
+              %a.blue-txt{href: my_apps_path} Dashboard
+          -else
+            %li
+              %a.blue-txt{href: new_user_registration_path} Signup
+            %li
+              %a.blue-txt{href: new_session_path(resource_name)} Login
+        %ul.right.blue-txt.hide-on-med-and-down
+          %li
+            %a.blue-txt{:href => "#"} Features
+          %li
+            %a.blue-txt{:href => "#"} Pricing
+          %li
+            %a.blue-txt{:href => "#"} Docs
+          %li
+            %a.blue-txt{:href => "#"} Blog
+          %li
+            %a.blue-txt{:href => "#"} Support
+        %ul#nav-mobile.side-nav
+          %li
+            %a.blue-txt{:href => "#"} Features
+          %li
+            %a.blue-txt{:href => "#"} Pricing
+          %li
+            %a.blue-txt{:href => "#"} Docs
+          %li
+            %a.blue-txt{:href => "#"} Blog
+          %li
+            %a.blue-txt{:href => "#"} Support
+          - if user_signed_in?
+            %li
+              %a.blue-txt{href: my_apps_path} Dashboard
+          -else
+            %li
+              %a.blue-txt{href: new_user_registration_path} Signup
+            %li
+              %a.blue-txt{href: new_session_path(resource_name)} Login
+        %a.button-collapse.blue-txt{"data-activates" => "nav-mobile", :href => "#"}
+          %i.material-icons menu
+    #index-banner.section.no-pad-bot.blue-bg
+      .container
+        %br/
+        %br/
+        %h2.header.center.white-text ASS SDK - The Platform for Your Apps
+        .row.center
+          %p.header.col.s12.light.app-header-text.white-text.flow-text The world's best developers develop the world’s best apps for iOS, Android, OS X, and Windows on ASS-SDK app. Bring Mobile DevOps to your apps with beta distribution, crash reporting, user metrics and powerful workflow integrations.
+        .row.center
+          %a#download-button.btn-large.waves-effect.waves-light.white.blue-txt{:href => ""} Get Started
+        %br/
+        %br/
+    .container
+      .section
+        %h2.title.center Features
+        .row
+          .col.s12.m6
+            .col.s12.m2
+              %i.circle.large.material-icons assessment
+            .col.s12.m10
+              .left.service-header.blue-txt REST API
+              %br/
+              .service-text We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.
+          .col.s12.m6
+            .col.s12.m2
+              %i.circle.large.material-icons add_alert
+            .col.s12.m10
+              .left.service-header.blue-txt Crash Reports
+              %br/
+              .service-text We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.
+        .row
+          .col.s12.m6
+            .col.s12.m2
+              %i.circle.large.material-icons view_carousel
+            .col.s12.m10
+              .left.service-header.blue-txt Instant Updates
+              %br/
+              .service-text We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.
+          .col.s12.m6
+            .col.s12.m2
+              %i.circle.large.material-icons phonelink_setup
+            .col.s12.m10
+              .left.service-header.blue-txt Enterprise
+              %br/
+              .service-text We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.
+      %br/
+      %br/
+    .section.blue-bg
+      .container
+        %h2.title.center Getting Started
+        .row.center
+          %h5.col.s12.m8.offset-m2.center.white-text Get going with ASS SDK easily. Just sign up and start tracking crashes and distributing app builds in three simple steps:
+        .row
+          .col.s12.m4
+            .icon-block
+              .number 1
+              %h5.white-text Download SDK
+              %p.white-text Download the respective client SDK for your platform. Be it iOS, Android, Windows Phone, or Mac.
+          .col.s12.m4
+            .icon-block
+              .number 2
+              %h5.white-text Integrate SDK
+              %p.white-text Integrate the SDK using either one of our client apps or manually with just a few clicks.
+          .col.s12.m4
+            .icon-block
+              .number 3
+              %h5.white-text Distribution
+              %p.white-text Upload your app build to ASS SDK and you're all set. Your testers can now download and install your app.
+      %br/
+      %br/
+    %footer.page-footer.orange
+      .container
+        .row
+          .col.s12.m3
+            %h5.blue-txt CONTACT
+            %a.white-text{:href => "mailto:support@ass-sdk.com"} support@ass-sdk.com
+            %br/
+            %br/
+            %a{:href => "https://www.facebook.com/MaisaSolutions", :target => "_blank"}
+              %img{:height => "40", :src => "assets/facebook-logo.png", :width => "40"}/
+            %a{:href => "https://twitter.com/maisasolutions", :target => "_blank"}
+              %img{:height => "40", :src => "assets/twitter-logo.png", :width => "40"}/
+            %a{:href => "https://github.com/maisaengineering", :target => "_blank"}
+              %img{:height => "40", :src => "assets/github-sign.png", :width => "40"}/
+            %br/
+          .col.s12.m6.text-muted
+            %a.twitter-timeline{"data-chrome" => "noheader nofooter noborders noscrollbar transparent", "data-lang" => "en", "data-theme" => "dark", "data-tweet-limit" => "1", "data-width" => "500", :href => "https://twitter.com/MaisaSolutions"} Tweets by MaisaSolutions
+            %script{:async => "", :charset => "utf-8", :src => "//platform.twitter.com/widgets.js"}
+          .col.s12.m3
+            %h5.blue-txt ADDRESS
+            .white-text
+              555 California Street
+              %br/
+              Suite 4925
+              %br/
+              San Francisco, California
+              %br/
+              USA 94104
+              %br/
+              Tel:
+              %a.white-text{:href => "tel:+17077098961"} +17077098961
+      .footer-copyright
+        .container.center
+          %a.white-text ©2016 Maisa™ Solutions.  All rights reserved.

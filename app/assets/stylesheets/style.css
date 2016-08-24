@@ -1,0 +1,64 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.container {
+    width: 90% !important;
+}
+
+
+body{
+    font-family: 'Roboto', sans-serif;
+    color: #727272;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.blue-bg{
+    background: #00BCD4 !important;
+}
+.blue-txt{
+    color: #00BCD4 !important;
+}
+
+.title {
+    font-size: 48px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+}
+.number {
+    display: inline-block;
+    background: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    color: #00BCD4;
+    text-align: center;
+    line-height: 34px;
+    margin-bottom: 0.5rem;
+}
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+.app-header-text{
+    line-height: 35px;
+}
+.service-image{
+    margin-top:5px;
+}
+.service-header{
+    font-size: 20px;
+}
+.service-text{
+    margin-top: 10px;
+}
