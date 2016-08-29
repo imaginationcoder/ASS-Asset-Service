@@ -9,7 +9,7 @@ class AppsController < ApplicationController
   # GET /apps/new
   def new
     @app = current_user.apps.build
-    @default_platform = Platform.default
+    @platforms = Platform.all
   end
 
   # POST /apps
@@ -20,9 +20,9 @@ class AppsController < ApplicationController
       flash[:success] = 'App was successfully created.Upload Assets'
       redirect_to app_url(@app)
     else
-      @default_platform = Platform.default
+      @platforms = Platform.all
       flash.now[:error] = 'Fix the errors'
-      render action: "new"
+      render action: 'new'
     end
   end
 

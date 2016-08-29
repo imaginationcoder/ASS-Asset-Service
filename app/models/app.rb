@@ -13,7 +13,8 @@ class App
 
   ## Validations ------------------------------------- ##
   validates :name, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } }
-  validates :user, associated: true
+  validates :user, presence: true
+  validates :platform, presence: true
 
   ## Uploader ----------------------------------------- ##
   mount_uploader :logo, AssetUploader, dependent: :destroy
@@ -47,6 +48,10 @@ class App
 
   ## Instance methods
   # currently editing version tour assets
+  def is_ios?
+    platform.name.downcase.eql?('ios')
+  end
+
   def tour_templates
     templates.where(app_version: editing_version.number, permission: Permission.tour)
   end
