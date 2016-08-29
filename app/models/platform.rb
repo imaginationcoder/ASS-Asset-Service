@@ -29,4 +29,9 @@ class Platform
   def self.default
     find_or_create_by(name: 'iOS')
   end
+
+  def is_ios?
+    name.downcase.eql?('ios')
+  end
+
 end

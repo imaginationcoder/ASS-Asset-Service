@@ -30,7 +30,7 @@ end
 end
 # Platform Categories
 platform = Platform.where(name: 'iOS').first
-PlatformCategory::NAMES.each do |name|
+PlatformCategory::IOS_NAMES.each do |name|
   platform.platform_categories.create(name: name)
 end
 platform_category = platform.platform_categories.first

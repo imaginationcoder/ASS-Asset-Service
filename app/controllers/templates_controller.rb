@@ -15,7 +15,7 @@ class TemplatesController < ApplicationController
     @template = @app.templates.build(permission: @permission)
     @template.text_assets.build
     @template.button_actions.build
-    @platform = Platform.default
+    @platform = @app.platform
     @platform_categories = @platform.platform_categories
   end
 
@@ -25,7 +25,7 @@ class TemplatesController < ApplicationController
     @app = @template.app
     @template.text_assets.build
     @template.button_actions.build
-    @platform = Platform.default
+    @platform = @app.platform
     @platform_categories = @platform.platform_categories
   end
 
