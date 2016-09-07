@@ -40,6 +40,16 @@ class Template
     '%.1f' % avg.to_f #rescue 0.0
   end
 
+  # total people accepted by a permission asset
+  def permission_accepted_count(version)
+    analytics.where(_type: 'AcceptedAnalytics', app_version: version, is_accepted: true).count
+  end
+
+  # total people denied by a permission asset
+  def permission_denied_count(version)
+    analytics.where(_type: 'AcceptedAnalytics', app_version: version, is_accepted: false).count
+  end
+
   ## Callbacks
 
   # update app_version with current app editing version

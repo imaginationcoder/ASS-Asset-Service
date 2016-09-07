@@ -8,7 +8,7 @@ class API::V1::AnalyticsController < API::BaseController
     category = platform.platform_categories.where(name: /^#{params[:platform_category]}$/i ).first rescue nil
     timed_analytic = TimedAnalytics.new(app: app, template: template, app_version: app.published_version.number,
                                         platform: platform, platform_category_id: category.try(:id),
-                                        event: 'Time Spent', ip_address: params[:ip_address],
+                                        event: 'TimeSpent', ip_address: params[:ip_address],
                                         time_spent: params[:time_spent])
     if timed_analytic.save
       render status: 200, json: { status: 200, success: true }
@@ -27,7 +27,7 @@ class API::V1::AnalyticsController < API::BaseController
     category = platform.platform_categories.where(name: /^#{params[:platform_category]}$/i ).first rescue nil
     accepted_analytic = AcceptedAnalytics.new(app: app, template: template, app_version: app.published_version.number,
                                         platform: platform, platform_category_id: category.try(:id),
-                                        event: 'Permission Accepted', ip_address: params[:ip_address],
+                                        event: 'PermissionAccepted', ip_address: params[:ip_address],
                                         is_accepted: params[:is_accepted])
     if accepted_analytic.save
       render status: 200, json: { status: 200, success: true }

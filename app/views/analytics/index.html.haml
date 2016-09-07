@@ -71,6 +71,8 @@
               %th Asset
               %th Version
               %th Avg time users spent(sec)
+              %th Accepted
+              %th Denied
             - @permission_templates.each do |template|
               %tr
                 %td.text-uppercase
@@ -78,6 +80,10 @@
                 %td= @version
                 %td
                   %span.badge.bg-light-blue= template.average_time_spent(@version)
+                %td
+                  %span.badge.bg-green= template.permission_accepted_count(@version)
+                %td
+                  %span.badge.bg-red= template.permission_denied_count(@version)
     .col-xs-12.col-md-6
       .box
         .box-header.with-border
