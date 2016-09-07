@@ -52,12 +52,17 @@ class App
     platform.name.downcase.eql?('ios')
   end
 
+  # randomly pick one published version from all published versions
+  def random_version
+    versions.where(published: true).pluck(:number).sample
+  end
+
   def tour_templates
     templates.where(app_version: editing_version.number, permission: Permission.tour)
   end
 
   def published_tour_templates
-    templates.where(app_version: published_version.number, permission: Permission.tour)
+    templates.where(app_version: random_version, permission: Permission.tour)
   end
 
   def logo_url
@@ -70,7 +75,7 @@ class App
   end
 
   def find_published_template(permission)
-    templates.where(app_version: published_version.number,permission: permission).first
+    templates.where(app_version: random_version, permission: permission).first
   end
 
   ### Version Management related stuff *************************** ----##
