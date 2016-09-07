@@ -20,6 +20,17 @@ class VersionsController < ApplicationController
     end
   end
 
+  def unpublish
+    @version.update(published: false)
+    respond_to do |format|
+      format.js {  render nothing: true }
+      format.html do
+        flash[:success] = "Version #{@version.number} unpublished successfully."
+        redirect_to versions_path(@app)
+      end
+    end
+  end
+
   def preview
     @templates = @app.templates.where(app_version: @version.number)
     tour_permission = Permission.tour

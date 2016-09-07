@@ -23,7 +23,7 @@ class Version
   def if_published_create_version_and_templates
     if published_changed? and published.eql?(true)
       # except this update all to unpublished and editing false
-      app.versions.update_all(published: false, published_at: nil)
+      # app.versions.update_all(published: false, published_at: nil)
       count = app.versions.count + 1
       # set published time to now
       self.published_at = Time.now

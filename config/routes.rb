@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       put 'tour' => 'tour#update', as: :update_tour
       resources :versions,only: [:index,:destroy]  do
         post 'publish'=> "versions#publish"
+        post 'unpublish'=> "versions#unpublish"
         get 'preview'=> 'versions#preview', as: :preview
       end
       get 'analytics' => 'analytics#index',as: :analytics
