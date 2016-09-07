@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       get 'tour/assets'=>"tour#index"
       get 'permission/:name/assets'=>"permissions#index"
       post 'analytics/time_spent'=>"analytics#time_spent"
+      post 'analytics/permission/is-accepted'=>"analytics#permission_accepted"
     end
   end
 
