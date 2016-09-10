@@ -9,7 +9,7 @@ class TourController < ApplicationController
 
   def new
     @app = App.find(params[:id])
-    @platform = Platform.default
+    @platform = @app.platform
     @platform_categories = @platform.platform_categories
     @template = @app.templates.build
     @text_assets = @template.text_assets.build
@@ -28,7 +28,7 @@ class TourController < ApplicationController
 
   def edit
     @app = App.find(params[:id])
-    @platform = Platform.default
+    @platform = @app.platform
     @platform_categories = @platform.platform_categories
     @permission = Permission.tour
     @templates = params[:version].present? ?  @app.templates.where(permission: Permission.tour, app_version: params[:version]) : @app.tour_templates

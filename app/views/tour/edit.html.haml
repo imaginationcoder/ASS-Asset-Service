@@ -37,7 +37,7 @@
                   %option{selected: "selected", value: @platform.id}= @platform.name
             .col-md-6.col-xs-6
               .form-group
-                = select_tag :platform_category_id, options_for_select(@platform_categories.pluck(:name, :id), 'iPhone 6s'),  include_blank: false ,class: 'form-control'
+                = select_tag :platform_category_id, options_for_select(@platform_categories.pluck(:name, :id)),  include_blank: false ,class: 'form-control'
         - if @app.errors.any?
           .row
             .col-sm-12

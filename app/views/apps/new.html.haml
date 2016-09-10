@@ -24,7 +24,7 @@
       .box-body
         .row.text-center
           .col-md-8.col-md-offset-2.col-xs-12
-            = f.hidden_field :platform_id, value: @default_platform.id
+            = f.hidden_field :platform_id, value: nil
             - if @app.errors.any?
               .row
                 .col-xs-12
@@ -52,13 +52,10 @@
             .row
               .col-xs-12{style: 'margin: 10px;'}
                 .form-group.platforms-options.js-platforms-options
-                  %label.is-ios
-                    %input{:name => "platform_ios", :type => "radio", :value => "ios"}/
-                    %span.label-text iOS
-                  %label.is-android
-                    %input{:name => "platform_android", :type => "radio", :value => "android",  :disabled => "disabled"}/
-                    %span.label-text Android
-
+                  - @platforms.each do |platform|
+                    %label{class: platform.name.downcase.eql?('ios') ? 'is-ios' : 'is-android'}
+                      = f.radio_button :platform_id, platform.id,checked: platform.name.downcase.eql?('ios') ? true : false
+                      %span.label-text= platform.name
 
       .box-footer
         %a.btn.btn-default{href: my_apps_path}

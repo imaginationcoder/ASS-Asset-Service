@@ -125,7 +125,7 @@
             %h4.box-title
               %a{"aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}
                 %i.fa.fa-apple
-                iOS
+                = @app.platform.name
           #collapseOne.panel-collapse.collapse.in{"aria-expanded" => "true", :style => "padding-bottom: 20px;"}
             .box-body.table-responsive.no-padding
               %table.table.table-hover
@@ -142,7 +142,7 @@
                         %i.fa.fa-download
                         = space
                         Download SDK
-        .panel.box.box-default
+        -#.panel.box.box-default
           .box-header.with-border
             %h4.box-title
               %a.collapsed{"aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo"}

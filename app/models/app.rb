@@ -13,7 +13,8 @@ class App
 
   ## Validations ------------------------------------- ##
   validates :name, presence: true, uniqueness: { conditions: -> { where(deleted_at: nil) } }
-  validates :user, associated: true
+  validates :user, presence: true
+  validates :platform, presence: true
 
   ## Uploader ----------------------------------------- ##
   mount_uploader :logo, AssetUploader, dependent: :destroy
@@ -47,12 +48,21 @@ class App
 
   ## Instance methods
   # currently editing version tour assets
+  def is_ios?
+    platform.name.downcase.eql?('ios')
+  end
+
+  # randomly pick one published version from all published versions
+  def random_version
+    versions.where(published: true).pluck(:number).sample
+  end
+
   def tour_templates
     templates.where(app_version: editing_version.number, permission: Permission.tour)
   end
 
   def published_tour_templates
-    templates.where(app_version: published_version.number, permission: Permission.tour)
+    templates.where(app_version: random_version, permission: Permission.tour)
   end
 
   def logo_url
@@ -65,7 +75,7 @@ class App
   end
 
   def find_published_template(permission)
-    templates.where(app_version: published_version.number,permission: permission).first
+    templates.where(app_version: random_version, permission: permission).first
   end
 
   ### Version Management related stuff *************************** ----##

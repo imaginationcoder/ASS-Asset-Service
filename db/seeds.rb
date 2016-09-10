@@ -30,7 +30,7 @@ end
 end
 # Platform Categories
 platform = Platform.where(name: 'iOS').first
-PlatformCategory::NAMES.each do |name|
+PlatformCategory::IOS_NAMES.each do |name|
   platform.platform_categories.create(name: name)
 end
 platform_category = platform.platform_categories.first
@@ -117,8 +117,19 @@ app.versions.each do |version|
   app.templates.where(app_version: version.number).each do |template|
     [4,5,6,7,8,9].sample.times do
       TimedAnalytics.create!(app: app, template: template, app_version: version.number, platform: platform,
-                             platform_category_id: platform_category.id, event: 'Time Spent',
-                             ip_address: Faker::Internet.ip_v4_address, time_spent: Faker::Number.between(5, 100))
+                             platform_category_id: platform_category.id, event: 'TimeSpent',
+                             ip_address: Faker::Internet.ip_v4_address, time_spent: Faker::Number.between(5, 60))
+    end
+  end
+end
+
+## Timed Analytics for all templates
+app.versions.each do |version|
+  app.templates.where(:permission_id.ne => tour_permission.id, app_version: version.number).each do |template|
+    [4,5,6,7,8,9].sample.times do
+      AcceptedAnalytics.create!(app: app, template: template, app_version: version.number, platform: platform,
+                                platform_category_id: platform_category.id, event: 'PermissionAccepted',
+                                ip_address: Faker::Internet.ip_v4_address, is_accepted: [true, false].sample)
     end
   end
 end

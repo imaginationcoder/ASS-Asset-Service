@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       put 'tour' => 'tour#update', as: :update_tour
       resources :versions,only: [:index,:destroy]  do
         post 'publish'=> "versions#publish"
+        post 'unpublish'=> "versions#unpublish"
         get 'preview'=> 'versions#preview', as: :preview
       end
       get 'analytics' => 'analytics#index',as: :analytics
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
       get 'tour/assets'=>"tour#index"
       get 'permission/:name/assets'=>"permissions#index"
       post 'analytics/time_spent'=>"analytics#time_spent"
+      post 'analytics/permission/is-accepted'=>"analytics#permission_accepted"
     end
   end
 
