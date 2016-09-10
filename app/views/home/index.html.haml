@@ -11,15 +11,6 @@
       .nav-wrapper.container
         %a#logo-container.brand-logo.blue-txt{:href => "#"} ASS SDK
         %ul.right.blue-txt.hide-on-med-and-down
-          - if user_signed_in?
-            %li
-              %a.blue-txt{href: my_apps_path} Dashboard
-          -else
-            %li
-              %a.blue-txt{href: new_user_registration_path} Signup
-            %li
-              %a.blue-txt{href: new_session_path(resource_name)} Login
-        %ul.right.blue-txt.hide-on-med-and-down
           %li
             %a.blue-txt{:href => "#"} Features
           %li
@@ -41,14 +32,6 @@
             %a.blue-txt{:href => "#"} Blog
           %li
             %a.blue-txt{:href => "#"} Support
-          - if user_signed_in?
-            %li
-              %a.blue-txt{href: my_apps_path} Dashboard
-          -else
-            %li
-              %a.blue-txt{href: new_user_registration_path} Signup
-            %li
-              %a.blue-txt{href: new_session_path(resource_name)} Login
         %a.button-collapse.blue-txt{"data-activates" => "nav-mobile", :href => "#"}
           %i.material-icons menu
     #index-banner.section.no-pad-bot.blue-bg
