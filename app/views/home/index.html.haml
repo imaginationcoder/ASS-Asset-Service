@@ -3,7 +3,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1.0", :name => "viewport"}/
-    %title Starter Template - Materialize
+    %title ASS SDK
     / CSS
     %link{:href => "https://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}/
   %body
@@ -42,9 +42,28 @@
         .row.center
           %p.header.col.s12.light.app-header-text.white-text.flow-text The world's best developers develop the world’s best apps for iOS, Android, OS X, and Windows on ASS-SDK app. Bring Mobile DevOps to your apps with beta distribution, crash reporting, user metrics and powerful workflow integrations.
         .row.center
-          %a#download-button.btn-large.waves-effect.waves-light.white.blue-txt{:href => ""} Get Started
-        %br/
-        %br/
+          %button.waves-effect.waves-light.btn.btn-large.modal-trigger.white.blue-txt{"data-target" => "get-started"} Get Started
+          #get-started.modal
+            .modal-content
+              %h4 Thank you for your interest.
+              %p Get notified as we invite next batch of awesome developers.
+              .row
+                .col.s12
+                  = form_for(@visitor) do |f|
+                    .row
+                      .input-field.col.s12
+                        = f.email_field :email,  class: 'validate'
+                        %label{:for => "email"} Enter your email
+                    .row
+                      .col.s12
+                        %button.btn.btn-large.waves-effect.waves-light.cyan{:name => "action", :type => "submit"}
+                          Submit
+                          %i.material-icons.right send
+
+
+
+      %br/
+      %br/
     .container
       .section
         %h2.title.center Features

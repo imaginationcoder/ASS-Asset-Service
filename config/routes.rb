@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :visitors
   get 'home/index'
 
   use_doorkeeper
