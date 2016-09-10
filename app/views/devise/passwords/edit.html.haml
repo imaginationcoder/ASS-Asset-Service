@@ -1,24 +1,21 @@
 - page_title 'Change your password'
-%body.hold-transition.login-page
-  .login-box
-    .login-logo
-      %a{:href => root_url}
-        %b> ASS
-        SDK
-    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-      = f.hidden_field :reset_password_token
-      = render 'shared/error_messages', resource: resource
-      .login-box-body
+.row
+  .col.s12.m4.offset-m4
+    %h5.center Reset password
+    .z-depth-1.row{:style => "display: inline-block; padding: 20px 20px 0px 20px; border: 1px solid #EEE;"}
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        = f.hidden_field :reset_password_token
+        = render 'shared/error_messages', resource: resource
         = render 'shared/flash_messages'
-        %p.login-box-msg Change your password
-        .form-group.has-feedback
-          = f.password_field :password,  class: 'form-control', placeholder: 'New Password'
-          %span.glyphicon.glyphicon-lock.form-control-feedback
-        .form-group.has-feedback
-          = f.password_field :password_confirmation,  class: 'form-control', required: false, placeholder: 'Confirm New Password'
-          %span.glyphicon.glyphicon-log-in.form-control-feedback
         .row
-          .col-xs-12.pull-right
-            %button.btn.btn-primary.btn-block.btn-flat.btn-progress{"data-loading-text"=>btn_prog_text('Change My Password'),:type => "submit"} Change My Password
-        %br
-        = render "devise/shared/links"
+          .col.s12
+            .row
+              .input-field.col.s12
+                %input#user_password.validate{:type => "password", :name => "user[password]"}/
+                %label{:for => "password"} New password
+              .input-field.col.s12
+                %input#user_password_confirmation.validate{:type => "password", :name => "user[password_confirmation]"}/
+                %label{:for => "password_confirmation"} Confirm new password
+              .col.s12
+                %p.center
+                  %button.waves-effect.waves-light.btn.cyan{"data-loading-text"=>btn_prog_text('Change My Password'),:type => "submit"} Change My Password

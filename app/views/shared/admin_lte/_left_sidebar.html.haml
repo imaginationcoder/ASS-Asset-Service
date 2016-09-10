@@ -1,67 +1,54 @@
-%aside.main-sidebar
-  / sidebar: style can be found in sidebar.less
-  %section.sidebar
-    / Sidebar user panel (optional)
-    .user-panel
-      .pull-left.image
-        = image_tag user_avatar_thumb_src ,class: "img-circle"
-      .pull-left.info
-        %p
-          %a{href: profile_path}= current_user.full_name
-        %a{href: profile_path}= current_user.email
-        / Status
-        -#%a{:href => "#"}
-              %i.fa.fa-circle.text-success
-              Online
-    %ul.sidebar-menu
-      %li{class: active_link_to_class(my_apps_path)}
-        %a{:href => my_apps_path}
-          %i.fa.fa-dashboard
-          %span Dashboard
-      - unless @my_apps.blank?
-        %li.header.text-center Your Apps
-        - @my_apps.each do |app|
-          %li.treeview{class: active_link_to_class(app_path(app))}
-            %a{:href => "#"}
-              %i.fa.fa-share
-              %span.text-uppercase= app.name
-              %span.pull-right-container
-                %i.fa.fa-angle-left.pull-right
-            %ul.treeview-menu
-              %li{class: active_link_to_class( tour_app_path(app) )}
-                %a{href: sidebar_tour_path(app)}
-                  %i.fa.fa-picture-o>
-                  Tour Setup
-              %li{class: active_link_to_class(app_templates_path(app))}
-                %a{:href => "#"}
-                  %i.fa.fa-wrench
-                  %span.pull-right-container
-                    %i.fa.fa-angle-left.pull-right
-                  Permissions
-                %ul.treeview-menu{class: is_active_link?(app_templates_path(app), :inclusive) ?  'menu-open' : nil }
-                  - @permissions.each do |permission|
-                    %li{class: permission_active_link_class(app, permission)}
-                      %a{href: sidebar_permission_path(app, permission)}
-                        %i.fa.fa-circle-o
-                        = permission.name
+%ul#slide-out.side-nav.fixed
+  %li
+    .userView.cyan
+      %a{href: profile_path}
+        = image_tag user_avatar_thumb_src, class: 'circle'
+      %a{href: profile_path}
+        %span.white-text.name.center
+          = current_user.full_name
+  %li{class: active_link_to_class(my_apps_path)}
+    %a.waves-effect.waves-cyan{:href => my_apps_path}
+      %i.material-icons dashboard
+      Dashboard
+  - unless @my_apps.blank?
+    %li.your_apps
+      %h5.center-align Your apps
+    - @my_apps.each do |app|
+      %li.no-padding
+        %ul.collapsible{"data-collapsible" => "accordion"}
+          %li{class: active_link_to_class(app_path(app))}
+            .collapsible-header.waves-effect.waves-cyan
+              %i.material-icons.right keyboard_arrow_right
+              %b= app.name
+            .collapsible-body
+              %ul.collapsible{"data-collapsible" => "accordion"}
+                %li{class: active_link_to_class( tour_app_path(app) )}
+                  %a{href: sidebar_tour_path(app)}
+                    %i.material-icons photo
+                    Tour Setup
+                %li{class: active_link_to_class(app_templates_path(app))}
+                  %a.collapsible-header.waves-effect.waves-cyan
+                    %i.material-icons.right keyboard_arrow_right
+                    %i.material-icons build
+                    Permissions
+                  .collapsible-body
+                    .row
+                      .col.s12.m12
+                        %ul{class: is_active_link?(app_templates_path(app), :inclusive) ?  'menu-open' : nil }
+                          - @permissions.each do |permission|
+                            %li{class: permission_active_link_class(app, permission)}
+                              %a{href: sidebar_permission_path(app, permission)}
+                                = permission.name
                 %li{class:  is_active_link?(versions_path(app), :exclusive)  ? 'active' : nil}
                   %a{:href => versions_path(app)}
-                    %i.fa.fa-code-fork
+                    %i.material-icons call_split
                     Versions
                 %li{class:  is_active_link?(analytics_app_path(app), :exclusive)  ? 'active' : nil}
                   %a{:href => analytics_app_path(app)}
-                    %i.fa.fa-bar-chart
+                    %i.material-icons poll
                     Analytics
-              -#%li{class:  is_active_link?(app_path(app), :exclusive)  ? 'active' : nil}
-                %a{:href => app_path(app)}
-                  %i.fa.fa-eye>
-                  Show
-              -#%li{class: active_link_to_class(edit_app_path(app))}
-                %a{:href => edit_app_path(app)}
-                  %i.fa.fa-edit>
-                  Edit
-      %li{class: active_link_to_class(new_app_path)}
-        %a{:href => new_app_path}
-          %i.fa.fa-plus
-          %span
-            %i New App
+
+  %li{class: active_link_to_class(new_app_path)}
+    %a{:href => new_app_path}
+      %i.material-icons.cyan-text add
+      .cyan-text New app

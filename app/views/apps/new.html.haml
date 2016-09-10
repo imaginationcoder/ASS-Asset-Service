@@ -1,73 +1,65 @@
 = page_title('Create App')
 %section.content-header
-  %h4
+  %h5
     Create New App
-  %ol.breadcrumb
-    %li
-      %a{:href => '#'}
-        %i.fa.fa-dashboard
-        Dashboard
-    %li
-      %a{:href => my_apps_path}
-        Apps
-    %li.active New
 %section.content
   = form_for(@app) do |f|
-    .box.box-primary
-      -#.box-header.with-border
-        %h3.box-title App
-        .box-tools.pull-right
-          -#%button.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-            %i.fa.fa-minus
-          %a.btn.btn-primary.btn-sm{href: my_apps_path, "data-toggle" => "tooltip", "data-widget" => "remove", :title => "Cancel"}
-            %i.fa.fa-times
-      .box-body
-        .row.text-center
-          .col-md-8.col-md-offset-2.col-xs-12
-            = f.hidden_field :platform_id, value: @default_platform.id
-            - if @app.errors.any?
-              .row
-                .col-xs-12
-                  = render 'shared/error_messages', resource: @app
-            .row
-              .col-xs-12
-                .form-group
-                  %a{href: "#"}
-                    %img.img-thumbnail.image-asset-source-preview{width: 100, height: 100, src: 'http://placehold.it/100x100&text=Logo'}/
-                  %label.btn.btn-default.btn-sm.btn-file{style: 'margin-left: 10px;'}
-                    Choose..
-                    = f.file_field :logo , style: 'display: none;', class: 'image-asset-source-input'
-                    %span.label.label-info
-            .row
-              .col-xs-12
-                .form-group
-                  = f.text_field :name, placeholder: 'Your app name*' , class: 'form-control'
-            .row
-              .col-xs-12
-                .form-group
-                  = f.text_area :description, placeholder: 'App Description' , class: 'form-control'
-            .row
-              .col-xs-12
-                %strong Platform(s)
-            .row
-              .col-xs-12{style: 'margin: 10px;'}
-                .form-group.platforms-options.js-platforms-options
-                  %label.is-ios
-                    %input{:name => "platform_ios", :type => "radio", :value => "ios"}/
-                    %span.label-text iOS
-                  %label.is-android
-                    %input{:name => "platform_android", :type => "radio", :value => "android",  :disabled => "disabled"}/
-                    %span.label-text Android
+    .row
+      .col.s12
+        = f.hidden_field :platform_id, value: @default_platform.id
+        - if @app.errors.any?
+          .row
+            .col.s12
+              = render 'shared/error_messages', resource: @app
+        .row.valign-wrapper
+          .col.s2.offset-s5
+            .form-group
+              %a{href: "#"}
+                %img.circle.responsive-img.img-thumbnail.image-asset-source-preview{:alt => "", :src => "http://placehold.it/100x100&text=Logo"}/
+              %label.white-txt.btn.btn-default.btn-sm.btn-file.cyan
+                Choose
+                = f.file_field :logo , style: 'display: none;', class: 'image-asset-source-input'
+                %span.label.label-info
+        .row
+          .form-group.input-field.col.s12
+            %input#name.form-control.validate{:type => "text"}/
+            %label{"data-error" => "", "data-success" => "", :for => "name"} Your app name*
+        .row
+          .form-group.input-field.col.s12
+            %textarea#description.form-control.materialize-textarea.validate
+            %label{"data-error" => "", "data-success" => "",:for => "description"} App Description
 
 
-      .box-footer
-        %a.btn.btn-default{href: my_apps_path}
-          %i.fa.fa-close
-          = space
-          CANCEL
-        %button.btn.btn-primary.btn-progress.pull-right{"data-loading-text"=>btn_prog_text('Saving'),:type => "submit"}
-          %i.fa.fa-check
-          = space
-          SAVE
+        .row
+          .col.s12
+            %strong Platform(s)
+        .row
+          .col.s12.m2.offset-l4
+            .card
+              .card-image
+                %img{:src => "/assets/1472820374_16-apple.png", :height=>"100"}/
+              .card-content.center
+                %p.center
+                  %input#platform_ios.with-gap{:name => "platform", :type => "radio", :value=>"ios"}/
+                  %label{:for => "platform_ios"} iOS
+          .col.s12.m2
+            .card
+              .card-image
+                %img{:src => "/assets/1472820366_Android.png", :height=>"100"}/
+              .card-content.center
+                %p.center
+                  %input#platform_android.with-gap{:name => "platform", :type => "radio", :value=>"android"}/
+                  %label{:for => "platform_android"} Android
+
+
+    .row.center
+      .col.s12
+        .box-footer
+          %a.btn.btn-default.cyan{href: my_apps_path}
+            %i.fa.fa-close
+            CANCEL
+          %button.btn.btn-primary.btn-progress.pull-right.cyan{"data-loading-text"=>btn_prog_text('Saving'),:type => "submit"}
+            %i.fa.fa-check
+            SAVE
 
 

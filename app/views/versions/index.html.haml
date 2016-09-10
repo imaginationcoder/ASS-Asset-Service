@@ -1,122 +1,91 @@
 = page_title('Dashboard | My Apps')
-%section.content-header
-  %h4
-    = @app.name
-    %small versions
-  %ol.breadcrumb
-    %li
-      %a{:href => "#"}
-        %i.fa.fa-dashboard
-        Dashboard
-    %li
-      %a{href: my_apps_path} Apps
-    %li
-      %a{href: app_path(@app)}= @app.name
-    %li.active Versions
-%section.content
-  .row
-    .col-md-12.col-xs-12
-      .callout{class: @published_version ? 'callout-success' : 'callout-danger'}
-        -#%button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times
-        - if @published_version
-          %h4
-            %i.fa.fa-code-fork
-            = space
-            Version #{@published_version.number} is Live
-          %p Published #{time_ago_in_words(@published_version.published_at)} ago by #{current_user.email}
-        - else
-          %h4 App Not Published
-          %p your app will return a 404 response until published
-  .row
-    .col-xs-12
-      .box{class: @published_version ? 'box-success' : 'box-danger'}
-        .box-header
-          %h3.box-title Versions
-          -#.box-tools
-            .input-group.input-group-sm{:style => "width: 150px;"}
-              %input.form-control.pull-right{:name => "table_search", :placeholder => "Search", :type => "text"}
-                .input-group-btn
-                  %button.btn.btn-default{:type => "submit"}
-                    %i.fa.fa-search
-        .box-body.app-versions-list.table-responsive.no-padding
-          %table.table
-            %tr
-              %th Version ID
-              %th Status
-              %th Created
-              %th Published
-              %th Published By
-              %th Actions
-            - @versions.each do |version|
-              %tr{class: version.published? ? 'text-green' : nil}
-                - if version.editing?
-                  %td= version.number
-                  %td Now Editing
-                  %td
-                  %td
-                  %td
-                  %td.dropdown
-                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                      Actions
-                      %b.caret
-                    %ul.dropdown-menu.pull-right
-                      %li
-                        %a{:href => "#", data: {app_id: @app.id,version_number: version.number,version_id: version.id,
-                                                toggle: 'modal', target: '#version-publish-modal'}} Publish
-                      %li
-                        %a{:href =>  version_preview_path(@app.id, version.id)} Preview
-                      %li.divider
-                      %li
-                        %a{:href => "#"} Delete
-                - else
-                  %td= version.number
-                  %td
-                    - if version.published?
-                      %span.label.label-success Live
-                  %td= l(version.created_at)
-                  %td= version.published? ? l(version.published_at) : nil
-                  %td= @app.user.email
-                  %td.dropdown.dropup
-                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                      Actions
-                      %b.caret
-                    %ul.dropdown-menu.pull-right
-                      %li
-                        %a{:href => "#", data: {app_id: @app.id,version_number: version.number,version_id: version.id,
-                                                toggle: 'modal', target: '#version-publish-modal'}} Publish
-                      %li
-                        %a{:href => version_preview_path(@app.id, version.id)} Preview
-                      %li.divider
-                      %li
-                        %a{:href => "#"} Delete
-#version-publish-modal.modal.fade
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} &times
-        %h4.modal-title Publish Version
-      .modal-body.bg-primary
-        %p
-          Publishing will push the changes to live.
-      .modal-footer
-        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
-        %button.btn.btn-progress.bg-olive.btn-publish-now{"data-loading-text"=>btn_prog_text('Publishing..'), type: 'submit'} Publish Now
-#published-success-modal.modal.fade{data: {backdrop: 'static', keyboard: 'false'} }
-  .modal-dialog
-    .modal-content
-      .modal-header
-        -#%button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} &times
-        %h4.modal-title Success
-      .modal-body.bg-primary
-        %p
-          Your changes are live now!
-        %p
-          %h4.published-version Version
-        %p
-          -#%h5 Published on #{l(@published_version.published_at, format: :long)}
-          %h5 Published just now.
+%h5
+  =@app.name
+  %small versions
+.row
+  .col.s12
+    - if @published_version
+      %h5 Version #{@published_version.number} is Live
+      %p Published #{time_ago_in_words(@published_version.published_at)} ago by #{current_user.email}
+    - else
+      %h4 App not published
+.row
+  .col.s12
+    %h5 Versions
+    %table.striped
+      %thead
+        %tr
+          %th Version ID
+          %th Status
+          %th Created
+          %th Published
+          %th Published By
+          %th Actions
+      %tbody
+        - @versions.each do |version|
+          %tr{class: version.published? ? 'cyan-text' : nil}
+            - if version.editing?
+              %td= version.number
+              %td Now Editing
+              %td
+              %td
+              %td
+              %td
+                %a.dropdown-button.valign-wrapper{"data-activates" => "dropdown-version-#{version.number}", "data-beloworigin"=>"true",:href => "#"}
+                  Actions
+                  %i.material-icons arrow_drop_down
+                %ul.dropdown-content{id: "dropdown-version-#{version.number}"}
+                  %li
+                    %a.modal-trigger.waves-effect.waves-light{:href => "#version-publish-modal", data: { app_id: @app.id,version_number: version.number,version_id: version.id,
+                                                                                            toggle: 'modal'}} Publish
+                  %li
+                    %a{:href =>  version_preview_path(@app.id, version.id)} Preview
+                  %li.divider
+                  %li
+                    %a{:href => "#"} Delete
+            - else
+              %td= version.number
+              %td
+                - if version.published?
+                  %span.label.label-success Live
+              %td= l(version.created_at)
+              %td= version.published? ? l(version.published_at) : nil
+              %td= @app.user.email
+              %td
+                %a.dropdown-button.valign-wrapper{"data-activates" => "dropdown-version-#{version.number}", "data-beloworigin"=>"true",:href => "#"}
+                  Actions
+                  %i.material-icons arrow_drop_down
+                %ul.dropdown-content{id: "dropdown-version-#{version.number}"}
+                  %li
+                    %a.modal-trigger.waves-effect.waves-light{:href => "#version-publish-modal", data: { app_id: @app.id,version_number: version.number,version_id: version.id,
+                                                                                            toggle: 'modal'}} Publish
+                  %li
+                    %a{:href => version_preview_path(@app.id, version.id)} Preview
+                  %li.divider
+                  %li
+                    %a{:href => "#"} Delete
 
-      .modal-footer
-        %button.btn.btn-primary.btn-done.pull-left{:type => "button"} Done
+#version-publish-modal.modal
+  .modal-content
+    .modal-header
+      %h4.modal-title Publish Version
+    .modal-body
+      %p
+        Publishing will push the changes to live.
+  .modal-footer
+    %button.btn.modal-action.modal-close.waves-effect.waves-green.btn.cyan.left{"data-dismiss" => "modal", :type => "button"} Close
+    %button.btn.modal-action.modal-close.waves-effect.waves-green.btn.cyan.right.btn-publish-now{"data-loading-text"=>btn_prog_text('Publishing..'), type: 'submit'} Publish Now
+
+#published-success-modal.modal
+  .modal-content
+    .modal-header
+      %h4.modal-title Success
+    .modal-body
+      %p
+        Your changes are live now!
+      %p
+        %h4.published-version Version
+      %p
+        %h5 Published just now.
+  .modal-footer
+    %button.btn.modal-action.modal-close.waves-effect.waves-green.btn-done.cyan.left{:type => "button"} Done

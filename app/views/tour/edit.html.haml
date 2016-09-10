@@ -3,6 +3,14 @@
     padding: 4px 0 0 2px;
   }
 = page_title("#{@app.name}- #{@permission.name} edit")
+
+.row
+  .col.s12
+    %h5
+      = @permission.name
+      %small #{@app.name} edit
+
+
 %section.content-header
   %h4
     = @permission.name

@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %title
+      = page_title
+      ASSSDK
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}/
+    = stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track' => true
+    = favicon_link_tag 'favicon.ico'
+    = csrf_meta_tags
+    = javascript_include_tag 'admin', 'data-turbolinks-track' => true
+    %link{:href => "http://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}/
+  %body
+    .navbar-fixed
+      %nav
+        .nav-wrapper
+          %a.button-collapse{"data-activates" => "slide-out", :href => "#"}
+            %i.material-icons menu
+          %a.brand-logo{:href => "#"} ASS SDK
+          %ul#nav-mobile.right.hide-on-med-and-down
+            %li
+              = link_to 'Logout', destroy_user_session_path, method: :delete
+    .row
+      .col.s12.m4.l3
+        = render 'shared/admin_lte/left_sidebar'
+      .col.s12.m8.l9
+        = yield

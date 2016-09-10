@@ -31,12 +31,14 @@ module Ass
 
     if Rails.env.development?
        # read from local file and assign to env variables for developemnt env for production read them via env
-      dev_config = YAML.load_file('/home/maisapride/upender/RubyMineWorkSpace/dev-assets-secrets.yml')
+      dev_config = YAML.load_file('/home/maisapride7/dev-assets-secrets.yml')
       %w(AWS GOOGLE GITHUB).each do |name|
         ENV["#{name}_KEY"] = dev_config[name]['key']
         ENV["#{name}_SECRET"] = dev_config[name]['secret']
       end
     end
+
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
   end
 end

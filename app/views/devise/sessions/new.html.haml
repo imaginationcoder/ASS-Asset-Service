@@ -1,38 +1,35 @@
 - page_title 'Log in'
-%body.hold-transition.login-page
-  .login-box
-    .login-logo
-      %a{:href => root_url}
-        %b> ASS
-        SDK
-    .login-box-body
-      = render 'shared/flash_messages'
-      %p.login-box-msg Sign in to start your session
+.row
+  .col.s12.m4.offset-m4
+    %h5.center Login
+    .z-depth-1.row{:style => "display: inline-block; padding: 20px 20px 0px 20px; border: 1px solid #EEE;"}
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .form-group.has-feedback
-          = f.email_field :email, class: 'form-control',placeholder: 'Email'
-          %span.glyphicon.glyphicon-envelope.form-control-feedback
-        .form-group.has-feedback
-          = f.password_field :password, autocomplete: "off",class: 'form-control',placeholder: 'Password'
-          %span.glyphicon.glyphicon-lock.form-control-feedback
+        = render 'shared/flash_messages'
         .row
-          .col-xs-7
-            .checkbox.icheck
-              %label
-                = f.check_box :remember_me
-                Remember Me
-          .col-xs-5
-            %button.btn.btn-primary.btn-block.btn-flat.btn-progress{"data-loading-text"=>btn_prog_text('Sign In'),:type => "submit"} Sign In
-      .social-auth-links.text-center
-        %p - OR -
-        %a.btn.btn-block.btn-social.btn-github.btn-flat{:href => user_omniauth_authorize_path(:github)}
-          %i.fa.fa-github
-          Sign in using
-          Git hub
-        %a.btn.btn-block.btn-social.btn-google.btn-flat{href: user_omniauth_authorize_path(:google_oauth2)}
-          %i.fa.fa-google-plus
-          Sign in using
-          Google+
-      %a{:href =>  new_password_path(resource_name)} I forgot my password
-      %br/
-      %a.text-center{:href => new_registration_path(resource_name)} Register a new membership
+          .col.s12
+            .row
+              .input-field.col.s12
+                %input#email.validate{:type => "email", :name => "user[email]"}/
+                %label{:for => "email"} Email
+
+              .input-field.col.s12
+                %input#password.validate{:type => "password", :name => "user[password]"}/
+                %label{:for => "password"} Password
+              .col.s12{:style=>"text-align:right;"}
+                %a{:href =>  new_password_path(resource_name)} Forgot my password
+
+              .col.s12
+                %p
+                  %input#filled-in-box.filled-in{:type => "checkbox", :name => "user[remember_me]"}/
+                  %label{:for => "filled-in-box"} Remember me
+
+              .col.s12
+                %p.center
+                  %button.waves-effect.waves-light.btn.cyan{"data-loading-text"=>btn_prog_text('Sign In'),:type => "submit"} Sign In
+      .row
+        .col.s12
+          %a.btn.btn-block.btn-social.btn-github.btn-flat{:href => user_omniauth_authorize_path(:github)}
+            Sign in using Github
+      .row
+        .col.s12.center
+          %a.center{:href => new_registration_path(resource_name)} Create an account

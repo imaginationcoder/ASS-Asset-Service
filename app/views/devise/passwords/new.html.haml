@@ -1,19 +1,17 @@
 - page_title 'Forgot your password'
-%body.hold-transition.login-page
-  .login-box
-    .login-logo
-      %a{:href => root_url}
-        %b> ASS
-        SDK
-    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-      = render 'shared/error_messages', resource: resource
-      .login-box-body
-        %p.login-box-msg Forgot your password?
-        .form-group.has-feedback
-          = f.email_field :email, class: 'form-control',placeholder: 'Enter Email'
-          %span.glyphicon.glyphicon-envelope.form-control-feedback
+.row
+  .col.s12.m4.offset-m4
+    %h5.center Forgot your password?
+    .z-depth-1.row{:style => "display: inline-block; padding: 20px 20px 0px 20px; border: 1px solid #EEE;"}
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = render 'shared/error_messages', resource: resource
         .row
-          .col-xs-12.pull-right
-            %button.btn.btn-primary.btn-block.btn-flat.btn-progress{"data-loading-text"=>btn_prog_text('Sending..'),:type => "submit"} Send
-        %br/
-        %a.text-center{:href => new_registration_path(resource_name)} Register a new membership
+          .col.s12
+            .row
+              .input-field.col.s12
+                %input#email.validate.form-control{:type => "email", :name => "user[email]"}/
+                %label{:for => "email"} Email
+
+              .col.s12
+                %p.center
+                  %button.waves-effect.waves-light.btn.cyan{"data-loading-text"=>btn_prog_text('Sign In'),:type => "submit"} Send

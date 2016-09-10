@@ -1,153 +1,53 @@
-:css
-  .products-list .product-img img{
-    height: 100px;
-    width: 100px;
-  }
-  .products-list .product-info{
-    margin-left: 120px;
-  }
-  .small-box h3 {
-     font-size: 20px;
-  }
 = page_title("App | #{@app.name}")
-%section.content-header
-  %h4
-    = @app.name
-    %small overview
-  %ol.breadcrumb
-    %li
-      %a{:href => '#'}
-        %i.fa.fa-dashboard
-        Dashboard
-    %li
-      %a{:href => my_apps_path}
-        Apps
-    %li.active= @app.name
-%section.content
-  .row
-    .col-lg-4.col-xs-12
-      .small-box.bg-aqua
-        .inner
-          %h3 Now Editing
-          %p version #{@app.editing_version.number}
-          %p{style: 'margin-top: 50px;'}
-          %p
-            last updated #{time_ago_in_words(@app.updated_at)} ago
-            %br by #{current_user.email}
-        .icon
-          %i.ion.ion-edit
-        %a.small-box-footer{href:  versions_path(@app)}
-          view all versions
-          %i.fa.fa-arrow-circle-right6
-    .col-lg-4.col-xs-12
-      .small-box.bg-green
-        - if @app.published_version
-          .inner
-            %h3 Last published
-            %p version 1
-            %p{style: 'margin-top: 50px;'}
-            %p
-              published #{time_ago_in_words(@app.published_version.published_at)} ago
-              %br by #{current_user.email}
-          .icon
-            %i.ion.ion-checkmark-circled
-        - else
-          .inner
-            %h3 App Not Published
-            %p &nbsp;
-            %p{style: 'margin-top: 50px;'}
-            %p add tour/permission assets and publish to make your changes live
-          .icon
-            %i.ion.ion-alert-circled
-        %a.small-box-footer{:href => "#"}
-          More info
-          %i.fa.fa-arrow-circle-right6
-    .col-lg-4.col-xs-12
-      .row
-        .col-lg-12.col-xs-12
-          .info-box
-            %span.info-box-icon.bg-aqua
-              %i.ion.ion-ios-clock-outline
-            .info-box-content
-              %span.info-box-text Last Access Time
-              %span.info-box-number
-                TODO
-      .row
-        .col-lg-12.col-xs-12
-          .info-box
-            %span.info-box-icon.bg-aqua
-              %i.ion.ion-images
-            .info-box-content
-              %span.info-box-text Last Activity
-              %span.info-box-number
-                TODO
-                -#permission
-                -#%small camera
+%h5
+  = @app.name
+  %small overview
 
-  .box.box-default
-    .box-header.with-border
-      %h3.box-title Details
-      .box-tools.pull-right
-        %button.btn.btn-box-tool{ data:{'original-title'=> 'Collapse',toggle: 'tooltip', widget: 'collapse'}}
-          %i.fa.fa-minus
-        %a.btn.btn-box-tool{href: edit_app_path(@app), data:{'original-title'=> 'Edit',toggle: 'tooltip'}}
-          %i.fa.fa-pencil
-    .box-body
-      .products-list.product-list-in-box
-        %li.item
-          %a.product-img.magnific-popup-img{href: @app.logo.url, title: @app.name}
-            %img.img-responsive.img-thumbnail{src: @app.logo.thumb.url}
-          .product-info
-            %a.product-title{:href => "javascript:void(0)"}
+.row
+  .col.s12
+    %h5 Details
+
+  .col.s12.m12
+    .card-panel.grey.lighten-5.z-depth-1
+      .row.valign-wrapper
+        .col.s2.center
+          - if @app.logo.thumb.url
+            %a.product-img.magnific-popup-img{href: @app.logo.url, title: @app.name}
+              %img.circle.responsive-img{:alt => "", src: @app.logo.thumb.url}/
+          - else
+            %img.circle.responsive-img{:alt => "", src: "http://placehold.it/100x100&text=Logo"}/
+        .col.s10
+          %span.black-text
+            %b
               = @app.name
+            .chip.cyan.white-text.right
               - if @app.published_version
                 %span.label.label-success.pull-right= "version #{@app.published_version.number}"
               - else
                 %span.label.label-danger.pull-right= "editing #{@app.editing_version.number}"
-            %span.product-description
+            .row
               = @app.description
-    .box-footer
-      %a.btn.btn-danger.btn-flat.btn-sm{href: app_path(@app), data: { method: :delete, confirm: 'Are you sure?' }}
-        %i.fa.fa-remove
-        Delete
-      %a.btn.btn-primary.btn-sm.pull-right{href: edit_app_path(@app)}
-        %i.fa.fa-pencil
-        Edit
-  .box.box-solid
-    .box-header.with-border
-      %h3.box-title Configuration
-    / /.box-header
-    .box-body
-      #accordion.box-group
-        / we are adding the .panel class so bootstrap.js collapse plugin detects it
-        .panel.box.box-success
-          .box-header.with-border
-            %h4.box-title
-              %a{"aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}
-                %i.fa.fa-apple
-                iOS
-          #collapseOne.panel-collapse.collapse.in{"aria-expanded" => "true", :style => "padding-bottom: 20px;"}
-            .box-body.table-responsive.no-padding
-              %table.table.table-hover
-                %tbody
-                  %tr
-                    %th CLIENT ID
-                    %th CLIENT TOKEN
-                    %th
-                  %tr
-                    %td.text-light-blue= @app.client_id
-                    %td.text-light-blue= @app.secret_token
-                    %td
-                      %a.btn.btn-primary.btn-sm.btn-block
-                        %i.fa.fa-download
-                        = space
-                        Download SDK
-        .panel.box.box-default
-          .box-header.with-border
-            %h4.box-title
-              %a.collapsed{"aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo"}
-                %i.fa.fa-android
-                Android
-          #collapseTwo.panel-collapse.collapse{"aria-expanded" => "false", :style => "height: 0px; padding: 20px;"}
-            .box-body
-              %h3.text-yellow Coming Soon..
+      .row
+        .col.s2
+        .col.s10
+          %a.waves-effect.waves-light.btn.red.darken-1{href: app_path(@app), data: { method: :delete, confirm: 'Are you sure?' }}
+            %i.material-icons.left delete
+            Delete
+          %a.waves-effect.waves-light.btn.cyan{href: edit_app_path(@app)}
+            %i.material-icons.left mode_edit
+            Edit
+.row
+  .col.s12
+    %h5 Configuration
+  .col.s12.m12
+    .card-panel.grey.lighten-5.z-depth-1
+      .row.valign-wrapper
+        %table
+          %thead
+            %tr
+              %th Client ID
+              %th Client Token
+          %tbody
+            %tr
+              %td= @app.client_id
+              %td= @app.secret_token

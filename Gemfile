@@ -97,3 +97,4 @@ gem 'omniauth-github'
 ## others ------------------------------------------------------------------------------
 gem 'active_link_to'
 gem 'faker' # generates fake data
+gem "jquery-ui-rails"

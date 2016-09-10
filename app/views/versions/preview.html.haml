@@ -1,190 +1,148 @@
 = page_title("#{@app.name} | Version Preview")
-%section.content-header
-  %h4
-    Version #{@version.number} Preview
-    %small= @app.name
-  %ol.breadcrumb
-    %li
-      %a{href: my_apps_path} Apps
-    %li
-      %a{href: app_path(@app)}= @app.name
-    %li
-      %a{href: versions_path(@app)} Versions
-    %li #{@version.number}
-    %li.active Preview
-%section.content
+%h5
+  Version #{@version.number} Preview
+  %small= @app.name
+
+
+.row
+  .col.s6
+    %h5 Tour Assets
+  .col.s6
+    = link_to version_publish_path(@app,@version.id), method: :post, class: 'btn waves-effect waves-light right',
+      data: {"loading-text": btn_prog_text('Publishing ..'),confirm: 'Are you sure?'} do
+      Publish
   .row
-    .col-md-6.col-xs-6
-      %h2.page-header Tour Assets
-    .col-md-6.col-xs-6.text-right
-      = link_to version_publish_path(@app,@version.id), method: :post, class: 'btn btn-progress btn-success btn-sm btn-flat',
-        data: {"loading-text": btn_prog_text('Publishing ..'),confirm: 'Are you sure?'} do
-        Publish
-        %i.fa.fa-share
-  .row
-    .col-md-12.col-sx-12
-      .nav-tabs-custom
-        - if @tour_templates.blank?
-          %p
-            %code No Assets found.
-        - else
-          %ul.nav.nav-tabs
-            - @tour_templates.each_with_index do |template, index|
-              %li{class: index == 0 ? 'active' : nil}
-                %a{"data-toggle" => "tab", :href => "#tour-tab-#{template.id}"} Step #{index+1}
-            %li.dropdown.pull-right
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                Actions
-                %span.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => edit_tour_app_path(@app, version: @tour_templates.first.app_version), :role => "menuitem", :tabindex => "-1"}
-                    %i.fa.fa-fw.fa-pencil
-                    Edit Tour
-          .tab-content
-            - @tour_templates.each_with_index do |template, index|
-              .tab-pane{id: "tour-tab-#{template.id}", class: index == 0 ? 'active' : nil}
-                .box.box-solid
-                  .box-header
-                    %h3.box-title Image Asset
-                  .box-body
-                    %a.magnific-popup-img{href: template.source.url, title: 'Image Asset'}
-                      %img.img-responsive.pad{:alt => "Photo", :src => template.source.thumb.url}
-                    %p click on above image to preview
-                    %span.pull-right.text-muted
-                      #{time_ago_in_words(template.created_at)} ago
-                .box.box-solid
-                  .box-header
-                    %h3.box-title Text Assets
-                  .box-body.table-responsive.no-padding
-                    %table.table.table-striped
+    .col.s12.m12
+      .card-panel.grey.lighten-5.z-depth-1
+        .row
+          .col.s12
+            - if @tour_templates.blank?
+              %p
+                %code No Assets found.
+            - else
+              %ul.tabs.cyan
+                - @tour_templates.each_with_index do |template, index|
+                  %li.tab.col.s3.white-text
+                    %a.white-text{:href => "#tour-tab-#{template.id}", class: index == 0 ? 'active' : nil} Step #{index+1}
+              - @tour_templates.each_with_index do |template, index|
+                .col.s12{id: "tour-tab-#{template.id}", class: index == 0 ? 'active' : nil}
+                  %h5 Image Asset
+                  %img.materialboxed{:src => template.source.url, :width => "200"}/
+                  %p click on above image to preview
+                  %span #{time_ago_in_words(template.created_at)} ago
+                  .divider
+                  %h5 Text Assets
+                  %table.striped
+                    %thead
                       %tr
                         %th #
                         %th Text
-                        %th{style: 'width: 20px'} Position
+                        %th Position
+                    %tbody
                       - template.text_assets.each_with_index do |ts, index|
                         %tr
-                          %td= "#{index+1}."
+                          %td= "#{index+1}"
                           %td= ts.text
-                          %td
-                            %span.badge.bg-light-blue= ts.position
-                .box.box-solid
-                  .box-header
-                    %h3.box-title Button Actions
-                  .box-body.table-responsive.no-padding
-                    %table.table.table-striped
+                          %td= ts.position
+                  .divider
+                  %h5 Button Actions
+                  %table.striped
+                    %thead
                       %tr
                         %th #
                         %th Type
                         %th Label/Image
                         %th Target Event
+                    %tbody
                       - template.button_actions.each_with_index do |bc, index|
                         %tr
-                          %td= "#{index+1}."
+                          %td= "#{index+1}"
                           %td
                             - if bc.btn_type.eql?(1)
-                              %span.badge.bg-light-blue Text
+                              Text
                             - else
-                              %span.badge.bg-yellow Image
+                              Image
                           %td
                             - if bc.btn_type.eql?(1)
                               = bc.label
                             - else
-                              %a.magnific-popup-img{href: bc.source.url, title: 'Image Asset'}
-                                Show
-                                %i.fa.fa-eye
+                              %img.materialboxed{src: bc.source.url, width: "50"}
                           %td= bc.target_event
+.row
+  .col.s12
+    %h5 Permission Assets
   .row
-    .col-md-12.col-sx-12
-      .box.box-solid
-        .box-header.with-border
-          %h3.box-title Permission Assets
-        .box-body
-          #accordion.box-group
+    .col.s12.m12
+      .card-panel.grey.lighten-5.z-depth-1
+        .row
+          .col.s12
             - @permissions.each_with_index do |permission, index|
               -  template = @templates.where(permission: permission).first
-              .panel.box{class: template ? 'box-success' : 'box-danger'}
-                .box-header.with-border
-                  %h4.box-title
-                    %a{"aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-#{permission.id}"}
-                      = permission.name
-                  .dropdown.pull-right
-                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %ul.collapsible{"data-collapsible" => "accordion"}
+                %li
+                  .collapsible-header
+                    = permission.name
+                    %a.right.dropdown-button.valign-wrapper{"data-activates" => "dropdown-#{index}", "data-beloworigin"=>"true",:href => "#"}
                       Actions
-                      %b.caret
-                    %ul.dropdown-menu
-                      - if template
-                        %li
-                          %a{:href => edit_template_path(template,version: template.app_version), :role => "menuitem", :tabindex => "-1"}
-                            %i.fa.fa-fw.fa-pencil
-                            Edit Assets
-                        %li
-                          %a.text-red{href: template_path(template,version: template.app_version), data: { method: :delete,confirm: 'Are you sure?'}}
-                            %i.fa.fa-fw.fa-trash-o
-                            Delete
-                      - else
-                        %li
-                          %a{:href => add_template_path(@app, permission,@version.number), :role => "menuitem", :tabindex => "-1"}
-                            %i.fa.fa-fw.fa-plus
-                            Add Assets
-                .panel-collapse.collapse{id: "collapse-#{permission.id}","aria-expanded" => "true", class: index == 0 ? 'in' : nil}
-                  .box-body
+                      %i.material-icons arrow_drop_down
+                    %ul.dropdown-content{id: "dropdown-#{index}"}
+                      %li
+                        %a{:href => edit_template_path(template,version: template.app_version), :role => "menuitem", :tabindex => "-1"} Edit
+                      %li
+                        %a.text-red{href: template_path(template,version: template.app_version), data: { method: :delete,confirm: 'Are you sure?'}} Delete
+                  .collapsible-body
                     - unless template
                       %p
                         %code No Assets found.
                     - else
-                      .panel-collapse.collapse{id: "collapse-#{template.id}","aria-expanded" => "true", class: index == 0 ? 'in' : nil}
-                        .box-body
-                          .nav-tabs-custom{style: 'box-shadow: none;'}
-                            %ul.nav.nav-tabs
-                              %li.active
-                                %a{"data-toggle" => "tab", :href => "#image-assets-tab-#{template.id}"} Image Asset
-                              %li
-                                %a{"data-toggle" => "tab", :href => "#text-assets-tab-#{template.id}"} Text Assets
-                              %li
-                                %a{"data-toggle" => "tab", :href => "#button-assets-tab-#{template.id}"} Btn Actions
-                            .tab-content
-                              .tab-pane.active{id: "image-assets-tab-#{template.id}"}
-                                .box-body
-                                  %a.magnific-popup-img{href: template.source.url, title: 'Image Asset'}
-                                    %img.img-responsive.pad{:alt => "Photo", :src => template.source.thumb.url}
-                                  %p click on above image to preview
-                                  %span.pull-right.text-muted
-                                    #{time_ago_in_words(template.created_at)} ago
-                              .tab-pane.table-responsive.no-padding{id: "text-assets-tab-#{template.id}"}
-                                %table.table.table-striped
-                                  %tr
-                                    %th #
-                                    %th Text
-                                    %th{style: 'width: 20px'} Position
-                                  - template.text_assets.each_with_index do |ts, index|
-                                    %tr
-                                      %td= "#{index+1}."
-                                      %td= ts.text
-                                      %td
-                                        %span.badge.bg-light-blue= ts.position
-                              .tab-pane.table-responsive.no-padding{id: "button-assets-tab-#{template.id}"}
-                                %table.table.table-striped
-                                  %tr
-                                    %th #
-                                    %th Type
-                                    %th Label/Image
-                                    %th Target Event
-                                  - template.button_actions.each_with_index do |bc, index|
-                                    %tr
-                                      %td= "#{index+1}."
-                                      %td
-                                        - if bc.btn_type.eql?(1)
-                                          %span.badge.bg-light-blue Text
-                                        - else
-                                          %span.badge.bg-yellow Image
-                                      %td
-                                        - if bc.btn_type.eql?(1)
-                                          = bc.label
-                                        - else
-                                          %a.magnific-popup-img{href: bc.source.url, title: 'Image Asset'}
-                                            Show
-                                            %i.fa.fa-eye
-                                      %td= bc.target_event
+                      .row
+                        .col.s12
+                          %ul.tabs.cyan
+                            %li.tab.col.s3
+                              %a.white-text.active{:href => "#image-assets-tab-#{template.id}"} Image Asset
+                            %li.tab.col.s3
+                              %a.white-text{:href => "#text-assets-tab-#{template.id}"} Text Assets
+                            %li.tab.col.s3
+                              %a.white-text{:href => "#button-assets-tab-#{template.id}"} Btn Actions
 
-
+                        .col.s12{id: "image-assets-tab-#{template.id}"}
+                          %p
+                            %img.materialboxed{:src => template.source.url, :width => "200"}/
+                          .col.s6 click on above image to preview
+                          .col.s6 #{time_ago_in_words(template.created_at)} ago
+                        .col.s12{id: "text-assets-tab-#{template.id}"}
+                          %table.striped
+                            %thead
+                              %tr
+                                %th #
+                                %th Text
+                                %th Position
+                            %tbody
+                              - template.text_assets.each_with_index do |ts, index|
+                                %tr
+                                  %td= "#{index+1}"
+                                  %td= ts.text
+                                  %td= ts.position
+                        .col.s12{id: "button-assets-tab-#{template.id}"}
+                          %table.striped
+                            %thead
+                              %tr
+                                %th #
+                                %th Type
+                                %th Label/Image
+                                %th Target Event
+                            %tbody
+                              - template.button_actions.each_with_index do |bc, index|
+                                %tr
+                                  %td= "#{index+1}"
+                                  %td
+                                    - if bc.btn_type.eql?(1)
+                                      Text
+                                    - else
+                                      Image
+                                  %td
+                                    - if bc.btn_type.eql?(1)
+                                      = bc.label
+                                    - else
+                                      %img.materialboxed{:src => bc.source.url, :width => "50"}/
+                                  %td= bc.target_event
