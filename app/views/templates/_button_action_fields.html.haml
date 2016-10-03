@@ -1,7 +1,7 @@
 .row.nested-fields
-  .col-xs-12.col-md-11.col-md-offset-1
-    .row
-      .col-xs-3
+  .col.s12
+    .row.valign-wrapper
+      .col.m3
         .form-group
           = f.select :btn_type, [['Text', 1], ['Image', 2]], { include_blank: false}, {class: 'form-control btn-action-type'}
       - if f.object.new_record?
@@ -10,22 +10,22 @@
         - label_css_class = 'hide'
       - else
         - label_css_class = nil
-      .col-xs-3.btn-action-label{class: label_css_class}
+      .col.m3.btn-action-label{class: label_css_class}
         .form-group
           = f.text_field :label, class: 'form-control btn-action-label', placeholder: 'Label'
-      .col-xs-3.btn-action-source{class: label_css_class.eql?('hide') ? nil : 'hide'}
+      .col.m3.center.valign.btn-action-source{class: label_css_class.eql?('hide') ? nil : 'hide'}
         .form-group
-          %label.btn.btn-default.btn-file.btn-sm
+          %label.btn.btn-default.btn-file.btn-sm.cyan
             Choose..
             = f.file_field :source , style: 'display: none;', class: 'btn-action-source-input'
             %span.label.label-info
           - if label_css_class.eql?('hide')
             = space
-            %a.magnific-popup-img{href: f.object.source.url, title: 'Preview Asset', data: {toggle: 'tooltip'}}
-              .fa.fa-eye
-      .col-xs-3
+            %a{href: f.object.source.url, title: 'Preview Asset', data: {toggle: 'tooltip'}}
+              %i.material-icons.cyan-text visibility
+      .col.m4
         .form-group
           = f.text_field :target_event, class: 'form-control', placeholder: 'Target Event'
-      .col-xs-3.text-left
-        = link_to_remove_association f, title: 'Remove',class: 'btn btn-default btn-sm', data: {toggle: 'tooltip'} do
-          %i.fa.fa-remove
+      .col.m2.center.valign
+        = link_to_remove_association f, title: 'Remove',class: '', data: {toggle: 'tooltip'} do
+          %i.material-icons.red-text delete

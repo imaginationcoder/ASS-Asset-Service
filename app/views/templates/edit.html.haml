@@ -1,116 +1,61 @@
 = page_title("Permission Edit- #{@permission.name}")
-%section.content-header
-  %h4
-    = @app.name
-    %small #{@permission.name} permission edit
-  %ol.breadcrumb
-    %li
-      %a{:href => my_apps_path}
-        Apps
-    %li
-      %a{:href => app_path(@app)}
-        = @app.name
-    %li
-      Permissions
-    %li
-      %a{:href => template_path(@template)}
-        = @permission.name
-    %li.active Edit
-%section.content
-  .row
-    .col-md-10.col-md-offset-1.col-xs-12
-      = render 'shared/text_editing_version', app: @app, version: @template.app_version
-      -#.row
-        .col-sm-12
-          .alert.alert-info.alert-dismissible.fade.in
-            %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-            %h4
-              %i.icon.fa.fa-question
-              What is it?
-            = @permission.description
-      -#.row
-        .col-sm-12
-          .alert.alert-success.alert-dismissible.fade.in
-            %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-            %h4
-              %i.icon.fa.fa-info-circle
-              Pro Tip
-            = @permission.pro_tip
-      = form_for(@template, url: template_path(@template)) do |f|
-        = hidden_field_tag :version , params[:version]
-        %fieldset.target-platform.text-center
-          %legend TARGET PLATFORM
-          .row
-            .col-md-6.col-xs-6
-              .form-group
-                %select.form-control{name: "template[:platform_id]"}
+
+%h5
+  = @app.name
+  %small #{@permission.name} permission edit
+.row
+  .col.s12.m12
+    .card-panel.grey.lighten-5.z-depth-1
+      .row
+        .col.s12
+          = render 'shared/text_editing_version', app: @app, version: @template.app_version
+          = form_for(@template, url: template_path(@template)) do |f|
+            = hidden_field_tag :version , params[:version]
+            %h5 Target Platform
+            .row
+              .input-field.col.s12.m6
+                %select{name: "template[:platform_id]"}
+                  %option{:disabled => "disabled", :value => ""} Choose your option
                   %option{selected: "selected", value: @platform.id}= @platform.name
-            .col-md-6.col-xs-6
-              .form-group
+              .input-field.col.s12.m6
                 = f.select :platform_category_id, options_for_select(@platform_categories.pluck(:name, :id), 'iPhone 6s'), { include_blank: false}, {class: 'form-control'}
-        .box.box-primary
-          .box-header.with-border
-            %h3.box-title= @app.name
-            .box-tools.pull-right
-              %button.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
-                %i.fa.fa-minus
-              %a.btn.btn-primary.btn-sm{href: app_path(@app), "data-toggle" => "tooltip",  :title => "Cancel"}
-                %i.fa.fa-times
-          .box-body
-            .row.text-center
-              .col-md-10.col-md-offset-1.col-xs-12
-                - if @template.errors.any?
-                  .row
-                    .col-sm-12
-                      = render 'shared/error_messages', resource: @template
-                / Images Assets
-                .row
-                  .col-xs-12
-                    %h3 Image Assets
-                .row.text-center
-                  .col-xs-12
-                    - if @template.source.url
-                      %a.magnific-popup-img{href: @template.source.url, title: 'Image Asset'}
-                        %img.img-thumbnail.image-asset-source-preview{width: 100, height: 100, src: @template.source.thumb.url}
-                    - else
-                      %a{href: "#"}
-                        %img.img-thumbnail.image-asset-source-preview{width: 100, height: 100, src: 'http://placehold.it/100x100&text=Browse'}/
-                    %label.btn.btn-default.btn-sm.btn-file{style: 'margin-left: 10px;'}
-                      Choose..
-                      = f.file_field :source , style: 'display: none;', class: 'image-asset-source-input'
-                      %span.label.label-info
-                / Text Assets
-                .row
-                  .col-xs-12
-                    .row
-                      .col-xs-12
-                        %h3 Text Assets
-                    .row#text_assets_fields
-                      .col-xs-12
-                        = f.fields_for :text_assets do |ts|
-                          = render 'templates/text_asset_fields', f: ts
-                        .links
-                          = link_to_add_association f, :text_assets, title: 'Add another',class: 'btn btn-circle-mini bg-light-blue-active', data: {toggle: 'tooltip'} do
-                            %span.glyphicon.glyphicon-plus
-                / Button Actions
-                .row
-                  .col-xs-12
-                    .row
-                      .col-xs-12
-                        %h3 Actions
-                    .row#button_actions_fields
-                      .col-xs-12
-                        = f.fields_for :button_actions do |ts|
-                          = render 'templates/button_action_fields', f: ts
-                        .links
-                          = link_to_add_association f, :button_actions, title: 'Add another',class: 'btn btn-circle-mini bg-light-blue-active', data: {toggle: 'tooltip'} do
-                            %span.glyphicon.glyphicon-plus
-          .box-footer
-            %a.btn.btn-default{href: template_path(@template)}
-              %i.fa.fa-close
-              = space
-              CANCEL
-            %button.btn.btn-progress.pull-right.bg-olive{"data-loading-text"=>btn_prog_text('Saving'), type: 'submit'}
-              %i.fa.fa-check
-              = space
-              Update
+
+            - if @template.errors.any?
+              .row
+                .col.s12
+                  = render 'shared/error_messages', resource: @template
+
+            #templates_fields
+              = f.fields_for :templates,f.object.new_record? ? @template : @templates do |tf|
+                = render 'tour/template_fields', f: tf
+              .links.text-center
+                = link_to_add_association f, :templates, title: 'Add one more step',class: 'btn btn-circle-sm btn-success', data: {toggle: 'tooltip'} do
+                  %span.glyphicon.glyphicon-plus
+
+
+            .row#text_assets_fields
+              %h5 Text Assets
+              .col.s12
+                = f.fields_for :text_assets do |ts|
+                  = render 'templates/text_asset_fields', f: ts
+                .links.center
+                  = link_to_add_association f, :text_assets, title: 'Add another',class: '', data: {toggle: 'tooltip'} do
+                    %i.material-icons.small add
+            .row
+              .col.s12
+                %h5 Actions
+            .row#button_actions_fields
+              .col.s12
+                = f.fields_for :button_actions do |ts|
+                  = render 'templates/button_action_fields', f: ts
+                .links.center
+                  = link_to_add_association f, :button_actions, title: 'Add another',class: '', data: {toggle: 'tooltip'} do
+                    %i.material-icons.small add
+            .row
+              .col.s12
+                %button.waves-effect.waves-light.btn.red.darken-1{href: template_path(@template)}
+                  %i.material-icons.left clear
+                  Cancel
+                %button.waves-effect.waves-light.btn.cyan.right{"data-loading-text"=>btn_prog_text('Saving'), type: 'submit'}
+                  %i.material-icons.left done
+                  Update

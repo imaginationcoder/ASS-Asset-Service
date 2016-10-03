@@ -7,7 +7,7 @@ function tourNestedTextAssetsCallabacks() {
         // $(this).data('remove-timeout', 3000);
         to_be_removed.fadeOut(3000);
     }).on('cocoon:after-insert', function(e, added_one) {
-       // do whatever
+       alert('ok1');
     });
 }
 // Nested button actions

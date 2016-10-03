@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require materialize.min
 //= require home_init
@@ -6,7 +7,7 @@
 //= require tour
 //= require versions
 //= require turbolinks
-
+//= require cocoon
 
 $(document).on('click','.navbar-collapse.in',function(e) {
 

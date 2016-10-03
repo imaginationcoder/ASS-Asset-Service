@@ -1,7 +1,3 @@
-:css
-  .btn-circle-mini{
-    padding: 4px 0 0 2px;
-  }
 = page_title("#{@app.name}- #{@permission.name} edit")
 
 .row
@@ -9,28 +5,33 @@
     %h5
       = @permission.name
       %small #{@app.name} edit
+.row
+  .col.s12.m12
+    .card-panel.grey.lighten-5.z-depth-1
+      .row
+        .col.s12
+          = render 'shared/text_editing_version', app: @app, version: @templates.first.app_version
+          = form_for(@app, url: update_tour_app_path(@app), method: :put) do |f|
+            = hidden_field_tag :version , params[:version]
+            %h5 Target Platform
+            .row
+              .input-field.col.s12.m6
+                %select{name: "template[:platform_id]"}
+                  %option{selected: "selected", value: @platform.id}= @platform.name
+              .input-field.col.s12.m6
+                = select_tag :platform_category_id, options_for_select(@platform_categories.pluck(:name, :id), 'iPhone 6s'),  include_blank: false ,class: 'form-control'
+            - if @app.errors.any?
+              .row
+                .col.s12
+                  = render 'shared/error_messages', resource: @app
+            #templates_fields
+              = f.fields_for :templates,f.object.new_record? ? @template : @templates do |tf, index|
+                = render  partial: 'tour/template_fields',  :locals => {f: tf, ind: index}
+              .links.text-center
+                = link_to_add_association f, :templates, title: 'Add one more step',class: 'btn btn-circle-sm btn-success', data: {toggle: 'tooltip'} do
+                  %span.glyphicon.glyphicon-plus
 
 
-%section.content-header
-  %h4
-    = @permission.name
-    %small #{@app.name} edit
-  %ol.breadcrumb
-    %li
-      %a{:href => '#'}
-        %i.fa.fa-dashboard
-        Dashboard
-    %li
-      %a{:href => my_apps_path}
-        Apps
-    %li
-      %a{:href => app_path(@app)}
-        = @app.name
-    %li
-      %a{href: tour_app_path(@app)}
-        Tour
-    %li.active Edit
-%section.content#add-tour-to-app
   .row
     .col-md-10.col-md-offset-1.col-xs-12
       = render 'shared/text_editing_version', app: @app, version: @templates.first.app_version
